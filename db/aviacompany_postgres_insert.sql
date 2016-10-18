@@ -1,0 +1,15 @@
+INSERT INTO company (name) VALUES ('BelaAvia');
+INSERT INTO company (name) VALUES ('Air VIA');
+INSERT INTO company (name) VALUES ('Atlantic Airlines');
+INSERT INTO company (name) VALUES ('British Airways');
+INSERT INTO company (name) VALUES ('Air France');
+INSERT INTO job_title (name) VALUES ('Диспетчер');
+INSERT INTO job_title (name) VALUES ('Администратор');
+INSERT INTO job_title (name) VALUES ('Пилот');
+INSERT INTO job_title (name) VALUES ('Штурман');
+INSERT INTO job_title (name) VALUES ('Радист');
+INSERT INTO job_title (name) VALUES ('Стюардесса');
+INSERT INTO state (name) VALUES ('Свободен');
+INSERT INTO state (name) VALUES ('В полете');
+INSERT INTO state (name) VALUES ('Отобран ');
+INSERT INTO state (name) VALUES ('На учебе');
