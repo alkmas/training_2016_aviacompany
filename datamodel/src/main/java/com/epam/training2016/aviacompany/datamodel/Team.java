@@ -1,10 +1,18 @@
 package com.epam.training2016.aviacompany.datamodel;
 
 public class Team extends AbstractModel {
+	private String name;
 	private Long countPilot;
 	private Long countNavigator;
 	private Long countRadioman;
 	private Long countStewardess;
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Long getCountPilot() {
 		return countPilot;
 	}
@@ -29,6 +37,4 @@ public class Team extends AbstractModel {
 	public void setCountStewardess(Long countStewardess) {
 		this.countStewardess = countStewardess;
 	}
-	
-	
 }

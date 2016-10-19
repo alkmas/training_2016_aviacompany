@@ -1,6 +1,8 @@
 CREATE TABLE "empoyee" (
 	"id" serial NOT NULL,
-	"name" character varying(256) NOT NULL,
+	"first_name" character varying(256) NOT NULL,
+	"last_name" character varying(256) NOT NULL,
+	"birthday" DATE,
 	"job_title_id" bigint NOT NULL,
 	CONSTRAINT empoyee_pk PRIMARY KEY ("id")
 ) WITH (
@@ -23,10 +25,8 @@ CREATE TABLE "flight" (
 	"id" serial NOT NULL,
 	"name" character varying(20) NOT NULL,
 	"way" character varying(256) NOT NULL,
-	"away_date" DATE NOT NULL,
-	"away_time" TIME NOT NULL,
-	"arrival_date" DATE NOT NULL,
-	"arrival_time" TIME NOT NULL,
+	"away" DATE NOT NULL,
+	"arrival" DATE NOT NULL,
 	"terminal" character,
 	CONSTRAINT flight_pk PRIMARY KEY ("id")
 ) WITH (
@@ -70,7 +70,7 @@ CREATE TABLE "team_2_flight" (
 CREATE TABLE "state" (
 	"id" serial NOT NULL,
 	"name" character varying(256) NOT NULL UNIQUE,
-	"need_date_time" BOOLEAN NOT NULL DEFAULT 'false',
+	"need_date" BOOLEAN NOT NULL DEFAULT 'false',
 	CONSTRAINT state_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -83,9 +83,7 @@ CREATE TABLE "flight_2_state" (
 	"flight_id" bigint NOT NULL,
 	"state_id" bigint NOT NULL,
 	"info_date" DATE,
-	"info_time" TIME,
 	"create_date" DATE NOT NULL,
-	"create_time" TIME NOT NULL,
 	CONSTRAINT flight_2_state_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

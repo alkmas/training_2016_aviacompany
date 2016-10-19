@@ -10,5 +10,5 @@ INSERT INTO state (name) VALUES ('посадка закончена');
 INSERT INTO state (name) VALUES ('вылетел');
 INSERT INTO state (name) VALUES ('отменен');
 INSERT INTO state (name) VALUES ('задержан');
-INSERT INTO state (name, need_date_time) VALUES ('ожидается в', true);
-INSERT INTO state (name, need_date_time) VALUES ('совершил посадку в', true);
+INSERT INTO state (name, need_date) VALUES ('ожидается в', true);
+INSERT INTO state (name, need_date) VALUES ('совершил посадку в', true);
