@@ -1,18 +1,19 @@
 package com.epam.training2016.aviacompany.datamodel;
 
 public class Team extends AbstractModel {
-	private String name;
 	private Long countPilot;
 	private Long countNavigator;
 	private Long countRadioman;
 	private Long countStewardess;
+	
+	public Team(Long countPilot, Long countNavigator, Long countRadioman, Long countStewardess) {
+		super();
+		this.countPilot = countPilot;
+		this.countNavigator = countNavigator;
+		this.countRadioman = countRadioman;
+		this.countStewardess = countStewardess;
+	}
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public Long getCountPilot() {
 		return countPilot;
 	}

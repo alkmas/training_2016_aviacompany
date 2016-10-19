@@ -8,6 +8,22 @@ public class FlightToState extends AbstractModel {
 	private Date infoDate;
 	private Date createDate;
 	
+	
+	public FlightToState(Long flightId, Long stateId) {
+		super();
+		this.flightId = flightId;
+		this.stateId = stateId;
+		this.infoDate = null;
+		this.createDate = new Date();
+	}
+
+	
+	public FlightToState(Long flightId, Long stateId, Date infoDate) {
+		this(flightId, stateId);
+		this.infoDate = infoDate;
+	}
+
+
 	public Long getFlightId() {
 		return flightId;
 	}

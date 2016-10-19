@@ -4,6 +4,19 @@ public class State extends AbstractModel {
 	private String name;
 	private Boolean needDate;
 	
+		
+	public State(String name) {
+		super();
+		this.name = name;
+		this.needDate = false;
+	}
+	
+	public State(String name, Boolean needDate) {
+		this(name);
+		this.needDate = needDate;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}

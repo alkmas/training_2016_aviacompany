@@ -8,6 +8,15 @@ public class Flight extends AbstractModel {
 	private Date awayDate;
 	private Date arrivalDate;
 	private String terminal;
+	
+	
+	public Flight(String name, String way, Date awayDate, Date arrivalDate) {
+		super();
+		this.name = name;
+		this.way = way;
+		this.awayDate = awayDate;
+		this.arrivalDate = arrivalDate;
+	}
 
 	public String getName() {
 		return name;
