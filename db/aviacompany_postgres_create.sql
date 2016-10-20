@@ -79,18 +79,9 @@ CREATE TABLE "airport" (
 
 
 
-CREATE TABLE "day_week" (
-	"name" character(2) NOT NULL UNIQUE,
-	"long_name" character varying(20) NOT NULL UNIQUE
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "flight_2_day_week" (
 	"flight_id" bigint NOT NULL,
-	"day_week_name" character(2) NOT NULL
+	"day_week" int NOT NULL
 ) WITH (
   OIDS=FALSE
 );
@@ -111,7 +102,5 @@ ALTER TABLE "team_2_flight" ADD CONSTRAINT "team_2_flight_fk0" FOREIGN KEY ("tea
 ALTER TABLE "team_2_flight" ADD CONSTRAINT "team_2_flight_fk1" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");
 
 
-
 ALTER TABLE "flight_2_day_week" ADD CONSTRAINT "flight_2_day_week_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");
-ALTER TABLE "flight_2_day_week" ADD CONSTRAINT "flight_2_day_week_fk1" FOREIGN KEY ("day_week_name") REFERENCES "day_week"("name");
 
