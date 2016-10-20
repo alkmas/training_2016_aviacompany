@@ -1,7 +1,6 @@
 package com.epam.training2016.aviacompany.datamodel;
 
 import java.sql.Time;
-import java.util.Date;
 
 public class Flight extends AbstractModel {
 	private String name;
