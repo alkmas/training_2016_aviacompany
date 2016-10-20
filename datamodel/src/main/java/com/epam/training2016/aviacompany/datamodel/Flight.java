@@ -1,51 +1,58 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Flight extends AbstractModel {
 	private String name;
-	private String way;
-	private Date awayDate;
-	private Date arrivalDate;
-	private String terminal;
+	private Long airportSrcId;
+	private Long airportDstId;
+	private Time awayTime;
+	private Time arrivalTime;
 	
 	
-	public Flight(String name, String way, Date awayDate, Date arrivalDate) {
+	public Flight(String name, Long airportSrcId, Long airportDstId, Time awayTime, Time arrivalTime) {
 		super();
 		this.name = name;
-		this.way = way;
-		this.awayDate = awayDate;
-		this.arrivalDate = arrivalDate;
+		this.airportSrcId = airportSrcId;
+		this.airportDstId = airportDstId;
+		this.awayTime = awayTime;
+		this.arrivalTime = arrivalTime;
 	}
-
+	
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getWay() {
-		return way;
+	public Long getAirportSrcId() {
+		return airportSrcId;
 	}
-	public void setWay(String way) {
-		this.way = way;
+	public void setAirportSrcId(Long airportSrcId) {
+		this.airportSrcId = airportSrcId;
 	}
-	public Date getAwayDate() {
-		return awayDate;
+	public Long getAirportDstId() {
+		return airportDstId;
 	}
-	public void setAwayDate(Date awayDate) {
-		this.awayDate = awayDate;
+	public void setAirportDstId(Long airportDstId) {
+		this.airportDstId = airportDstId;
 	}
-	public Date getArrivalDate() {
-		return arrivalDate;
+	public Time getAwayTime() {
+		return awayTime;
 	}
-	public void setArrivalDate(Date arrivalDate) {
-		this.arrivalDate = arrivalDate;
+	public void setAwayTime(Time awayTime) {
+		this.awayTime = awayTime;
 	}
-	public String getTerminal() {
-		return terminal;
+	public Time getArrivalTime() {
+		return arrivalTime;
 	}
-	public void setTerminal(String terminal) {
-		this.terminal = terminal;
+	public void setArrivalTime(Time arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
+
+	
+	
+	
 }
