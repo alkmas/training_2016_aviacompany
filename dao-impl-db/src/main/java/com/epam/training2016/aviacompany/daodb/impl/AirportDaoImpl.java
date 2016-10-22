@@ -3,11 +3,11 @@ package com.epam.training2016.aviacompany.daodb.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import com.epam.training2016.aviacompany.daodb.AirportDao;
+import com.epam.training2016.aviacompany.daodb.CommonDao;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 
 @Repository
-public class AirportDaoImpl implements AirportDao {
+public class AirportDaoImpl implements CommonDao<Airport> {
 
 	@Override
 	public Airport get(Long id) {

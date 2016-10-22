@@ -3,11 +3,12 @@ package com.epam.training2016.aviacompany.daodb.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import com.epam.training2016.aviacompany.daodb.EmployeeDao;
+
+import com.epam.training2016.aviacompany.daodb.CommonDao;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 
 @Repository
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDaoImpl implements CommonDao<Employee> {
 
 	@Override
 	public Employee get(Long id) {

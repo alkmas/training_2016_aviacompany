@@ -2,28 +2,30 @@ package com.epam.training2016.aviacompany.datamodel;
 
 import java.util.Date;
 
-public class Team2Flight {
-	private Long teamId;
+public class Flight2Employee extends AbstractModel {
 	private Long flightId;
+	private Long employeeId;
 	private Date arrival;
 	
-	public Team2Flight(Long teamId, Long flightId) {
+	
+	public Flight2Employee(Long flightId, Long employeeId, Date arrival) {
 		super();
-		this.teamId = teamId;
 		this.flightId = flightId;
+		this.employeeId = employeeId;
+		this.arrival = arrival;
 	}
 	
-	public Long getTeamId() {
-		return teamId;
-	}
-	public void setTeamId(Long teamId) {
-		this.teamId = teamId;
-	}
 	public Long getFlightId() {
 		return flightId;
 	}
 	public void setFlightId(Long flightId) {
 		this.flightId = flightId;
+	}
+	public Long getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 	public Date getArrival() {
 		return arrival;
@@ -31,6 +33,7 @@ public class Team2Flight {
 	public void setArrival(Date arrival) {
 		this.arrival = arrival;
 	}
-
-
+	
+	
+	
 }

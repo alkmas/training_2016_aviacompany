@@ -2,28 +2,25 @@ package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.epam.training2016.aviacompany.daodb.CommonDao;
-import com.epam.training2016.aviacompany.datamodel.Flight;
+import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 
-@Repository
-public class FlightDaoImpl implements CommonDao<Flight> {
+public class Flight2EmployeeDaoImpl implements CommonDao<Flight2Employee>  {
 
 	@Override
-	public Flight get(Long id) {
+	public Flight2Employee get(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insert(Flight entity) {
+	public void insert(Flight2Employee entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Flight entity) {
+	public void update(Flight2Employee entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,7 +32,7 @@ public class FlightDaoImpl implements CommonDao<Flight> {
 	}
 
 	@Override
-	public List<Flight> getAll() {
+	public List<Flight2Employee> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
