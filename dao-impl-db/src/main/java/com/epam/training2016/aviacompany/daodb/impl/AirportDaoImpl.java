@@ -26,19 +26,22 @@ public class AirportDaoImpl implements CommonDao<Airport> {
 
 	@Override
 	public void insert(Airport entity) {
-		// TODO Auto-generated method stub
+		jdbcTemplate.update(
+				"insert into airport(name) values(?)", entity.getName());
 	}
 
 	@Override
 	public void update(Airport entity) {
-		// TODO Auto-generated method stub
+		jdbcTemplate.update(
+				"update airport set name=? where id=?",
+				entity.getName(), entity.getId());
 		
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(
+				"delete from airport where id=?", id);
 	}
 
 	@Override
