@@ -7,4 +7,5 @@ public interface AirportService {
     void saveAll(List<Airport> books);
     void save(Airport book);
     boolean isDaoExist();
+    Airport get(Long id);
 }
