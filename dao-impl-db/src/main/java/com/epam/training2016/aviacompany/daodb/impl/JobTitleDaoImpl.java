@@ -2,39 +2,18 @@ package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
+
 import com.epam.training2016.aviacompany.daodb.CommonDao;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 
-public class JobTitleDaoImpl implements CommonDao<JobTitle> {
-
-	@Override
-	public JobTitle get(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insert(JobTitle entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(JobTitle entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<JobTitle> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+@Repository
+public class JobTitleDaoImpl extends CommonDaoImpl<JobTitle> {
 }
