@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.CommonDao;
+import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
 
@@ -13,7 +14,7 @@ import com.epam.training2016.aviacompany.services.AirportService;
 public class AirportServiceImpl implements AirportService {
     
 	@Inject
-	private CommonDao<Airport> airportDao;
+	private AirportDaoImpl airportDao;
 
     @Override
     public boolean isDaoExist() {
