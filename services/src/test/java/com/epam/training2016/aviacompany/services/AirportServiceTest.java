@@ -19,9 +19,9 @@ public class AirportServiceTest {
     @Test
     public void getByIdtest() {
     	Airport airport = airportService.get(1L);
-
         Assert.assertNotNull("airport for id=1 should not be null", airport);
         Assert.assertEquals(new Long(1L), airport.getId());
+        System.out.println(airport.getName());
     }
 
 }

@@ -1,13 +1,13 @@
 CREATE SCHEMA public
   AUTHORIZATION postgres;
 
-CREATE TABLE "empoyee" (
+CREATE TABLE "employee" (
 	"id" serial NOT NULL,
 	"first_name" character varying(256) NOT NULL,
 	"last_name" character varying(256) NOT NULL,
 	"birthday" DATE,
 	"job_title_id" bigint,
-	CONSTRAINT empoyee_pk PRIMARY KEY ("id")
+	CONSTRAINT employee_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -69,14 +69,14 @@ CREATE TABLE "flight_2_day_week" (
 
 
 
-ALTER TABLE "empoyee" ADD CONSTRAINT "empoyee_fk0" FOREIGN KEY ("job_title_id") REFERENCES "job_title"("id");
+ALTER TABLE "employee" ADD CONSTRAINT "employee_fk0" FOREIGN KEY ("job_title_id") REFERENCES "job_title"("id");
 
 
 ALTER TABLE "flight" ADD CONSTRAINT "flight_fk0" FOREIGN KEY ("airport_src_id") REFERENCES "airport"("id");
 ALTER TABLE "flight" ADD CONSTRAINT "flight_fk1" FOREIGN KEY ("airport_dst_id") REFERENCES "airport"("id");
 
 ALTER TABLE "flight_2_employee" ADD CONSTRAINT "flight_2_employee_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");
-ALTER TABLE "flight_2_employee" ADD CONSTRAINT "flight_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "empoyee"("id");
+ALTER TABLE "flight_2_employee" ADD CONSTRAINT "flight_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
 
 ALTER TABLE "flight_2_day_week" ADD CONSTRAINT "flight_2_day_week_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");

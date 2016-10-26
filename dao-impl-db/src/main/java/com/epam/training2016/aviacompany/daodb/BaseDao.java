@@ -2,7 +2,10 @@ package com.epam.training2016.aviacompany.daodb;
 
 import java.util.List;
 
-public interface CommonDao<T> {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface BaseDao<T> {
 	T get(Long id);
 	void insert(T entity);
 	void update(T entity);

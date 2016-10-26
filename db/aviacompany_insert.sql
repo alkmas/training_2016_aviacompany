@@ -1,3 +1,11 @@
+DELETE FROM flight_2_employee;
+DELETE FROM employee;
+DELETE FROM job_title;
+
+DELETE FROM flight_2_day_week;
+DELETE FROM flight;
+DELETE FROM airport;
+
 INSERT INTO airport (id, name) VALUES (1, 'Ларнака');
 INSERT INTO airport (id, name) VALUES (2, 'Ольборг');
 INSERT INTO airport (id, name) VALUES (3, 'Аликанте');
@@ -649,3 +657,13 @@ INSERT INTO flight_2_day_week (flight_id, day_week) VALUES (129, 6);
 INSERT INTO flight_2_day_week (flight_id, day_week) VALUES (131, 6);
 INSERT INTO flight_2_day_week (flight_id, day_week) VALUES (132, 6);
 INSERT INTO flight_2_day_week (flight_id, day_week) VALUES (135, 6);
+
+
+INSERT INTO job_title (id, name) VALUES (1, 'Диспетчер');
+INSERT INTO job_title (id, name) VALUES (2, 'Администратор');
+INSERT INTO job_title (id, name) VALUES (3, 'Пилот');
+INSERT INTO job_title (id, name) VALUES (4, 'Штурман');
+INSERT INTO job_title (id, name) VALUES (5, 'Радист');
+INSERT INTO job_title (id, name) VALUES (6, 'Стюардесса');
+
+SELECT pg_catalog.setval('job_title_id_seq', 6, true);

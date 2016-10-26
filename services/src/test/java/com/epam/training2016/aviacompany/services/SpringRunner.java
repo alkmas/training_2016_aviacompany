@@ -16,5 +16,6 @@ public class SpringRunner {
         System.out.println("AirportService exists:" + (airportServiceBean != null ? true : false));
 
         System.out.println("AirportService.dao exists:" + (airportServiceBean.isDaoExist() ? true : false));
+
     }
 }

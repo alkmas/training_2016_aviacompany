@@ -4,7 +4,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
-import com.epam.training2016.aviacompany.daodb.CommonDao;
+import com.epam.training2016.aviacompany.daodb.BaseDao;
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
