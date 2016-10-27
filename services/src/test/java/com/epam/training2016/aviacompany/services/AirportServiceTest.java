@@ -24,4 +24,15 @@ public class AirportServiceTest {
         System.out.println(airport.getName());
     }
 
+    
+    @Test
+    public void insertIntoAirport() {
+    	Airport airport = new Airport();
+    	String name= "Гродно";
+    	airport.setName(name);
+    	Long id = airportService.insert(airport);
+    	Assert.assertNotNull("id should not be 0", id);
+    	Assert.assertEquals(name, airportService.get(id).getName());
+    }
+
 }

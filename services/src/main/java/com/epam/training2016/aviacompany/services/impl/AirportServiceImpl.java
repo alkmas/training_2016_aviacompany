@@ -41,4 +41,9 @@ public class AirportServiceImpl implements AirportService {
 	public Airport get(Long id) {
 		return airportDao.get(id);
 	}
+
+	@Override
+	public Long insert(Airport airport) {
+		return airportDao.insert(airport);
+	}
 }
