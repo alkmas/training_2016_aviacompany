@@ -8,10 +8,11 @@ import com.epam.training2016.aviacompany.daodb.BaseDao;
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
+import com.epam.training2016.aviacompany.services.BaseService;
 
 
 @Service
-public class AirportServiceImpl implements AirportService {
+public class AirportServiceImpl implements BaseService<Airport> {
     
 	@Inject
 	private AirportDaoImpl airportDao;
@@ -33,7 +34,7 @@ public class AirportServiceImpl implements AirportService {
         if (airport.getId() == null) {
         	airportDao.insert(airport);
         } else {
-        	airportDao.update(airport);
+        	airportDao.updateAllField(airport);
         }
     }
 

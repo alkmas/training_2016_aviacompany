@@ -14,7 +14,7 @@ import com.epam.training2016.aviacompany.datamodel.Airport;
 public class AirportServiceTest {
 
     @Inject
-    private AirportService airportService;
+    private BaseService<Airport> airportService;
 
     @Test
     public void getByIdtest() {
@@ -32,6 +32,18 @@ public class AirportServiceTest {
     	airport.setName(name);
     	Long id = airportService.insert(airport);
     	Assert.assertNotNull("id should not be 0", id);
+    	Assert.assertEquals(name, airportService.get(id).getName());
+    }
+
+    
+    @Test
+    public void saveAirport() {
+    	Long id = 1L;
+    	String name= "Москва";
+    	Airport airport = airportService.get(id);
+    	airport.setName(name);
+    	airportService.save(airport);
+    	Assert.assertNotNull("airport for id=1 should not be null", airport);
     	Assert.assertEquals(name, airportService.get(id).getName());
     }
 

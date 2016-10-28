@@ -16,6 +16,5 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> {
 
 	FlightDaoImpl() {
 		super(Flight.class);
-		// TODO Auto-generated constructor stub
 	}
 }

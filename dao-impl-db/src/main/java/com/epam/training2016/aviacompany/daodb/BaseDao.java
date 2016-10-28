@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BaseDao<T> {
 	T get(Long id);
-	T get(String field);
 	Long insert(T entity);
-	void update(T entity);
+	void updateField(T entity, String field);
+	void updateAllField(T entity);
 	void delete(Long id);
 	List<T> getAll();
 }

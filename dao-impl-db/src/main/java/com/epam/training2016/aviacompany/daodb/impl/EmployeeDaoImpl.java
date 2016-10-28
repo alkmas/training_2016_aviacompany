@@ -9,7 +9,6 @@ import com.epam.training2016.aviacompany.datamodel.Employee;
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> {
-
 	EmployeeDaoImpl() {
 		super(Employee.class);
 	}
