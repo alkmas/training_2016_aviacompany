@@ -2,6 +2,9 @@ package com.epam.training2016.aviacompany.services;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.impl.AirportServiceImpl;
+
 public class SpringRunner {
 
     public static void main(String[] args) {
@@ -12,7 +15,7 @@ public class SpringRunner {
             System.out.println(beanName);
         }
 
-        AirportService airportServiceBean = springContext.getBean(AirportService.class);
+        BaseService<Airport> airportServiceBean = springContext.getBean(AirportServiceImpl.class);
         System.out.println("AirportService exists:" + (airportServiceBean != null ? true : false));
 
         System.out.println("AirportService.dao exists:" + (airportServiceBean.isDaoExist() ? true : false));

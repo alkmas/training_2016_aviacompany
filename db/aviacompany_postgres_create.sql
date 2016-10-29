@@ -60,7 +60,7 @@ CREATE TABLE "airport" (
 
 
 
-CREATE TABLE "flight_2_day_week" (
+CREATE TABLE "flight_day_week" (
 	"flight_id" bigint NOT NULL,
 	"day_week" int NOT NULL
 ) WITH (
@@ -79,5 +79,5 @@ ALTER TABLE "flight_2_employee" ADD CONSTRAINT "flight_2_employee_fk0" FOREIGN K
 ALTER TABLE "flight_2_employee" ADD CONSTRAINT "flight_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
 
 
-ALTER TABLE "flight_2_day_week" ADD CONSTRAINT "flight_2_day_week_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");
+ALTER TABLE "flight_day_week" ADD CONSTRAINT "flight_day_week_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");
 

@@ -1,13 +1,13 @@
 package com.epam.training2016.aviacompany.services.impl;
 
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
-import com.epam.training2016.aviacompany.daodb.BaseDao;
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
-import com.epam.training2016.aviacompany.services.AirportService;
 import com.epam.training2016.aviacompany.services.BaseService;
 
 
@@ -34,7 +34,7 @@ public class AirportServiceImpl implements BaseService<Airport> {
         if (airport.getId() == null) {
         	airportDao.insert(airport);
         } else {
-        	airportDao.updateAllField(airport);
+        	airportDao.update(airport);
         }
     }
 
@@ -46,5 +46,10 @@ public class AirportServiceImpl implements BaseService<Airport> {
 	@Override
 	public Long insert(Airport airport) {
 		return airportDao.insert(airport);
+	}
+
+	@Override
+	public List<Airport> getAll() {
+		return airportDao.getAll();
 	}
 }
