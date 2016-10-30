@@ -10,6 +10,11 @@ public class Airport extends AbstractModel {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Airport [name=" + name + "]";
+	}
 	
 	
 

@@ -1,6 +1,8 @@
 package com.epam.training2016.aviacompany.services.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.FlightDayWeekService;
 import com.epam.training2016.aviacompany.services.FlightService;
+import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirportAndDaysWeek;
 
 @Service
@@ -21,13 +24,13 @@ public class FlightServiceImpl implements FlightService {
 	@Inject
 	private FlightDaoImpl flightDao;
 	@Inject
-    private BaseService<Airport> airportService;
+	private BaseService<Airport> airportService;
 	@Inject
 	private FlightDayWeekService flightDayWeekService;
 
 	@Override
 	public void saveAll(List<Flight> entities) {
-		for(Flight entity: entities) {
+		for (Flight entity : entities) {
 			save(entity);
 		}
 	}
@@ -57,44 +60,16 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public FlightWithAirportAndDaysWeek getFlight(Long id) {
-		Flight flight = get(id);
-		Airport airportSrc = airportService.get(flight.getAirportSrcId());
-		Airport airportDst = airportService.get(flight.getAirportDstId());
-		List<FlightDayWeek> flightDaysWeek = flightDayWeekService.get(id);
-		
-		FlightWithAirportAndDaysWeek resultEntity = new FlightWithAirportAndDaysWeek();
-		resultEntity.setFlight(flight);
-		resultEntity.setAirportSrc(airportSrc);
-		resultEntity.setAirportDst(airportDst);
-		resultEntity.setDayWeeks(flightDaysWeek);
-		return resultEntity;
-	}
-
-	@Override
-	public FlightWithAirportAndDaysWeek getFlight(Flight flight) {
-		return getFlight(flight.getId());
-	}
-
-	@Override
-	public List<FlightWithAirportAndDaysWeek> getFlights(List<Flight> flights) {
-		List<FlightWithAirportAndDaysWeek> newList =
-				new ArrayList<FlightWithAirportAndDaysWeek>();
-		for(Flight flight: flights) {
-			FlightWithAirportAndDaysWeek entity = getFlight(flight.getId());
-			newList.add(entity);
-		}
-		return newList;
-	}
-
-	@Override
-	public List<FlightWithAirportAndDaysWeek> getAllFlight() {
-		return getFlights(getAll());
-	}
-
-	@Override
 	public List<Flight> getAll() {
 		return flightDao.getAll();
 	}
-	
+
+	@Override
+	public List<FlightWithAirport> getAllForAway(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(date.getTime());
+		return flightDao.getAllForDayWeek(
+				new Long(calendar.get(Calendar.DAY_OF_WEEK)));
+	}
+
 }

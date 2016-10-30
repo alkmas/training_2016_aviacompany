@@ -58,4 +58,11 @@ public class Flight extends AbstractModel {
 	public void setDaysWeek(List<Long> daysWeek) {
 		this.daysWeek = daysWeek;
 	}
+
+	@Override
+	public String toString() {
+		return "Flight [name=" + name + ", awayTime=" + awayTime + ", arrivalTime=" + arrivalTime + "]";
+	}
+	
+	
 }

@@ -25,7 +25,7 @@ public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
 	}
 
 	@Override
-	public List<FlightDayWeek> get(Long id) {
+	public List<FlightDayWeek> getByFlightId(Long id) {
 		return jdbcTemplate.query(
 				"SELECT * FROM flight_day_week WHERE flight_id=?",
 				new Object[] { id },
@@ -37,6 +37,13 @@ public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
 		jdbcTemplate.update(
 				"DELETE FROM flight_day_week WHERE flight_id=? AND day_week=?", 
 				new Object[] { entity.getFlightId(), entity.getDayWeek() });
+	}
+
+	@Override
+	public void deleteForFlightId(Long id) {
+		jdbcTemplate.update(
+				"DELETE FROM flight_day_week WHERE flight_id=?", 
+				new Object[] { id });
 	}
 
 }

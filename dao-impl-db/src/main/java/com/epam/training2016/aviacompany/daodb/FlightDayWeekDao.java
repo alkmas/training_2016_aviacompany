@@ -8,7 +8,8 @@ import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
 
 @Repository
 public interface FlightDayWeekDao {
-	List<FlightDayWeek> get(Long id);
+	List<FlightDayWeek> getByFlightId(Long id);
 	void insert(FlightDayWeek entity);
 	void delete(FlightDayWeek entity);
+	void deleteForFlightId(Long id);
 }
