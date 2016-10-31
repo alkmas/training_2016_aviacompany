@@ -11,18 +11,18 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Repository
 public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
-	final private String SQL_FLIGHT_WYTH_AIRPORT = 
+	final private String SQL_FLIGHT_WITH_AIRPORT = 
 			"SELECT * FROM flight f "
 			+ "LEFT JOIN airport a_src ON f.airport_src_id = a_src.id "
 			+ "LEFT JOIN airport a_dst ON f.airport_dst_id = a_dst.id";
 	
 	FlightDaoImpl() {
-		super(Flight.class);
+		super(Flight.class, "flight");
 	}
 
 	@Override
 	public FlightWithAirport getWithAirport(Long id) {
-		String sql = SQL_FLIGHT_WYTH_AIRPORT + " WHERE f.id=?";
+		String sql = SQL_FLIGHT_WITH_AIRPORT + " WHERE f.id=?";
 		return jdbcTemplate.queryForObject(sql, 
 				new Object[] { id }, 
 				new FlightWithAirportMapper());
@@ -30,13 +30,13 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 
 	@Override
 	public List<FlightWithAirport> getAllWithAirport() {
-		return jdbcTemplate.query(SQL_FLIGHT_WYTH_AIRPORT, 
+		return jdbcTemplate.query(SQL_FLIGHT_WITH_AIRPORT, 
 				new FlightWithAirportMapper());
 	}
 
 	@Override
 	public List<FlightWithAirport> getAllForDayWeek(Long dayWeek) {
-		String sql = SQL_FLIGHT_WYTH_AIRPORT +
+		String sql = SQL_FLIGHT_WITH_AIRPORT +
 				" LEFT JOIN flight_day_week d ON d.flight_id = f.id" +
 				" WHERE d.day_week=?";
 		return jdbcTemplate.query(sql, 

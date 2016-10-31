@@ -31,10 +31,10 @@ public class FlightServiceTest {
 
     
     @Test
-    public void insertIntoAirport() {
+    public void insertIntoFlight() {
     	Flight flight = new Flight();
     	flight.setName("D11111");
-    	Long id = flightService.insert(flight);
+    	Long id = flightService.save(flight);
     	Assert.assertNotNull("id should not be 0", id);
    }
 
@@ -43,7 +43,7 @@ public class FlightServiceTest {
     public void getFlight() {
     	Date date = new Date();
     	List<FlightWithAirport> flights = 
-    			flightService.getAllForAway(date);
+    			flightService.getAllByAway(date);
     	Assert.assertNotNull(flights);
     	System.out.println(date);
     	for(FlightWithAirport flight: flights) {

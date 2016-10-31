@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.BaseService;
@@ -13,7 +14,7 @@ import com.epam.training2016.aviacompany.services.BaseService;
 
 @Service
 public class AirportServiceImpl implements BaseService<Airport> {
-    
+    private static final Logger LOGGER = LoggerFactory.getLogger(AirportServiceImpl.class);
 	@Inject
 	private AirportDaoImpl airportDao;
 
@@ -30,11 +31,12 @@ public class AirportServiceImpl implements BaseService<Airport> {
     }
 
     @Override
-    public void save(Airport airport) {
+    public Long save(Airport airport) {
         if (airport.getId() == null) {
-        	airportDao.insert(airport);
+        	return airportDao.insert(airport);
         } else {
         	airportDao.update(airport);
+        	return airport.getId();
         }
     }
 
@@ -43,10 +45,6 @@ public class AirportServiceImpl implements BaseService<Airport> {
 		return airportDao.get(id);
 	}
 
-	@Override
-	public Long insert(Airport airport) {
-		return airportDao.insert(airport);
-	}
 
 	@Override
 	public List<Airport> getAll() {

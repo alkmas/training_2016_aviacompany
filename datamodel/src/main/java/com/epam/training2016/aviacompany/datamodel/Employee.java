@@ -8,17 +8,6 @@ public class Employee extends AbstractModel {
 	private Date birtday;
 	private Long jobTitleId;
 	
-	public Employee(String firstName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
-	public Employee(String firstName, String lastName, Long jobTitleId) {
-		this( firstName, lastName);
-		this.jobTitleId = jobTitleId;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}

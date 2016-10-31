@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.EmployeeDaoImpl;
@@ -11,7 +13,8 @@ import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.services.BaseService;
 
 @Service
-public class EmployeeService implements BaseService<Employee> {
+public class EmployeeServiceImpl implements BaseService<Employee> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 	@Inject
 	private EmployeeDaoImpl employeeDao;
 
@@ -23,11 +26,12 @@ public class EmployeeService implements BaseService<Employee> {
 	}
 
 	@Override
-	public void save(Employee entity) {
+	public Long save(Employee entity) {
 		if (entity.getId() == null) {
-			employeeDao.insert(entity);
+			return employeeDao.insert(entity);
 		} else {
 			employeeDao.update(entity);
+			return entity.getId();
 		}
 	}
 
@@ -39,11 +43,6 @@ public class EmployeeService implements BaseService<Employee> {
 	@Override
 	public Employee get(Long id) {
 		return employeeDao.get(id);
-	}
-
-	@Override
-	public Long insert(Employee entity) {
-		return employeeDao.insert(entity);
 	}
 
 	@Override

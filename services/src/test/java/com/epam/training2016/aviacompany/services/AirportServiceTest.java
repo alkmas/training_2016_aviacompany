@@ -30,22 +30,11 @@ public class AirportServiceTest {
     @Test
     public void insertIntoAirport() {
     	Airport airport = new Airport();
-    	String name= "Гродно";
-    	airport.setName(name);
-    	Long id = airportService.insert(airport);
+    	airport.setName("Вильнюс");
+    	Long id = airportService.save(airport);
     	Assert.assertNotNull("id should not be 0", id);
-    	Assert.assertEquals(name, airportService.get(id).getName());
+    	Assert.assertEquals(airport.getName(), airportService.get(id).getName());
     }
 
     
-    @Test
-    public void saveAirport() {
-    	Long id = 1L;
-    	String name= "Москва";
-    	Airport airport = airportService.get(id);
-    	airport.setName(name);
-    	airportService.save(airport);
-    	Assert.assertNotNull("airport for id=1 should not be null", airport);
-    	Assert.assertEquals(name, airportService.get(id).getName());
-    }
 }

@@ -13,5 +13,5 @@ public interface FlightService extends BaseService<Flight> {
 	List<FlightWithAirportAndDaysWeek> getAllFlight();
 	List<FlightWithAirportAndDaysWeek> getFlights(List<Flight> flights);
 	*/
-	List<FlightWithAirport> getAllForAway(Date date);
+	List<FlightWithAirport> getAllByAway(Date date);
 }

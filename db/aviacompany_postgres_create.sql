@@ -29,7 +29,7 @@ CREATE TABLE "flight" (
 	"name" character varying(20) NOT NULL UNIQUE,
 	"airport_src_id" bigint NOT NULL,
 	"airport_dst_id" bigint NOT NULL,
-	"away_time" TIME NOT NULL,
+	"departure_time" TIME NOT NULL,
 	"arrival_time" TIME NOT NULL,
 	CONSTRAINT flight_pk PRIMARY KEY ("id")
 ) WITH (
@@ -42,8 +42,9 @@ CREATE TABLE "flight_2_employee" (
 	"id" serial NOT NULL,
 	"flight_id" bigint NOT NULL,
 	"employee_id" bigint NOT NULL,
-	"arrival" DATE NOT NULL,
-	CONSTRAINT flight_2_employee_pk PRIMARY KEY ("id")
+	"departure" DATE NOT NULL,
+	CONSTRAINT flight_2_employee_pk PRIMARY KEY ("id"),
+	CONSTRAINT flight_2_employee_flight_id_employee_id_departure_key UNIQUE (flight_id, employee_id, departure)
 ) WITH (
   OIDS=FALSE
 );

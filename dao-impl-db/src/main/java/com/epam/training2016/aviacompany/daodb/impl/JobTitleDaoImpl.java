@@ -8,6 +8,6 @@ import com.epam.training2016.aviacompany.datamodel.JobTitle;
 public class JobTitleDaoImpl extends BaseDaoImpl<JobTitle> {
 
 	JobTitleDaoImpl() {
-		super(JobTitle.class);
+		super(JobTitle.class, "job_title");
 	}
 }

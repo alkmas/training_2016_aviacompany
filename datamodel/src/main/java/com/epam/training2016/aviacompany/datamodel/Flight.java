@@ -7,62 +7,51 @@ public class Flight extends AbstractModel {
 	private String name;
 	private Long airportSrcId;
 	private Long airportDstId;
-	private Time awayTime;
+	private Time departureTime;
 	private Time arrivalTime;
 	private List<Long> daysWeek;
-	
 	public String getName() {
 		return name;
 	}
-	
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public Long getAirportSrcId() {
 		return airportSrcId;
 	}
-	
 	public void setAirportSrcId(Long airportSrcId) {
 		this.airportSrcId = airportSrcId;
 	}
-	
 	public Long getAirportDstId() {
 		return airportDstId;
 	}
-	
 	public void setAirportDstId(Long airportDstId) {
 		this.airportDstId = airportDstId;
 	}
-	
-	public Time getAwayTime() {
-		return awayTime;
+	public Time getDepartureTime() {
+		return departureTime;
 	}
-	
-	public void setAwayTime(Time awayTime) {
-		this.awayTime = awayTime;
+	public void setDepartureTime(Time departureTime) {
+		this.departureTime = departureTime;
 	}
-	
 	public Time getArrivalTime() {
 		return arrivalTime;
 	}
-	
 	public void setArrivalTime(Time arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-
 	public List<Long> getDaysWeek() {
 		return daysWeek;
 	}
-
 	public void setDaysWeek(List<Long> daysWeek) {
 		this.daysWeek = daysWeek;
 	}
-
 	@Override
 	public String toString() {
-		return "Flight [name=" + name + ", awayTime=" + awayTime + ", arrivalTime=" + arrivalTime + "]";
+		return "Flight [name=" + name + ", airportSrcId=" + airportSrcId + ", airportDstId=" + airportDstId
+				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", daysWeek=" + daysWeek + "]";
 	}
+	
 	
 	
 }

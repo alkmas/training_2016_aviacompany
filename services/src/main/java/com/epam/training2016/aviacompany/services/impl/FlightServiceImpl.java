@@ -1,32 +1,26 @@
 package com.epam.training2016.aviacompany.services.impl;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
-import com.epam.training2016.aviacompany.services.BaseService;
-import com.epam.training2016.aviacompany.services.FlightDayWeekService;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirportAndDaysWeek;
+
 
 @Service
 public class FlightServiceImpl implements FlightService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlightServiceImpl.class);
 	@Inject
 	private FlightDaoImpl flightDao;
-	@Inject
-	private BaseService<Airport> airportService;
-	@Inject
-	private FlightDayWeekService flightDayWeekService;
 
 	@Override
 	public void saveAll(List<Flight> entities) {
@@ -36,11 +30,12 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public void save(Flight entity) {
+	public Long save(Flight entity) {
 		if (entity.getId() == null) {
-			flightDao.insert(entity);
+			return flightDao.insert(entity);
 		} else {
 			flightDao.update(entity);
+			return entity.getId();
 		}
 	}
 
@@ -55,17 +50,12 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Long insert(Flight entity) {
-		return flightDao.insert(entity);
-	}
-
-	@Override
 	public List<Flight> getAll() {
 		return flightDao.getAll();
 	}
 
 	@Override
-	public List<FlightWithAirport> getAllForAway(Date date) {
+	public List<FlightWithAirport> getAllByAway(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
 		return flightDao.getAllForDayWeek(
