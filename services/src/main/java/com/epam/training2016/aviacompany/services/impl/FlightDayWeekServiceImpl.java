@@ -44,4 +44,9 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	public void insert(FlightDayWeek entity) {
 		flightDayWeekDao.insert(entity);
 	}
+
+	@Override
+	public void delete(FlightDayWeek entity) {
+		flightDayWeekDao.delete(entity);
+	}
 }

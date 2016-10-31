@@ -34,8 +34,8 @@ public class FlightServiceTest {
     public void insertIntoFlight() {
     	Flight flight = new Flight();
     	flight.setName("D11111");
-    	Long id = flightService.save(flight);
-    	Assert.assertNotNull("id should not be 0", id);
+    	flightService.save(flight);
+    	Assert.assertNotNull("id should not be 0", flight.getId());
    }
 
 

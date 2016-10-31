@@ -30,12 +30,11 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Long save(Flight entity) {
+	public void save(Flight entity) {
 		if (entity.getId() == null) {
-			return flightDao.insert(entity);
+			entity.setId(flightDao.insert(entity));
 		} else {
 			flightDao.update(entity);
-			return entity.getId();
 		}
 	}
 
@@ -46,7 +45,7 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public Flight get(Long id) {
-		return flightDao.get(id);
+		return flightDao.getById(id);
 	}
 
 	@Override
@@ -60,6 +59,11 @@ public class FlightServiceImpl implements FlightService {
 		calendar.setTimeInMillis(date.getTime());
 		return flightDao.getAllForDayWeek(
 				new Long(calendar.get(Calendar.DAY_OF_WEEK)));
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		flightDao.delete(id);
 	}
 
 }

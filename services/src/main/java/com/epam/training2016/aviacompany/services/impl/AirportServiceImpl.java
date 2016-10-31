@@ -31,23 +31,26 @@ public class AirportServiceImpl implements BaseService<Airport> {
     }
 
     @Override
-    public Long save(Airport airport) {
+    public void save(Airport airport) {
         if (airport.getId() == null) {
-        	return airportDao.insert(airport);
+        	airport.setId(airportDao.insert(airport));
         } else {
         	airportDao.update(airport);
-        	return airport.getId();
         }
     }
 
 	@Override
 	public Airport get(Long id) {
-		return airportDao.get(id);
+		return airportDao.getById(id);
 	}
-
 
 	@Override
 	public List<Airport> getAll() {
 		return airportDao.getAll();
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		airportDao.delete(id);
 	}
 }

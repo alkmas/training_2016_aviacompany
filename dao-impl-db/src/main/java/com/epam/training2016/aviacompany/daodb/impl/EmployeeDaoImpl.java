@@ -11,6 +11,12 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitl
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
+	final private String SQL_UPDATE = 
+			"UPDATE employee SET first_name=:firstName,"
+			+ "last_name=:lastName,"
+			+ "birthday=:birthday,"
+			+ "job_title_id=:jobTitleId WHERE id=:id";
+
 	final private String SQL_EMPLOYEE_WITH_JOBTITLE = 
 			"SELECT * FROM employee e"
 			+ " LEFT JOIN job_title j ON e.job_title_id = j.id";
@@ -18,6 +24,11 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	
 	EmployeeDaoImpl() {
 		super(Employee.class, "employee");
+	}
+
+	@Override
+	public String getSQLUpdate() {
+		return SQL_UPDATE;
 	}
 
 	@Override

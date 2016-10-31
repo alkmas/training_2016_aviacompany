@@ -11,6 +11,12 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Repository
 public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
+	final private String SQL_UPDATE = "UPDATE flight SET name=:name,"
+			+ "airport_src_id=:airportSrcId,"
+			+ "airport_dst_id=:airportDstId,"
+			+ "departure_time=:departureTime,"
+			+ "arrival_time=:arrivalTime WHERE id=:id";
+
 	final private String SQL_FLIGHT_WITH_AIRPORT = 
 			"SELECT * FROM flight f "
 			+ "LEFT JOIN airport a_src ON f.airport_src_id = a_src.id "
@@ -18,6 +24,11 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 	
 	FlightDaoImpl() {
 		super(Flight.class, "flight");
+	}
+
+	@Override
+	public String getSQLUpdate() {
+		return SQL_UPDATE;
 	}
 
 	@Override

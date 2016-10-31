@@ -26,12 +26,11 @@ public class EmployeeServiceImpl implements BaseService<Employee> {
 	}
 
 	@Override
-	public Long save(Employee entity) {
+	public void save(Employee entity) {
 		if (entity.getId() == null) {
-			return employeeDao.insert(entity);
+			entity.setId(employeeDao.insert(entity));
 		} else {
 			employeeDao.update(entity);
-			return entity.getId();
 		}
 	}
 
@@ -42,12 +41,17 @@ public class EmployeeServiceImpl implements BaseService<Employee> {
 
 	@Override
 	public Employee get(Long id) {
-		return employeeDao.get(id);
+		return employeeDao.getById(id);
 	}
 
 	@Override
 	public List<Employee> getAll() {
 		return employeeDao.getAll();
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		employeeDao.delete(id);
 	}
 
 }

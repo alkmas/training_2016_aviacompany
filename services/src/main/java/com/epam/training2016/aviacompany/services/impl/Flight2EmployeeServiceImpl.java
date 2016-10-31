@@ -27,12 +27,11 @@ public class Flight2EmployeeServiceImpl implements BaseService<Flight2Employee> 
 	}
 
 	@Override
-	public Long save(Flight2Employee entity) {
+	public void save(Flight2Employee entity) {
 		if (entity.getId() == null) {
-			return flight2EmployeeDao.insert(entity);
+			entity.setId(flight2EmployeeDao.insert(entity));
 		} else {
 			flight2EmployeeDao.update(entity);
-			return entity.getId();
 		}
 	}
 
@@ -43,12 +42,17 @@ public class Flight2EmployeeServiceImpl implements BaseService<Flight2Employee> 
 
 	@Override
 	public Flight2Employee get(Long id) {
-		return flight2EmployeeDao.get(id);
+		return flight2EmployeeDao.getById(id);
 	}
 
 	@Override
 	public List<Flight2Employee> getAll() {
 		return flight2EmployeeDao.getAll();
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		flight2EmployeeDao.delete(id);
 	}
 
 }

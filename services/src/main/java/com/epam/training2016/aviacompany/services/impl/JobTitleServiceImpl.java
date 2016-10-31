@@ -26,12 +26,11 @@ public class JobTitleServiceImpl implements BaseService<JobTitle>{
 	}
 
 	@Override
-	public Long save(JobTitle entity) {
+	public void save(JobTitle entity) {
 		if (entity.getId() == null) {
-			return jobtitleDao.insert(entity);
+			entity.setId(jobtitleDao.insert(entity));
 		} else {
 			jobtitleDao.update(entity);
-			return entity.getId();
 		}
 	}
 
@@ -42,12 +41,17 @@ public class JobTitleServiceImpl implements BaseService<JobTitle>{
 
 	@Override
 	public JobTitle get(Long id) {
-		return jobtitleDao.get(id);
+		return jobtitleDao.getById(id);
 	}
 
 	@Override
 	public List<JobTitle> getAll() {
 		return jobtitleDao.getAll();
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		jobtitleDao.delete(id);
 	}
 
 }

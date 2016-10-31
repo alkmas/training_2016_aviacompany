@@ -1,6 +1,7 @@
 package com.epam.training2016.aviacompany.datamodel;
 
 public class Airport extends AbstractModel {
+	public final static String SQL_UPDATE = "";
 	private String name;
 
 	public String getName() {

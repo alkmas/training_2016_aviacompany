@@ -43,8 +43,8 @@ CREATE TABLE "flight_2_employee" (
 	"flight_id" bigint NOT NULL,
 	"employee_id" bigint NOT NULL,
 	"departure" DATE NOT NULL,
-	CONSTRAINT flight_2_employee_pk PRIMARY KEY ("id"),
-	CONSTRAINT flight_2_employee_flight_id_employee_id_departure_key UNIQUE (flight_id, employee_id, departure)
+	PRIMARY KEY ("id"),
+	UNIQUE (employee_id, departure)
 ) WITH (
   OIDS=FALSE
 );

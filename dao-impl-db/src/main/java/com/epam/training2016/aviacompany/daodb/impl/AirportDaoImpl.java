@@ -14,7 +14,7 @@ public class AirportDaoImpl extends BaseDaoImpl<Airport> {
 
 	public static void main(String[] args) {
 		AirportDaoImpl airport = new AirportDaoImpl();
-		airport.get(1L);
+		airport.getById(1L);
 		
 	}
 }
