@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import com.epam.training2016.aviacompany.daodb.impl.JobTitleDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.services.BaseService;
+import com.epam.training2016.aviacompany.services.JobTitleService;
 
 @Service
-public class JobTitleServiceImpl implements BaseService<JobTitle>{
+public class JobTitleServiceImpl implements JobTitleService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JobTitleServiceImpl.class);
 	@Inject
 	private JobTitleDaoImpl jobtitleDao;
@@ -40,7 +41,7 @@ public class JobTitleServiceImpl implements BaseService<JobTitle>{
 	}
 
 	@Override
-	public JobTitle get(Long id) {
+	public JobTitle getById(Long id) {
 		return jobtitleDao.getById(id);
 	}
 
@@ -51,7 +52,17 @@ public class JobTitleServiceImpl implements BaseService<JobTitle>{
 
 	@Override
 	public void deleteById(Long id) {
-		jobtitleDao.delete(id);
+		jobtitleDao.deleteById(id);
+	}
+
+	@Override
+	public JobTitle getByName(String value) {
+		for(JobTitle jobtitle: this.getAll()) {
+			if (jobtitle.getName().indexOf(value) != -1) {
+				return jobtitle;
+			}
+		}
+		return null;
 	}
 
 }

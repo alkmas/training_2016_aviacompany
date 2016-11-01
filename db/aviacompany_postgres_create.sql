@@ -7,7 +7,8 @@ CREATE TABLE "employee" (
 	"last_name" character varying(256) NOT NULL,
 	"birthday" DATE,
 	"job_title_id" bigint,
-	CONSTRAINT employee_pk PRIMARY KEY ("id")
+	CONSTRAINT employee_pk PRIMARY KEY ("id"),
+	UNIQUE ("first_name", "last_name", "birthday")
 ) WITH (
   OIDS=FALSE
 );
@@ -63,7 +64,8 @@ CREATE TABLE "airport" (
 
 CREATE TABLE "flight_day_week" (
 	"flight_id" bigint NOT NULL,
-	"day_week" int NOT NULL
+	"day_week" int NOT NULL,
+	UNIQUE ("flight_id", "day_week")
 ) WITH (
   OIDS=FALSE
 );

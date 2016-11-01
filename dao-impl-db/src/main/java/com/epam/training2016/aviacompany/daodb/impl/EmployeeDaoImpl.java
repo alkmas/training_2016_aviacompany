@@ -27,7 +27,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	}
 
 	@Override
-	public String getSQLUpdate() {
+	protected String getStringSQLUpdate() {
 		return SQL_UPDATE;
 	}
 

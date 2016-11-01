@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.services.BaseService;
+import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
 
 @Service
-public class Flight2EmployeeServiceImpl implements BaseService<Flight2Employee> {
+public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(Flight2EmployeeServiceImpl.class);
 
 	@Inject
@@ -41,7 +42,7 @@ public class Flight2EmployeeServiceImpl implements BaseService<Flight2Employee> 
 	}
 
 	@Override
-	public Flight2Employee get(Long id) {
+	public Flight2Employee getById(Long id) {
 		return flight2EmployeeDao.getById(id);
 	}
 
@@ -52,7 +53,7 @@ public class Flight2EmployeeServiceImpl implements BaseService<Flight2Employee> 
 
 	@Override
 	public void deleteById(Long id) {
-		flight2EmployeeDao.delete(id);
+		flight2EmployeeDao.deleteById(id);
 	}
 
 }

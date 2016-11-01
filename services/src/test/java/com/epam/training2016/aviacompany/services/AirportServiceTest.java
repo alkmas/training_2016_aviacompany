@@ -20,7 +20,7 @@ public class AirportServiceTest {
     
     @Test
     public void getByIdtest() {
-    	Airport airport = airportService.get(1L);
+    	Airport airport = airportService.getById(1L);
         Assert.assertNotNull("airport for id=1 should not be null", airport);
         Assert.assertEquals(new Long(1L), airport.getId());
         System.out.println(airport.getName());
@@ -34,7 +34,7 @@ public class AirportServiceTest {
     	airportService.save(airport);
     	Long id = airport.getId();
     	Assert.assertNotNull("id should not be 0", id);
-    	Assert.assertEquals(airport.getName(), airportService.get(id).getName());
+    	Assert.assertEquals(airport.getName(), airportService.getById(id).getName());
     }
 
     

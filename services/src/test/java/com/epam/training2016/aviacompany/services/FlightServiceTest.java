@@ -23,7 +23,7 @@ public class FlightServiceTest {
     
     @Test
     public void getByIdtest() {
-    	Flight flight = flightService.get(1L);
+    	Flight flight = flightService.getById(1L);
         Assert.assertNotNull("flight for id=1 should not be null", flight);
         Assert.assertEquals(new Long(1L), flight.getId());
         System.out.println(flight.getName());

@@ -9,11 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.AirportService;
 import com.epam.training2016.aviacompany.services.BaseService;
 
 
 @Service
-public class AirportServiceImpl implements BaseService<Airport> {
+public class AirportServiceImpl implements AirportService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AirportServiceImpl.class);
 	@Inject
 	private AirportDaoImpl airportDao;
@@ -40,7 +41,7 @@ public class AirportServiceImpl implements BaseService<Airport> {
     }
 
 	@Override
-	public Airport get(Long id) {
+	public Airport getById(Long id) {
 		return airportDao.getById(id);
 	}
 
@@ -51,6 +52,6 @@ public class AirportServiceImpl implements BaseService<Airport> {
 
 	@Override
 	public void deleteById(Long id) {
-		airportDao.delete(id);
+		airportDao.deleteById(id);
 	}
 }

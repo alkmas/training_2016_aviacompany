@@ -27,7 +27,7 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 	}
 
 	@Override
-	public String getSQLUpdate() {
+	protected String getStringSQLUpdate() {
 		return SQL_UPDATE;
 	}
 

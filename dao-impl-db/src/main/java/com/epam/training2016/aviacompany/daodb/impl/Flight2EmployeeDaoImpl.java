@@ -15,7 +15,7 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> {
 	}
 
 	@Override
-	public String getSQLUpdate() {
+	protected String getStringSQLUpdate() {
 		return SQL_UPDATE;
 	}
 

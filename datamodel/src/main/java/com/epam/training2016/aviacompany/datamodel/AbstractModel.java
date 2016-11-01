@@ -9,5 +9,12 @@ public class AbstractModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public boolean equals(AbstractModel obj) {
+		if (obj.getId() == this.id) {
+			return true;
+		}
+		return false;
+	}
 
 }

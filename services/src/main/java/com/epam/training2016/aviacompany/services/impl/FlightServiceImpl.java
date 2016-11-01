@@ -44,7 +44,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Flight get(Long id) {
+	public Flight getById(Long id) {
 		return flightDao.getById(id);
 	}
 
@@ -63,7 +63,7 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void deleteById(Long id) {
-		flightDao.delete(id);
+		flightDao.deleteById(id);
 	}
 
 }

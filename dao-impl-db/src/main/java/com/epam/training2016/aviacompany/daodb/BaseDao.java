@@ -9,6 +9,6 @@ public interface BaseDao<T> {
 	T getById(Long id);
 	Long insert(T entity);
 	void update(T entity);
-	void delete(Long id);
+	void deleteById(Long id);
 	List<T> getAll();
 }

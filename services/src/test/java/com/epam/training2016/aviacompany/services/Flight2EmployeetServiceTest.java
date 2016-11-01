@@ -22,7 +22,7 @@ public class Flight2EmployeetServiceTest {
     
     @Test
     public void getByIdtest() {
-    	Flight2Employee flight2Employee = flight2EmployeeService.get(1L);
+    	Flight2Employee flight2Employee = flight2EmployeeService.getById(1L);
         Assert.assertNotNull("", flight2Employee);
         Assert.assertEquals(new Long(1L), flight2Employee.getId());
 //      System.out.println(flight2Employee.getName());
@@ -32,7 +32,7 @@ public class Flight2EmployeetServiceTest {
     @Test
     public void insertTest() {
 //    	Flight2Employee flight2Employee = new Flight2Employee();
-    	Flight2Employee flight2Employee = flight2EmployeeService.get(1L);
+    	Flight2Employee flight2Employee = flight2EmployeeService.getById(1L);
     	flight2Employee.setFlightId(2L);
     	flight2Employee.setEmployeeId(6L);
     	flight2Employee.setDeparture(new Date());

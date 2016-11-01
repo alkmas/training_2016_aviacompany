@@ -10,7 +10,7 @@ public class SpringScopeTest {
         ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("service-context.xml");
 
         FlightService flightService = springContext.getBean(FlightService.class);
-        flightService.get(1L);
+        flightService.getById(1L);
         System.out.println(springContext.getBean(FlightService.class).hashCode());
 //        System.out.println(springContext.getBean(Airport.class).hashCode());
     }

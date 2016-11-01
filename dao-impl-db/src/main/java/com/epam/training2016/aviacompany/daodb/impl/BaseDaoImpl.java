@@ -16,7 +16,7 @@ import com.epam.training2016.aviacompany.daodb.BaseDao;
 public class BaseDaoImpl<T> implements BaseDao<T> {
 	private Class<T> type;
 	private String nameTable;
-	public final String SQL_UPDATE = "UPDATE %s SET name=:name WHERE id=:id";
+	final private String SQL_UPDATE = "UPDATE %s SET name=:name WHERE id=:id";
 
 	@Inject
 	protected JdbcTemplate jdbcTemplate;
@@ -28,7 +28,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		this.nameTable = nameTable;
 	}
 
-	public String getSQLUpdate() {
+	/**
+	 * Возвращает шаблон для запроса UPDATE
+	 * @return
+	 */
+	protected String getStringSQLUpdate() {
 		return SQL_UPDATE;
 	}
 	
@@ -50,17 +54,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return keyHolder.getKey().longValue();
 	}
 	
-	
 	@Override
 	public void update(T entity) {
-		String sql = String.format(getSQLUpdate(), this.nameTable);
-		namedParameterJdbcTemplate.update(
-				sql,
+		String sql = String.format(getStringSQLUpdate(), this.nameTable);
+		namedParameterJdbcTemplate.update(sql,
 				new BeanPropertySqlParameterSource(entity));
 	}
 	
 	@Override
-	public void delete(Long id) {
+	public void deleteById(Long id) {
 		jdbcTemplate.update(
 				"DELETE FROM " + this.nameTable +" WHERE id=?", 
 				new Object[] { id });

@@ -7,6 +7,6 @@ public interface BaseService<T> {
     void save(T entity);
     void deleteById(Long id);
     boolean isDaoExist();
-    T get(Long id);
+    T getById(Long id);
     List<T> getAll();
 }
