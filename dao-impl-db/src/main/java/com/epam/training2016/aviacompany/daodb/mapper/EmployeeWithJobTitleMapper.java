@@ -17,7 +17,7 @@ public final class EmployeeWithJobTitleMapper implements
     	employee.setId(rs.getLong(1));
     	employee.setFirstName(rs.getString(2));
     	employee.setLastName(rs.getString(3));
-    	employee.setBirtday(rs.getDate(4));
+    	employee.setBirthday(rs.getDate(4));
     	employee.setJobTitleId(rs.getLong(5));
     	
     	JobTitle jobtitle = new JobTitle();

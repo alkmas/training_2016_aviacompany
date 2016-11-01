@@ -5,7 +5,7 @@ CREATE TABLE "employee" (
 	"id" serial NOT NULL,
 	"first_name" character varying(256) NOT NULL,
 	"last_name" character varying(256) NOT NULL,
-	"birthday" DATE,
+	"birthday" DATE NOT NULL,
 	"job_title_id" bigint,
 	CONSTRAINT employee_pk PRIMARY KEY ("id"),
 	UNIQUE ("first_name", "last_name", "birthday")

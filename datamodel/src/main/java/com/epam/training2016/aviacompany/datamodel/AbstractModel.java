@@ -11,9 +11,8 @@ public class AbstractModel {
 	}
 	
 	public boolean equals(AbstractModel obj) {
-		if (obj.getId() == this.id) {
-			return true;
-		}
+		if (this == obj) return true;
+		if (obj.getId() == this.id) return true;
 		return false;
 	}
 

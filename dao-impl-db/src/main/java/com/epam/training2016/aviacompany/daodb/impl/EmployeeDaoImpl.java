@@ -1,7 +1,13 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.EmployeeDao;
@@ -33,7 +39,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 
 	@Override
 	public EmployeeWithJobtitle getWithJobtitle(Long id) {
-		String sql = SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE f.id=?";
+		String sql = SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE e.id=?";
 		return jdbcTemplate.queryForObject(sql, 
 				new Object[] { id }, 
 				new EmployeeWithJobTitleMapper());

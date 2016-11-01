@@ -1,15 +1,14 @@
 package com.epam.training2016.aviacompany.datamodel;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Employee extends AbstractModel {
 	private String firstName;
 	private String lastName;
-	private Date birtday;
+	private Date birthday;
 	private Long jobTitleId;
 	
 
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -26,12 +25,12 @@ public class Employee extends AbstractModel {
 		this.lastName = lastName;
 	}
 
-	public Date getBirtday() {
-		return birtday;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setBirtday(Date birtday) {
-		this.birtday = birtday;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public Long getJobTitleId() {
@@ -43,10 +42,11 @@ public class Employee extends AbstractModel {
 	}
 
 	public boolean equals(Employee obj) {
+		if (this == obj) return true;
 		if (super.equals(obj)
 				&& this.firstName.equals(obj.getFirstName()) 
 				&& this.lastName.equals(obj.getLastName())
-				&& this.birtday.equals(obj.getBirtday())
+				&& this.birthday.equals(obj.getBirthday())
 				&& (this.jobTitleId == obj.getJobTitleId())) {
 			return true;
 		}
@@ -55,9 +55,9 @@ public class Employee extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", birtday=" + birtday + ", jobTitleId="
-				+ jobTitleId + "]";
+		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
+				+ ", jobTitleId=" + jobTitleId + "]";
 	}
-	
+
 	
 }

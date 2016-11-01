@@ -19,6 +19,10 @@ public class EmployeeWithJobtitle {
 	public void setJobtitle(JobTitle jobtitle) {
 		this.jobtitle = jobtitle;
 	}
+	@Override
+	public String toString() {
+		return "EmployeeWithJobtitle [employee=" + employee + ", jobtitle=" + jobtitle + "]";
+	}
 	
 	
 }

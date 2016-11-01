@@ -35,7 +35,7 @@ public class EmployeetServiceTest {
     	Employee employee = new Employee();
     	employee.setFirstName("Дарья");
     	employee.setLastName("Иванова");
-    	employee.setBirtday(Date.valueOf("1972-04-03"));
+    	employee.setBirthday(Date.valueOf("1978-05-01"));
     	
     	JobTitle jobtitle = jobtitleService.getByName("Стюардесса");
     	employee.setJobTitleId(jobtitle.getId());
