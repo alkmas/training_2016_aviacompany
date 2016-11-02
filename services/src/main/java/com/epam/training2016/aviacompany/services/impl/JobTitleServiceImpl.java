@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.JobTitleDaoImpl;
+import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.JobTitleService;
@@ -56,13 +58,19 @@ public class JobTitleServiceImpl implements JobTitleService {
 	}
 
 	@Override
-	public JobTitle getByName(String value) {
-		for(JobTitle jobtitle: this.getAll()) {
-			if (jobtitle.getName().indexOf(value) != -1) {
-				return jobtitle;
+	public List<JobTitle> getByName(String name) {
+		return jobtitleDao.getByName(name);
+	}
+
+	@Override
+	public List<JobTitle> filter(JobTitle entityFilter) {
+		List<JobTitle> resultList = new ArrayList<JobTitle>(); 
+		for(JobTitle jobtitle: jobtitleDao.getAll()) {
+			if (jobtitle.filter(entityFilter)) {
+				resultList.add(jobtitle);
 			}
 		}
-		return null;
+		return resultList;
 	}
 
 }

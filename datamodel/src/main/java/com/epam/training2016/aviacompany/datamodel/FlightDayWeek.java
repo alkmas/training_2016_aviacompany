@@ -21,4 +21,20 @@ public class FlightDayWeek {
 		return "FlightDayWeek [dayWeek=" + dayWeek + "]";
 	}
 	
+	public boolean equals(FlightDayWeek obj) {
+		if ((this.flightId == obj.getFlightId())
+				&& (this.dayWeek == obj.getDayWeek())) {
+			return true;			
+		}
+		return false;
+	}
+	
+	public boolean filter(FlightDayWeek objFilter) {
+		if (((this.flightId == objFilter.getFlightId()) || (objFilter.getFlightId() == null))
+				&& ((this.dayWeek == objFilter.getDayWeek()) || (objFilter.getDayWeek() == null))) {
+			return true;
+		}
+		return false;
+	}
+	
 }

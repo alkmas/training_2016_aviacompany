@@ -31,7 +31,27 @@ public class Flight2Employee extends AbstractModel {
 	public void setDeparture(Date departure) {
 		this.departure = departure;
 	}
-	
+
+	public boolean equals(Flight2Employee obj) {
+		if (super.equals(obj)
+				&& (this.flightId == obj.getFlightId())
+				&& (this.employeeId == obj.getEmployeeId())
+				&& this.departure.equals(obj.getDeparture())) {
+			return true;			
+		}
+		return false;
+	}
+
+	public boolean filter(Flight2Employee objFilter) {
+		if (super.filter(objFilter)
+				&& ((this.flightId == objFilter.getFlightId()) || (objFilter.getFlightId() == null))
+				&& ((this.employeeId == objFilter.getEmployeeId()) || (objFilter.getEmployeeId() == null))
+				&& (this.departure.equals(objFilter.getDeparture()) || (objFilter.getDeparture() == null))) {
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return "Flight2Employee [flightId=" + flightId + ", employeeId=" + employeeId + ", departure=" + departure

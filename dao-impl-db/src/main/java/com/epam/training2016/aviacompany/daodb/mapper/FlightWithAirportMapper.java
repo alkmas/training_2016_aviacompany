@@ -17,6 +17,8 @@ public final class FlightWithAirportMapper implements
     	Flight flight = new Flight();
     	flight.setId(rs.getLong(1));
     	flight.setName(rs.getString(2));
+    	flight.setAirportSrcId(rs.getLong(3));
+    	flight.setAirportDstId(rs.getLong(4));
     	flight.setDepartureTime(rs.getTime(5));
     	flight.setArrivalTime(rs.getTime(6));
     	

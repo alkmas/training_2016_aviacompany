@@ -1,13 +1,7 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.EmployeeDao;
@@ -17,30 +11,30 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitl
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
-	final private String SQL_UPDATE = 
+	final static String NAME_TABLE = "employee";
+	private String SQL_UPDATE_BY_ID = 
 			"UPDATE employee SET first_name=:firstName,"
 			+ "last_name=:lastName,"
 			+ "birthday=:birthday,"
 			+ "job_title_id=:jobTitleId WHERE id=:id";
-
-	final private String SQL_EMPLOYEE_WITH_JOBTITLE = 
+	private String SQL_EMPLOYEE_WITH_JOBTITLE = 
 			"SELECT * FROM employee e"
 			+ " LEFT JOIN job_title j ON e.job_title_id = j.id";
-
+	private String SQL_EMPLOYEE_WITH_JOBTITLE_BY_ID =
+			SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE e.id=?";
 	
 	EmployeeDaoImpl() {
-		super(Employee.class, "employee");
+		super(Employee.class, NAME_TABLE);
 	}
 
 	@Override
 	protected String getStringSQLUpdate() {
-		return SQL_UPDATE;
+		return SQL_UPDATE_BY_ID;
 	}
 
 	@Override
 	public EmployeeWithJobtitle getWithJobtitle(Long id) {
-		String sql = SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE e.id=?";
-		return jdbcTemplate.queryForObject(sql, 
+		return jdbcTemplate.queryForObject(SQL_EMPLOYEE_WITH_JOBTITLE_BY_ID, 
 				new Object[] { id }, 
 				new EmployeeWithJobTitleMapper());
 	}

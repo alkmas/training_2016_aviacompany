@@ -11,9 +11,14 @@ public class AbstractModel {
 	}
 	
 	public boolean equals(AbstractModel obj) {
-		if (this == obj) return true;
-		if (obj.getId() == this.id) return true;
+		if (obj.getId() == this.id) {
+			return true;
+		}
 		return false;
 	}
 
+	public boolean filter(AbstractModel objFilter) {
+		if (objFilter.getId() == null) return true;
+		return this.equals(objFilter);
+	}
 }

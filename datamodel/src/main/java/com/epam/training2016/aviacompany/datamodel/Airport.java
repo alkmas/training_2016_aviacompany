@@ -1,7 +1,6 @@
 package com.epam.training2016.aviacompany.datamodel;
 
 public class Airport extends AbstractModel {
-	public final static String SQL_UPDATE = "";
 	private String name;
 
 	public String getName() {
@@ -14,9 +13,22 @@ public class Airport extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Airport [name=" + name + "]";
+		return "Airport [" + name + "]";
 	}
 	
-	
+	public boolean equals(Airport obj) {
+		if (super.equals(obj) && this.name.equals(obj.getName())) {
+			return true;			
+		}
+		return false;
+	}
 
+	public boolean filter(Airport objFilter) {
+		if (super.filter(objFilter)	
+				&& (this.name.equals(objFilter.getName()) 
+						|| (objFilter.getName() == null))) {
+			return true;
+		}
+		return false;
+	}
 }

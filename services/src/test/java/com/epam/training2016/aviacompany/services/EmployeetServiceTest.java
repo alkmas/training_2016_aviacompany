@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
@@ -31,20 +32,24 @@ public class EmployeetServiceTest {
     
     
     @Test
-    public void insertTest() {
+    @Transactional
+    public void createEmployeeTest() {
+    	
     	Employee employee = new Employee();
     	employee.setFirstName("Дарья");
     	employee.setLastName("Иванова");
-    	employee.setBirthday(Date.valueOf("1978-05-01"));
+    	employee.setBirthday(Date.valueOf("1980-04-03"));
     	
-    	JobTitle jobtitle = jobtitleService.getByName("Стюардесса");
+    	JobTitle jobtitle = jobtitleService.getByName("Стюард").get(0);
+    	
     	employee.setJobTitleId(jobtitle.getId());
     	employeeService.save(employee);
     	Long id = employee.getId();
     			
     	Employee employeeFromBase = employeeService.getById(id);
     	
-    	Assert.assertEquals(employee, employeeFromBase);
+    	employee.setFirstName("Анна");
+    	Assert.assertTrue("Employees are equals!", employee.equals(employeeFromBase));
    	
     }
 

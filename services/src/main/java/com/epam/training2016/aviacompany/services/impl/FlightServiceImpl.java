@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
+import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
@@ -53,6 +55,7 @@ public class FlightServiceImpl implements FlightService {
 		return flightDao.getAll();
 	}
 
+	
 	@Override
 	public List<FlightWithAirport> getAllByAway(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -64,6 +67,22 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void deleteById(Long id) {
 		flightDao.deleteById(id);
+	}
+
+	@Override
+	public List<Flight> getByName(String name) {
+		return flightDao.getByName(name);
+	}
+
+	@Override
+	public List<Flight> filter(Flight entityFilter) {
+		List<Flight> resultList = new ArrayList<Flight>(); 
+		for(Flight flight: flightDao.getAll()) {
+			if (flight.filter(entityFilter)) {
+				resultList.add(flight);
+			}
+		}
+		return resultList;
 	}
 
 }

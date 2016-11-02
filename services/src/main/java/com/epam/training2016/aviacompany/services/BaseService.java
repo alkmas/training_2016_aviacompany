@@ -8,5 +8,7 @@ public interface BaseService<T> {
     void deleteById(Long id);
     boolean isDaoExist();
     T getById(Long id);
+    List<T> getByName(String name);
     List<T> getAll();
+    List<T> filter(T entityFilter);
 }

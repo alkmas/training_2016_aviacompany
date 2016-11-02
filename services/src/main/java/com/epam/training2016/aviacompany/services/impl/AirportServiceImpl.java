@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,5 +54,21 @@ public class AirportServiceImpl implements AirportService {
 	@Override
 	public void deleteById(Long id) {
 		airportDao.deleteById(id);
+	}
+
+	@Override
+	public List<Airport> getByName(String name) {
+		return airportDao.getByName(name);
+	}
+
+	@Override
+	public List<Airport> filter(Airport entityFilter) {
+		List<Airport> resultList = new ArrayList<Airport>(); 
+		for(Airport airport: airportDao.getAll()) {
+			if (airport.filter(entityFilter)) {
+				resultList.add(airport);
+			}
+		}
+		return resultList;
 	}
 }
