@@ -1,6 +1,5 @@
 package com.epam.training2016.aviacompany.services;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;

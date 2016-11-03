@@ -40,7 +40,7 @@ public class EmployeetServiceTest {
     	employee.setLastName("Иванова");
     	employee.setBirthday(Date.valueOf("1980-04-03"));
     	
-    	JobTitle jobtitle = jobtitleService.getByName("Стюард").get(0);
+    	JobTitle jobtitle = jobtitleService.getByName("Стюардeccа");
     	
     	employee.setJobTitleId(jobtitle.getId());
     	employeeService.save(employee);
@@ -48,8 +48,7 @@ public class EmployeetServiceTest {
     			
     	Employee employeeFromBase = employeeService.getById(id);
     	
-    	employee.setFirstName("Анна");
-    	Assert.assertTrue("Employees are equals!", employee.equals(employeeFromBase));
+    	Assert.assertEquals("Employees are equals!", employee.getId(), employeeFromBase.getId());
    	
     }
 

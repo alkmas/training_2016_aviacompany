@@ -12,5 +12,5 @@ public interface FlightService extends BaseService<Flight> {
 	 * @param date
 	 * @return
 	 */
-	List<FlightWithAirport> getAllByAway(Date date);
+	List<FlightWithAirport> getAllByDate(Date date);
 }

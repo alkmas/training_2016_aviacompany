@@ -40,8 +40,10 @@ public class Flight2EmployeetServiceTest {
     public void createTeamTest() {
     	//--------ВЫБИРАЕМ РЕЙСЫ ПО РАСПИСАНИЮ НА ДАТУ------
     	Date dateFlight = Date.valueOf("2016-11-15");
-    	List<FlightWithAirport> flights = flightService.getAllByAway(dateFlight);
-    	System.out.println(String.format("Рейсы на дату: %s. Количество: %d", dateFlight, flights.size()));
+    	List<FlightWithAirport> flights = 
+    			flightService.getAllByDate(dateFlight);
+    	System.out.println(String.format("Рейсы на дату: %s. Количество: %d", 
+    			dateFlight, flights.size()));
     	for(FlightWithAirport flight: flights) {
         	System.out.println(flight);
     	}
@@ -63,15 +65,23 @@ public class Flight2EmployeetServiceTest {
     	
     	//-------НАЗНАЧАЕМ ПИЛОТА НА РЕЙС--------
     	Flight2Employee newF2E = new Flight2Employee();
-    	newF2E.setFlightId(flights.get(0).getFlight().getId());
+    	newF2E.setFlightId(flights.get(1).getFlight().getId());
     	newF2E.setEmployeeId(pilotFree.getId());
     	newF2E.setDeparture(dateFlight);
     	flight2EmployeeService.save(newF2E);
     	
     	//----- ПОЛУЧАЕМ СПИСОК БРИГАДЫ НА РЕЙС И ДАТУ -------
-    	for(Flight2Employee f2e: flight2EmployeeService.getByDeparture(dateFlight)) {
-    		System.out.println(f2e);
+    	for(FlightWithAirport flight: flights) {
+    		System.out.println("Номер рейса: " + flight.getFlight().getName());
+    		System.out.println(String.format("Маршрут (%s -> %s)", 
+    				flight.getAirportSrc().getName(), 
+    				flight.getAirportDst().getName()));
+    		for(Flight2Employee f2e: flight2EmployeeService.getByDeparture(dateFlight)) {
+    			System.out.println(flight2EmployeeService.getByFlightId(f2e.getFlightId()));
+    		}
+    		
     	}
+
     }
 
 }

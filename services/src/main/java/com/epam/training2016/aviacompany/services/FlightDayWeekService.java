@@ -9,6 +9,6 @@ public interface FlightDayWeekService {
     void save(FlightDayWeek entity);
     void delete(FlightDayWeek entity);
     boolean isDaoExist();
-    List<FlightDayWeek> get(Long id);
+    List<FlightDayWeek> getByFlightId(Long id);
     void insert(FlightDayWeek entity);
 }

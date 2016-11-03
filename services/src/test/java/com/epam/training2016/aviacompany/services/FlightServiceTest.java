@@ -43,7 +43,7 @@ public class FlightServiceTest {
     public void getFlight() {
     	Date date = new Date();
     	List<FlightWithAirport> flights = 
-    			flightService.getAllByAway(date);
+    			flightService.getAllByDate(date);
     	Assert.assertNotNull(flights);
     	System.out.println(date);
     	for(FlightWithAirport flight: flights) {

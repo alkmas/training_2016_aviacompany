@@ -59,7 +59,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public List<Flight2Employee> getByName(String name) {
+	public Flight2Employee getByName(String name) {
 		return flight2EmployeeDao.getByName(name);
 	}
 

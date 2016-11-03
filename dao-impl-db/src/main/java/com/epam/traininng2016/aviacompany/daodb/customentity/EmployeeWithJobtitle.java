@@ -19,6 +19,12 @@ public class EmployeeWithJobtitle {
 	public void setJobtitle(JobTitle jobtitle) {
 		this.jobtitle = jobtitle;
 	}
+	@Override
+	public String toString() {
+		return String.format("EmployeeWithJobtitle [%s %s - %s]",
+				employee.getFirstName(), employee.getLastName(), 
+				jobtitle.getName());
+	}
 	
 	
 }

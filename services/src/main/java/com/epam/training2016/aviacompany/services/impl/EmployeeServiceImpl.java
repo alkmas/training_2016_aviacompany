@@ -1,6 +1,5 @@
 package com.epam.training2016.aviacompany.services.impl;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
@@ -68,7 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getByName(String name) {
+	public Employee getByName(String name) {
 		return employeeDao.getByName(name);
 	}
 

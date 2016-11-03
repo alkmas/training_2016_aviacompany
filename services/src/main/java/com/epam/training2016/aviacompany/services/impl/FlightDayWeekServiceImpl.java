@@ -38,7 +38,7 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	}
 
 	@Override
-	public List<FlightDayWeek> get(Long id) {
+	public List<FlightDayWeek> getByFlightId(Long id) {
 		return flightDayWeekDao.getByFlightId(id);
 	}
 

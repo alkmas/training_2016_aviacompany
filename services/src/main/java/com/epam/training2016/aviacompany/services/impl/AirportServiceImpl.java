@@ -8,16 +8,16 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
-import com.epam.training2016.aviacompany.services.BaseService;
 
 
 @Service
 public class AirportServiceImpl implements AirportService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AirportServiceImpl.class);
-	@Inject
+    @Inject
 	private AirportDaoImpl airportDao;
 
     @Override
@@ -57,8 +57,9 @@ public class AirportServiceImpl implements AirportService {
 	}
 
 	@Override
-	public List<Airport> getByName(String name) {
-		return airportDao.getByName(name);
+	public Airport getByName(String name) {
+		Airport airport = airportDao.getByName(name);
+		return airport;
 	}
 
 	@Override

@@ -79,8 +79,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	@Override
-	public List<T> getByName(String name) {
-		return jdbcTemplate.query(SQL_SELECT_BY_NAME,
+	public T getByName(String name) {
+		return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME,
 				new Object[] { name },
 				new BeanPropertyRowMapper<T>(type));
 	}

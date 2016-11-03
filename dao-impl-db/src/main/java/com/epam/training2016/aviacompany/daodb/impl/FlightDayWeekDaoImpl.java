@@ -26,8 +26,7 @@ public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
 	
 	@Override
 	public void insert(FlightDayWeek entity) {
-		jdbcTemplate.update(SQL_INSERT, 
-				new BeanPropertyRowMapper<FlightDayWeek>(FlightDayWeek.class));
+		jdbcTemplate.update(SQL_INSERT, entity.getFlightId(), entity.getDayWeek());
 	}
 
 	@Override

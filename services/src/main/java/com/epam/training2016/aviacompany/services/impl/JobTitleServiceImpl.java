@@ -58,7 +58,7 @@ public class JobTitleServiceImpl implements JobTitleService {
 	}
 
 	@Override
-	public List<JobTitle> getByName(String name) {
+	public JobTitle getByName(String name) {
 		return jobtitleDao.getByName(name);
 	}
 

@@ -57,7 +57,7 @@ public class FlightServiceImpl implements FlightService {
 
 	
 	@Override
-	public List<FlightWithAirport> getAllByAway(Date date) {
+	public List<FlightWithAirport> getAllByDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
 		return flightDao.getAllForDayWeek(
@@ -70,7 +70,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public List<Flight> getByName(String name) {
+	public Flight getByName(String name) {
 		return flightDao.getByName(name);
 	}
 
