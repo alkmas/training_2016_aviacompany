@@ -72,7 +72,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	public List<Flight2Employee> getByDeparture(Date dt) {
 		List<Flight2Employee> resultList = new ArrayList<Flight2Employee>();
 		for(Flight2Employee f2e: flight2EmployeeDao.getAll()){
-			if (f2e.getDeparture().equals(dt)) {
+			if (f2e.getDeparture().getTime() == dt.getTime()) {
 				resultList.add(f2e);
 			}
 		}

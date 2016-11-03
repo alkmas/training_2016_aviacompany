@@ -50,9 +50,11 @@ public class Flight extends AbstractModel {
 	}
 
 	public boolean equals(Flight obj) {
-		if (super.equals(obj) && this.name.equals(obj.getName()) && (this.airportSrcId == obj.getAirportSrcId())
-				&& (this.airportDstId == obj.getAirportDstId()) && this.departureTime.equals(obj.getDepartureTime())
-				&& this.arrivalTime.equals(obj.getArrivalTime())) {
+		if (super.equals(obj) && this.name.equals(obj.getName()) 
+				&& (this.airportSrcId == obj.getAirportSrcId())
+				&& (this.airportDstId == obj.getAirportDstId()) 
+				&& (this.departureTime.getTime() == obj.getDepartureTime().getTime())
+				&& (this.arrivalTime.getTime() == obj.getArrivalTime().getTime())) {
 			return true;
 		}
 		return false;
@@ -63,8 +65,8 @@ public class Flight extends AbstractModel {
 				&& (this.name.equals(objFilter.getName()) || (objFilter.getName() == null))
 				&& ((this.airportSrcId == objFilter.getAirportSrcId()) || (objFilter.getAirportSrcId() == null))
 				&& ((this.airportDstId == objFilter.getAirportDstId()) || (objFilter.getAirportDstId() == null))
-				&& (this.departureTime.equals(objFilter.getDepartureTime()) || (objFilter.getDepartureTime() == null))
-				&& (this.arrivalTime.equals(objFilter.getArrivalTime()) || (objFilter.getArrivalTime() == null))) {
+				&& ((this.departureTime.getTime() == objFilter.getDepartureTime().getTime()) || (objFilter.getDepartureTime() == null))
+				&& ((this.arrivalTime.getTime() == objFilter.getArrivalTime().getTime()) || (objFilter.getArrivalTime() == null))) {
 			return true;
 		}
 		return false;

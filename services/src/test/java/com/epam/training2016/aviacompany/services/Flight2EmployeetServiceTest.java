@@ -39,14 +39,14 @@ public class Flight2EmployeetServiceTest {
     @Test
     public void createTeamTest() {
     	//--------ВЫБИРАЕМ РЕЙСЫ ПО РАСПИСАНИЮ НА ДАТУ------
-    	Date dateFlight = Date.valueOf("2016-11-31");
+    	Date dateFlight = Date.valueOf("2016-11-15");
     	List<FlightWithAirport> flights = flightService.getAllByAway(dateFlight);
     	System.out.println(String.format("Рейсы на дату: %s. Количество: %d", dateFlight, flights.size()));
     	for(FlightWithAirport flight: flights) {
         	System.out.println(flight);
     	}
     	
-    	//-------ВЫБИРАЕМ СВОБОДНОГО ПИЛОТА--------
+    	//-------ВЫБИРАЕМ СВОБОДНОГО ПИЛОТА НА ДАТУ--------
     	System.out.println("Список пилотов");
     	Flight2Employee filterF2E = new Flight2Employee();
     	List<Employee> pilots = employeeService.getByJobTitleName("Пилот");
@@ -67,6 +67,11 @@ public class Flight2EmployeetServiceTest {
     	newF2E.setEmployeeId(pilotFree.getId());
     	newF2E.setDeparture(dateFlight);
     	flight2EmployeeService.save(newF2E);
+    	
+    	//----- ПОЛУЧАЕМ СПИСОК БРИГАДЫ НА РЕЙС И ДАТУ -------
+    	for(Flight2Employee f2e: flight2EmployeeService.getByDeparture(dateFlight)) {
+    		System.out.println(f2e);
+    	}
     }
 
 }

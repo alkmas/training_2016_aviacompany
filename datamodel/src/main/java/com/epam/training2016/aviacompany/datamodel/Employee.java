@@ -41,8 +41,9 @@ public class Employee extends AbstractModel {
 	}
 
 	public boolean equals(Employee obj) {
-		if (super.equals(obj) && this.firstName.equals(obj.getFirstName()) && this.lastName.equals(obj.getLastName())
-				&& this.birthday.equals(obj.getBirthday()) && (this.jobTitleId == obj.getJobTitleId())) {
+		if (super.equals(obj) && this.firstName.equals(obj.getFirstName()) 
+				&& this.lastName.equals(obj.getLastName())
+				&& (this.birthday.getTime() == obj.getBirthday().getTime()) && (this.jobTitleId == obj.getJobTitleId())) {
 			return true;
 		}
 		return false;
@@ -68,7 +69,7 @@ public class Employee extends AbstractModel {
 		if (super.filter(objFilter)
 				&& (this.firstName.equals(objFilter.getFirstName()) || (objFilter.getFirstName() == null))
 				&& (this.lastName.equals(objFilter.getLastName()) || (objFilter.getLastName() == null))
-				&& (this.birthday.equals(objFilter.getBirthday()) || (objFilter.getBirthday() == null))
+				&& ((this.birthday.getTime() == objFilter.getBirthday().getTime()) || (objFilter.getBirthday() == null))
 				&& (this.jobTitleId == objFilter.getJobTitleId()) || (objFilter.getJobTitleId() == null)) {
 			return true;
 		}

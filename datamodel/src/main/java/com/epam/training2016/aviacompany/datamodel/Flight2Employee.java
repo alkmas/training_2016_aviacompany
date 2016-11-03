@@ -36,7 +36,7 @@ public class Flight2Employee extends AbstractModel {
 		if (super.equals(obj)
 				&& (this.flightId == obj.getFlightId())
 				&& (this.employeeId == obj.getEmployeeId())
-				&& this.departure.equals(obj.getDeparture())) {
+				&& (this.departure.getTime() == obj.getDeparture().getTime())) {
 			return true;			
 		}
 		return false;
@@ -44,9 +44,9 @@ public class Flight2Employee extends AbstractModel {
 
 	public boolean filter(Flight2Employee objFilter) {
 		if (super.filter(objFilter)
-				&& ((this.flightId == objFilter.getFlightId()) || (objFilter.getFlightId() == null))
-				&& ((this.employeeId == objFilter.getEmployeeId()) || (objFilter.getEmployeeId() == null))
-				&& (this.departure.equals(objFilter.getDeparture()) || (objFilter.getDeparture() == null))) {
+				&& (this.flightId.equals(objFilter.getFlightId()) || (objFilter.getFlightId() == null))
+				&& (this.employeeId.equals(objFilter.getEmployeeId()) || (objFilter.getEmployeeId() == null))
+				&& ((this.departure.getTime() == objFilter.getDeparture().getTime()) || (objFilter.getDeparture() == null))) {
 			return true;
 		}
 		return false;

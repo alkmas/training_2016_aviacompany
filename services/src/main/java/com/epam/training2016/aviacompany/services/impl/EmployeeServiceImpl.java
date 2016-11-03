@@ -84,14 +84,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getFree(String nameJobTitle, Date dateFree) {
-		for(Employee emp: getByJobTitleName(nameJobTitle)) {
-			flight2EmployeeDao.getByEmployeeId(emp.getId());
-		}
-		return null;
-	}
-
-	@Override
 	public List<Employee> filter(Employee entityFilter) {
 		List<Employee> resultList = new ArrayList<Employee>(); 
 		for(Employee employee: employeeDao.getAll()) {

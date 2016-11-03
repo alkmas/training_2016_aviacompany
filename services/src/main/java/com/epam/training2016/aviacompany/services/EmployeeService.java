@@ -9,11 +9,4 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitl
 public interface EmployeeService extends BaseService<Employee> {
 	EmployeeWithJobtitle getWithJobtitle(Long flightId);
 	List<Employee> getByJobTitleName(String nameJob);
-	/**
-	 * Получить сотрудников свободных от полетов на дату 
-	 * @param nameJob
-	 * @param dateFree
-	 * @return
-	 */
-	List<Employee> getFree(String nameJob, Date dateFree);
 }
