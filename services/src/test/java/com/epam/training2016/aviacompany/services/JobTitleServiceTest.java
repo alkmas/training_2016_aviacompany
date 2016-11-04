@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 
@@ -31,6 +32,7 @@ public class JobTitleServiceTest {
 	@After
 	public void close() {
 		jobtitleService.deleteById(jobtitle.getId());
+		
 	}
 
 	@Test(expected = EmptyResultDataAccessException.class)

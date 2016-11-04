@@ -41,6 +41,7 @@ public class FlightServiceTest {
 
     @Test
     public void getFlight() {
+    	// ------------ПОЛУЧИТЬ ВСЕ РЕЙСЫ НА СЕГОДНЯ----------------
     	Date date = new Date();
     	List<FlightWithAirport> flights = 
     			flightService.getAllByDate(date);

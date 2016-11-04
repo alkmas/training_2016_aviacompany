@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.JobTitleDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.JobTitleService;
 
 @Service
@@ -52,9 +50,17 @@ public class JobTitleServiceImpl implements JobTitleService {
 		return jobtitleDao.getAll();
 	}
 
+
 	@Override
 	public void deleteById(Long id) {
+		String jobString = jobtitleDao.getById(id).toString();
 		jobtitleDao.deleteById(id);
+		LOGGER.info(String.format("Deleted (%s) from table Jobtitle", jobString));
+	}
+
+	@Override
+	public void deleteCascadeById(Long id) {
+		deleteById(id);
 	}
 
 	@Override

@@ -12,4 +12,7 @@ public interface FlightDao extends BaseDao<Flight> {
 	FlightWithAirport getWithAirport(Long id);
 	List<FlightWithAirport> getAllWithAirport();
 	List<FlightWithAirport> getAllForDayWeek(Long dayWeek);
+	void deleteByFlightId(Long flightId);
+	void deleteByAirportSrcId(Long airportId);
+	void deleteByAirportDstId(Long airportId);
 }

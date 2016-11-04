@@ -8,11 +8,13 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.services.EmployeeService;
+import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Service
@@ -21,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Inject
 	private EmployeeDaoImpl employeeDao;
 	@Inject
-	private Flight2EmployeeDaoImpl flight2EmployeeDao;
+	private Flight2EmployeeService flight2EmployeeService;
 
 	@Override
 	public void saveAll(List<Employee> entities) {
@@ -54,10 +56,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.getAll();
 	}
 
-	@Override
-	public void deleteById(Long id) {
-		employeeDao.deleteById(id);
-	}
 
 	@Override
 	public Employee getById(Long id) {
@@ -81,6 +79,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	public void deleteById(Long id) {
+		String empString = getById(id).toString();
+		employeeDao.deleteById(id);
+		LOGGER.info(String.format("Deleted (%s) from table Employee", empString));
+	}
+	
+	@Override
+	@Transactional
+	public void deleteCascadeById(Long id) {
+		flight2EmployeeService.deleteByEmployeeId(id);
+		deleteById(id);
+	}
+
+	@Override
+	public void deleteByJobTitleId(Long jobtitleId) {
+		get
+		
+	}
+
+	@Override
 	public List<Employee> filter(Employee entityFilter) {
 		List<Employee> resultList = new ArrayList<Employee>(); 
 		for(Employee employee: employeeDao.getAll()) {
@@ -90,5 +108,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return resultList;
 	}
+
 
 }

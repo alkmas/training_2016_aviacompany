@@ -9,9 +9,9 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
 
@@ -54,11 +54,6 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		flight2EmployeeDao.deleteById(id);
-	}
-
-	@Override
 	public Flight2Employee getByName(String name) {
 		return flight2EmployeeDao.getByName(name);
 	}
@@ -90,5 +85,33 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 		return resultList;
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		String f2eString = getById(id).toString();
+		flight2EmployeeDao.deleteById(id);
+		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", f2eString));
+	}
+
+	
+	@Override
+	public void deleteCascadeById(Long id) {
+		deleteById(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteByEmployeeId(Long employeeId) {
+		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(employeeId)) {
+			deleteCascadeById(f2e.getId());
+		}
+	}
+
+	@Override
+	@Transactional
+	public void deleteByFlightId(Long flightId) {
+		for(Flight2Employee f2e: flight2EmployeeDao.getByFlightId(flightId)) {
+			deleteCascadeById(f2e.getId());
+		}
+	}
 
 }

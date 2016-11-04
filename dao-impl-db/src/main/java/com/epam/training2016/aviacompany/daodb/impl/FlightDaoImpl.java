@@ -28,6 +28,9 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 			SQL_FLIGHT_WITH_AIRPORT +
 			" LEFT JOIN flight_day_week d ON d.flight_id = f.id" +
 			" WHERE d.day_week=?";
+	private String SQL_DELETE_BY_FLIGHT_ID = "DELETE FROM flight WHERE id=?";
+	private String SQL_DELETE_BY_AIRPORT_SRC_ID = "DELETE FROM flight WHERE airport_src_id=?";
+	private String SQL_DELETE_BY_AIRPORT_DST_ID = "DELETE FROM flight WHERE airport_dst_id=?";
 	
 	FlightDaoImpl() {
 		super(Flight.class, NAME_TABLE);
@@ -56,6 +59,21 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 		return jdbcTemplate.query(SQL_FLIGHT_WITH_AIRPORT_BY_WEEKDAY, 
 				new Object[] { dayWeek }, 
 				new FlightWithAirportMapper());
+	}
+
+	@Override
+	public void deleteByFlightId(Long flightId) {
+		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID, new Object[] {flightId});
+	}
+
+	@Override
+	public void deleteByAirportSrcId(Long airportId) {
+		jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_SRC_ID, new Object[] {airportId});
+	}
+
+	@Override
+	public void deleteByAirportDstId(Long airportId) {
+		jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_DST_ID, new Object[] {airportId});
 	}
 
 }

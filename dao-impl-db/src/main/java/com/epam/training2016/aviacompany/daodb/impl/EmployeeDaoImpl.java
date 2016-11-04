@@ -2,11 +2,13 @@ package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.EmployeeDao;
 import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithJobTitleMapper;
 import com.epam.training2016.aviacompany.datamodel.Employee;
+import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Repository
@@ -22,6 +24,8 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 			+ " LEFT JOIN job_title j ON e.job_title_id = j.id";
 	private String SQL_EMPLOYEE_WITH_JOBTITLE_BY_ID =
 			SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE e.id=?";
+	private String SQL_SELECT_BY_JOBTITLE_ID =
+			"SELECT * FROM employee WHERE job_title_id=?";
 	
 	EmployeeDaoImpl() {
 		super(Employee.class, NAME_TABLE);
@@ -43,6 +47,13 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	public List<EmployeeWithJobtitle> getAllWithJobtitle() {
 		return jdbcTemplate.query(SQL_EMPLOYEE_WITH_JOBTITLE, 
 				new EmployeeWithJobTitleMapper());
+	}
+
+	@Override
+	public List<Employee> getByjobTitleId(Long jobtitleId) {
+		return jdbcTemplate.query(SQL_SELECT_BY_JOBTITLE_ID,
+				new Object[] {jobtitleId},
+				new BeanPropertyRowMapper<Employee>(Employee.class));
 	}
 
 }

@@ -13,4 +13,6 @@ public interface FlightService extends BaseService<Flight> {
 	 * @return
 	 */
 	List<FlightWithAirport> getAllByDate(Date date);
+	void deleteByAirportSrcId(Long airportId);
+	void deleteByAirportDstId(Long airportId);
 }
