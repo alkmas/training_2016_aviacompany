@@ -50,7 +50,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	}
 
 	@Override
-	public List<Employee> getByjobTitleId(Long jobtitleId) {
+	public List<Employee> getByJobTitleId(Long jobtitleId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_JOBTITLE_ID,
 				new Object[] {jobtitleId},
 				new BeanPropertyRowMapper<Employee>(Employee.class));

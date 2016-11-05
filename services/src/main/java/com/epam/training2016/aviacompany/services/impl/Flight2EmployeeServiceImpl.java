@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 @Service
 public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
@@ -44,7 +45,8 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public Flight2Employee getById(Long id) {
+	public Flight2Employee getById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		return flight2EmployeeDao.getById(id);
 	}
 
@@ -59,7 +61,8 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public List<Flight2Employee> getByFlightId(Long id) {
+	public List<Flight2Employee> getByFlightId(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		return flight2EmployeeDao.getByFlightId(id);
 	}
 
@@ -86,7 +89,8 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		String f2eString = getById(id).toString();
 		flight2EmployeeDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", f2eString));
@@ -94,13 +98,15 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	
 	@Override
-	public void deleteCascadeById(Long id) {
+	public void deleteCascadeById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		deleteById(id);
 	}
 
 	@Override
 	@Transactional
-	public void deleteByEmployeeId(Long employeeId) {
+	public void deleteByEmployeeId(Long employeeId) throws IdNullException {
+		IdNullException.CheckIdParameter(employeeId);
 		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(employeeId)) {
 			deleteCascadeById(f2e.getId());
 		}
@@ -108,7 +114,8 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	@Override
 	@Transactional
-	public void deleteByFlightId(Long flightId) {
+	public void deleteByFlightId(Long flightId) throws IdNullException {
+		IdNullException.CheckIdParameter(flightId);
 		for(Flight2Employee f2e: flight2EmployeeDao.getByFlightId(flightId)) {
 			deleteCascadeById(f2e.getId());
 		}

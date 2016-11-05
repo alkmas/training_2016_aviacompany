@@ -2,11 +2,11 @@ package com.epam.training2016.aviacompany.services;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 public class SpringScopeTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IdNullException {
         ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("service-context.xml");
 
         FlightService flightService = springContext.getBean(FlightService.class);

@@ -1,19 +1,25 @@
-13:59:16.970 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from tables Airport and Flight
-14:15:19.028 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from tables Airport and Flight
-14:15:19.037 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from tables Airport and Flight
-14:19:21.886 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-14:19:21.896 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:21:21.552 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-14:21:21.561 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:23:48.793 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:25:01.145 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:31:22.416 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:31:22.442 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:33:14.311 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:33:14.322 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:36:44.849 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-14:36:44.861 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:37:47.389 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-14:37:47.400 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Механик]) from table Jobtitle
-14:39:42.764 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from tables Airport and Flight
-14:39:42.773 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from tables Airport and Flight
+10:48:10.853 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+10:48:11.055 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+10:49:13.969 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+10:50:02.433 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+10:50:02.541 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
+10:50:02.562 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:06:01.708 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:06:01.781 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
+11:13:54.772 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:15:43.626 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:15:43.669 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
+11:15:43.686 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:15:43.712 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:16:59.870 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:16:59.948 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:16:59.966 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:17:30.309 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:17:30.319 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Mechanic
+11:17:30.350 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:17:51.678 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:17:51.687 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Mechanic
+11:17:51.721 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+11:17:51.736 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
+12:12:46.763 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+12:12:46.857 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport

@@ -16,11 +16,9 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 			+ "employee_id=:employeeId,"
 			+ "departure=:departure WHERE id=:id";
 	private String SQL_SELECT_BY_FLIGHT_ID =
-			"SELECT * FROM flight_2_employee WHERE flight_id=:id";
+			"SELECT * FROM flight_2_employee WHERE flight_id=?";
 	private String SQL_SELECT_BY_EMPLOYEE_ID =
-			"SELECT * FROM flight_2_employee WHERE employee_id=:id";
-	private String SQL_DELETE_BY_FLIGHT_ID = "DELETE FROM flight_2_employee WHERE flight_id=?";
-	private String SQL_DELETE_BY_EMPLOYEE_ID = "DELETE FROM flight_2_employee WHERE employee_id=?";
+			"SELECT * FROM flight_2_employee WHERE employee_id=?";
 	
 	
 	Flight2EmployeeDaoImpl() {

@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
@@ -28,7 +29,7 @@ public class AirportServiceTest {
 	}
 	
 	@After
-	public void close() {
+	public void close() throws IdNullException {
 		airportService.deleteById(airport.getId());
 	}
 
@@ -38,7 +39,7 @@ public class AirportServiceTest {
     }
 
     @Test
-    public void getByNameTest() {
+    public void getByNameTest() throws IdNullException {
     	Airport airport = airportService.getById(1L);
     	System.out.println(airport);
         Assert.assertNotNull("airport for id=1L should not be null", airport);

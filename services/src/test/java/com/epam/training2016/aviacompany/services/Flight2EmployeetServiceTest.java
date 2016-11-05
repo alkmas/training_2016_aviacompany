@@ -14,6 +14,7 @@ import com.epam.training2016.aviacompany.daodb.impl.JobTitleDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,7 +30,7 @@ public class Flight2EmployeetServiceTest {
 	private JobTitleDaoImpl jobtitleDao;
     
     @Test
-    public void getByIdtest() {
+    public void getByIdtest() throws IdNullException {
     	Flight2Employee flight2Employee = flight2EmployeeService.getById(1L);
         Assert.assertNotNull("", flight2Employee);
         Assert.assertEquals(new Long(1L), flight2Employee.getId());
@@ -37,7 +38,7 @@ public class Flight2EmployeetServiceTest {
     
     
     @Test
-    public void createTeamTest() {
+    public void createTeamTest() throws IdNullException {
     	//--------ВЫБИРАЕМ РЕЙСЫ ПО РАСПИСАНИЮ НА ДАТУ------
     	Date dateFlight = Date.valueOf("2016-11-15");
     	List<FlightWithAirport> flights = 

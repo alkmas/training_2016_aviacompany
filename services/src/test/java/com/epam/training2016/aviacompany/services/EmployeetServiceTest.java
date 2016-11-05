@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,7 +26,7 @@ public class EmployeetServiceTest {
 
     
     @Test
-    public void getByIdTest() {
+    public void getByIdTest() throws IdNullException {
     	EmployeeWithJobtitle employee = employeeService.getWithJobtitle(1L);
     	System.out.println(employee);
     }
@@ -33,7 +34,7 @@ public class EmployeetServiceTest {
     
     @Test
     @Transactional
-    public void createEmployeeTest() {
+    public void createEmployeeTest() throws IdNullException {
     	
     	Employee employee = new Employee();
     	employee.setFirstName("Дарья");

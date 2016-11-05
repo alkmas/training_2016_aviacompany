@@ -15,6 +15,8 @@ import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
+import com.epam.training2016.aviacompany.services.JobTitleService;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Service
@@ -24,6 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeDaoImpl employeeDao;
 	@Inject
 	private Flight2EmployeeService flight2EmployeeService;
+	@Inject
+	private JobTitleService jobtitleService;
 
 	@Override
 	public void saveAll(List<Employee> entities) {
@@ -47,7 +51,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeWithJobtitle getWithJobtitle(Long id) {
+	public EmployeeWithJobtitle getWithJobtitle(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		return employeeDao.getWithJobtitle(id);
 	}
 
@@ -58,7 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
-	public Employee getById(Long id) {
+	public Employee getById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		return employeeDao.getById(id);
 	}
 
@@ -79,7 +85,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		String empString = getById(id).toString();
 		employeeDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Employee", empString));
@@ -87,14 +94,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	@Transactional
-	public void deleteCascadeById(Long id) {
+	public void deleteCascadeById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		flight2EmployeeService.deleteByEmployeeId(id);
 		deleteById(id);
 	}
 
 	@Override
-	public void deleteByJobTitleId(Long jobtitleId) {
-		get
+	public void deleteByJobTitleId(Long jobtitleId) throws IdNullException {
+		IdNullException.CheckIdParameter(jobtitleId);
+		for(Employee emp: employeeDao.getByJobTitleId(jobtitleId)) {
+			deleteCascadeById(emp.getId());
+		}
 		
 	}
 

@@ -16,6 +16,7 @@ import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
 import com.epam.training2016.aviacompany.services.FlightService;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 
 @Service
@@ -48,7 +49,8 @@ public class AirportServiceImpl implements AirportService {
     }
 
 	@Override
-	public Airport getById(Long id) {
+	public Airport getById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		return airportDao.getById(id);
 	}
 
@@ -58,7 +60,8 @@ public class AirportServiceImpl implements AirportService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		String airString = getById(id).toString();
 		airportDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Airport", airString));
@@ -66,7 +69,8 @@ public class AirportServiceImpl implements AirportService {
 	
 	@Transactional
 	@Override
-	public void deleteCascadeById(Long id) {
+	public void deleteCascadeById(Long id) throws IdNullException {
+		IdNullException.CheckIdParameter(id);
 		flightService.deleteByAirportSrcId(id);
 		flightService.deleteByAirportDstId(id);
 		deleteById(id);

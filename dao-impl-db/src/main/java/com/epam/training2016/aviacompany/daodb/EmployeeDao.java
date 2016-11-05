@@ -8,5 +8,5 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitl
 public interface EmployeeDao extends BaseDao<Employee> {
 	EmployeeWithJobtitle getWithJobtitle(Long id);
 	List<EmployeeWithJobtitle> getAllWithJobtitle();
-	List<Employee> getByjobTitleId(Long jobtitleId);
+	List<Employee> getByJobTitleId(Long jobtitleId);
 }

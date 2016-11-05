@@ -6,16 +6,14 @@ import javax.inject.Inject;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
@@ -43,7 +41,7 @@ public class FlightDayWeekServiceTest {
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void getByNameExceptionTest() {
+	public void getByNameExceptionTest() throws IdNullException {
 		List<FlightDayWeek> fDW = flightDayWeekService.getByFlightId(500L);
 		fDW.get(0);
 	}
