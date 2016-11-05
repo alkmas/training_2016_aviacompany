@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.management.InvalidAttributeValueException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +22,7 @@ public class FlightServiceTest {
     private FlightService flightService;
     
     @Test
-    public void getByIdtest() throws IdNullException {
+    public void getByIdtest() {
     	Flight flight = flightService.getById(1L);
         Assert.assertNotNull("flight for id=1 should not be null", flight);
         Assert.assertEquals(new Long(1L), flight.getId());
@@ -31,7 +31,7 @@ public class FlightServiceTest {
 
     
     @Test
-    public void insertIntoFlight() {
+    public void insertIntoFlight() throws InvalidAttributeValueException {
     	Flight flight = new Flight();
     	flight.setName("D11111");
     	flightService.save(flight);

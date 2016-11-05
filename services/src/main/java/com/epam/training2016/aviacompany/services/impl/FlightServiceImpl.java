@@ -18,7 +18,6 @@ import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
 import com.epam.training2016.aviacompany.services.FlightService;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 
@@ -52,8 +51,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Flight getById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public Flight getById(Long id) {
 		return flightDao.getById(id);
 	}
 
@@ -88,31 +86,20 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public void deleteById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public void deleteById(Long id) {
 		String flightString = getById(id).toString();
 		flightDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Flight", flightString));
 	}
 
 	@Override
-	@Transactional
-	public void deleteCascadeById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
-		flight2EmployeeService.deleteByFlightId(id);
-		deleteById(id);
-	}
-
-	@Override
-	public void deleteByAirportSrcId(Long airportId) throws IdNullException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteByAirportDstId(Long airportId) throws IdNullException {
-		// TODO Auto-generated method stub
-		
+	public boolean isFlightExistByDate(Long flightId, Date date) {
+		for(FlightWithAirport flightWithAirport: getAllByDate(date)) {
+			if (flightWithAirport.getFlight().getId() == flightId) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

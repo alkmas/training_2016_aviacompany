@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -19,7 +20,8 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 			"SELECT * FROM flight_2_employee WHERE flight_id=?";
 	private String SQL_SELECT_BY_EMPLOYEE_ID =
 			"SELECT * FROM flight_2_employee WHERE employee_id=?";
-	
+	private String SQL_DELETE_BY_FLIGHT_ID_AND_DATE = 
+			"DELETE FROM flight_2_employee WHERE flight_id=? AND departure=?";	
 	
 	Flight2EmployeeDaoImpl() {
 		super(Flight2Employee.class, NAME_TABLE);
@@ -43,4 +45,11 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 				new Object[] { id },
 				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
 	}
+
+	@Override
+	public void deleteByFlightIdAndDate(Long flightId, Date date) {
+		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID_AND_DATE, 
+				new Object[] { flightId, date });
+	}
+
 }

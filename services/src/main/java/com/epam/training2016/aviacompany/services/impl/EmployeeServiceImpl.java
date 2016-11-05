@@ -16,7 +16,6 @@ import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
 import com.epam.training2016.aviacompany.services.JobTitleService;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Service
@@ -51,8 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeWithJobtitle getWithJobtitle(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public EmployeeWithJobtitle getWithJobtitle(Long id) {
 		return employeeDao.getWithJobtitle(id);
 	}
 
@@ -63,8 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
-	public Employee getById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public Employee getById(Long id) {
 		return employeeDao.getById(id);
 	}
 
@@ -85,26 +82,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void deleteById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public void deleteById(Long id) {
 		String empString = getById(id).toString();
 		employeeDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Employee", empString));
 	}
 	
 	@Override
-	@Transactional
-	public void deleteCascadeById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
-		flight2EmployeeService.deleteByEmployeeId(id);
-		deleteById(id);
-	}
-
-	@Override
-	public void deleteByJobTitleId(Long jobtitleId) throws IdNullException {
-		IdNullException.CheckIdParameter(jobtitleId);
+	public void deleteByJobTitleId(Long jobtitleId) {
 		for(Employee emp: employeeDao.getByJobTitleId(jobtitleId)) {
-			deleteCascadeById(emp.getId());
+			deleteById(emp.getId());
 		}
 		
 	}

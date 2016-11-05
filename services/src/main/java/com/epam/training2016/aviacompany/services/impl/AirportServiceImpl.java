@@ -8,15 +8,11 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
-import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
-import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
 import com.epam.training2016.aviacompany.services.FlightService;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 
 @Service
@@ -49,8 +45,7 @@ public class AirportServiceImpl implements AirportService {
     }
 
 	@Override
-	public Airport getById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public Airport getById(Long id) {
 		return airportDao.getById(id);
 	}
 
@@ -60,21 +55,12 @@ public class AirportServiceImpl implements AirportService {
 	}
 
 	@Override
-	public void deleteById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public void deleteById(Long id) {
 		String airString = getById(id).toString();
 		airportDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Airport", airString));
 	}
 	
-	@Transactional
-	@Override
-	public void deleteCascadeById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
-		flightService.deleteByAirportSrcId(id);
-		flightService.deleteByAirportDstId(id);
-		deleteById(id);
-	}
 
 	@Override
 	public Airport getByName(String name) {

@@ -1,25 +1,51 @@
-10:48:10.853 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-10:48:11.055 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-10:49:13.969 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-10:50:02.433 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-10:50:02.541 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-10:50:02.562 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:06:01.708 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:06:01.781 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-11:13:54.772 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:15:43.626 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:15:43.669 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
-11:15:43.686 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:15:43.712 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:16:59.870 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:16:59.948 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:16:59.966 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:17:30.309 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:17:30.319 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Mechanic
-11:17:30.350 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:17:51.678 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:17:51.687 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Mechanic
-11:17:51.721 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-11:17:51.736 [main] ERROR com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Duplacate Name: Механик
-12:12:46.763 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
-12:12:46.857 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+01:15:17.699 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team forming with error. Flight(id=28) name jobtitle(Радист) date(2016-12-18)
+01:19:34.934 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team forming with error, not enough people. Flight(id=28) name jobtitle(Радист) date(2016-12-18)
+01:24:41.283 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=28) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.315 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=31) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.338 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=34) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.365 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=36) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.402 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=37) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.434 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=39) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.468 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=40) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.497 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=41) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.528 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=42) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.553 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=43) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.577 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=45) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.599 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=46) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.621 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=47) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.649 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=48) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.670 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=49) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.694 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=53) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.729 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=54) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.765 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=60) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.789 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=62) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.808 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=64) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.829 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=65) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.848 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=66) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.870 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=68) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.908 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=70) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.939 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=72) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.962 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=73) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:41.982 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=76) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.003 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=77) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.021 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=78) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.043 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=83) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.073 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=88) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.091 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=94) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.110 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=95) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.129 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=97) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.151 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=102) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.174 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=103) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.199 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=107) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.230 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=112) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.255 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=113) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.275 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=120) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.303 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=123) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.328 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=125) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.360 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=126) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.386 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=129) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.410 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=130) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.432 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=131) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.458 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=132) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.482 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=138) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 
+01:24:42.509 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=139) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Радист) 

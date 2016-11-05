@@ -3,6 +3,7 @@ package com.epam.training2016.aviacompany.services;
 import java.sql.Date;
 
 import javax.inject.Inject;
+import javax.management.InvalidAttributeValueException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +26,7 @@ public class EmployeetServiceTest {
 
     
     @Test
-    public void getByIdTest() throws IdNullException {
+    public void getByIdTest() {
     	EmployeeWithJobtitle employee = employeeService.getWithJobtitle(1L);
     	System.out.println(employee);
     }
@@ -34,7 +34,7 @@ public class EmployeetServiceTest {
     
     @Test
     @Transactional
-    public void createEmployeeTest() throws IdNullException {
+    public void createEmployeeTest() throws InvalidAttributeValueException {
     	
     	Employee employee = new Employee();
     	employee.setFirstName("Дарья");

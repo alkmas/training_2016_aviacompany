@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
@@ -41,7 +41,7 @@ public class FlightDayWeekServiceTest {
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
-	public void getByNameExceptionTest() throws IdNullException {
+	public void getByNameExceptionTest() {
 		List<FlightDayWeek> fDW = flightDayWeekService.getByFlightId(500L);
 		fDW.get(0);
 	}

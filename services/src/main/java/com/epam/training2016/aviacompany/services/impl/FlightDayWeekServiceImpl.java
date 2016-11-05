@@ -13,7 +13,6 @@ import com.epam.training2016.aviacompany.daodb.impl.FlightDayWeekDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
 import com.epam.training2016.aviacompany.services.FlightDayWeekService;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 @Service
 public class FlightDayWeekServiceImpl implements FlightDayWeekService {
@@ -39,8 +38,7 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	}
 
 	@Override
-	public List<FlightDayWeek> getByFlightId(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public List<FlightDayWeek> getByFlightId(Long id) {
 		return flightDayWeekDao.getByFlightId(id);
 	}
 

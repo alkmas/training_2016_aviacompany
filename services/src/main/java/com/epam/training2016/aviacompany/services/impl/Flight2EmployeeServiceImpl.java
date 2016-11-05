@@ -3,18 +3,21 @@ package com.epam.training2016.aviacompany.services.impl;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
+import javax.management.InvalidAttributeValueException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
+import com.epam.training2016.aviacompany.datamodel.Employee;
+import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
+import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
+import com.epam.training2016.aviacompany.services.FlightService;
 
 @Service
 public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
@@ -22,16 +25,25 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	@Inject
 	private Flight2EmployeeDaoImpl flight2EmployeeDao;
+	@Inject
+	private FlightService flightService;
+	@Inject
+	private EmployeeService employeeService;
 
 	@Override
-	public void saveAll(List<Flight2Employee> entities) {
+	public void saveAll(List<Flight2Employee> entities) throws InvalidAttributeValueException {
 		for(Flight2Employee entity: entities) {
 			save(entity);
 		}
 	}
 
 	@Override
-	public void save(Flight2Employee entity) {
+	public void save(Flight2Employee entity) throws InvalidAttributeValueException {
+		if (!flightService.isFlightExistByDate(entity.getFlightId(), entity.getDeparture())) {
+			throw new InvalidAttributeValueException(
+					String.format("Not exist flight(%d) by date(%s)", 
+							entity.getFlightId(), entity.getDeparture()));
+		};
 		if (entity.getId() == null) {
 			entity.setId(flight2EmployeeDao.insert(entity));
 		} else {
@@ -45,9 +57,16 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public Flight2Employee getById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public Flight2Employee getById(Long id) {
 		return flight2EmployeeDao.getById(id);
+	}
+
+	@Override
+	public Flight2Employee getByEmployeeIdAndDate(Long id, Date date) {
+		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(id)) {
+			if (f2e.getDeparture().getTime() == date.getTime()) return f2e;
+		}
+		return null;
 	}
 
 	@Override
@@ -56,14 +75,13 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public Flight2Employee getByName(String name) {
-		return flight2EmployeeDao.getByName(name);
+	public List<Flight2Employee> getByFlightId(Long id) {
+		return flight2EmployeeDao.getByFlightId(id);
 	}
 
 	@Override
-	public List<Flight2Employee> getByFlightId(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
-		return flight2EmployeeDao.getByFlightId(id);
+	public List<Flight2Employee> getByEmployeeId(Long id) {
+		return flight2EmployeeDao.getByEmployeeId(id);
 	}
 
 	@Override
@@ -89,8 +107,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public void deleteById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
+	public void deleteById(Long id) {
 		String f2eString = getById(id).toString();
 		flight2EmployeeDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", f2eString));
@@ -98,27 +115,71 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	
 	@Override
-	public void deleteCascadeById(Long id) throws IdNullException {
-		IdNullException.CheckIdParameter(id);
-		deleteById(id);
-	}
-
-	@Override
 	@Transactional
-	public void deleteByEmployeeId(Long employeeId) throws IdNullException {
-		IdNullException.CheckIdParameter(employeeId);
+	public void deleteByEmployeeId(Long employeeId) {
 		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(employeeId)) {
-			deleteCascadeById(f2e.getId());
+			deleteById(f2e.getId());
 		}
 	}
 
 	@Override
 	@Transactional
-	public void deleteByFlightId(Long flightId) throws IdNullException {
-		IdNullException.CheckIdParameter(flightId);
+	public void deleteByFlightId(Long flightId) {
 		for(Flight2Employee f2e: flight2EmployeeDao.getByFlightId(flightId)) {
-			deleteCascadeById(f2e.getId());
+			deleteById(f2e.getId());
 		}
 	}
+	
+	@Override	
+	public List<Flight2Employee> getFreeEmployeesForDate(String nameJobTitle, 
+			Long flightId, Date date, int count) {
+		if (count==0) return null;
+		List<Flight2Employee> result = new ArrayList<Flight2Employee>();
+		for(Employee emp: employeeService.getByJobTitleName(nameJobTitle)) {
+			if (this.getByEmployeeIdAndDate(emp.getId(), date) == null) {
+				Flight2Employee newMember = new Flight2Employee();
+				newMember.setFlightId(flightId);
+				newMember.setEmployeeId(emp.getId());
+				newMember.setDeparture(date);
+				result.add(newMember);
+				if (--count == 0) break;
+			}
+		};
+		if (result.size()==0) {
+			LOGGER.error(String.format(
+					"Team for flight(id=%s) and date(%s) not forming, not enough people. Not enough jobtitle(%s) ",
+					flightId, date, nameJobTitle));
+			throw new EmptyResultDataAccessException(1);
+		}
+		return result;
+	}
+	
+	@Override
+	@Transactional
+	public void createTeam(Long flightId, Date date, 
+			int countPilot, int countNavigator, int countRadioman, int countStewardess) throws InvalidAttributeValueException {
+		List<Flight2Employee> team = new ArrayList<Flight2Employee>();
+		team.addAll(getFreeEmployeesForDate("Пилот", flightId, date, countPilot));
+		team.addAll(getFreeEmployeesForDate("Радист", flightId, date, countNavigator));
+		team.addAll(getFreeEmployeesForDate("Штурман", flightId, date, countRadioman));
+		team.addAll(getFreeEmployeesForDate("Стюардесса", flightId, date, countStewardess));
+		saveAll(team);
+	}
+
+	@Override
+	public void deleteTeam(Long flightId, Date date) {
+		flight2EmployeeDao.deleteByFlightIdAndDate(flightId, date);
+	}
+
+	@Override
+	public List<Flight2Employee> getTeam(Long flightId, Date date) {
+		List<Flight2Employee> result = new ArrayList<Flight2Employee>();
+		for(Flight2Employee f2e: getByFlightId(flightId)) {
+			if (f2e.getDeparture().getTime() == date.getTime()) result.add(f2e);
+		}
+		return result;
+	}
+
+
 
 }

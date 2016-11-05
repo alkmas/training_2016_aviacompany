@@ -1,6 +1,7 @@
 package com.epam.training2016.aviacompany.services;
 
 import javax.inject.Inject;
+import javax.management.InvalidAttributeValueException;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.training2016.aviacompany.services.utils.IdNullException;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +41,7 @@ public class JobTitleServiceTest {
     }
 
 	@Test
-    public void updateNameTest() throws IdNullException {
+    public void updateNameTest() {
     	jobtitle.setName("Mechanic");
     	jobtitleService.save(jobtitle);
     	JobTitle jobtitleFromBase = jobtitleService.getById(jobtitle.getId());
@@ -50,14 +50,9 @@ public class JobTitleServiceTest {
     }
 	
 	@Test
-	public void deleteTest() throws IdNullException {
+	public void deleteTest() {
 		jobtitleService.deleteById(jobtitle.getId());
 	}
 	
-	@Test
-	@Ignore
-	public void cascadeDeleteTest() throws IdNullException {
-		jobtitleService.deleteCascadeById(1L);
-	}
-    
+   
 }
