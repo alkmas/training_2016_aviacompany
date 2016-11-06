@@ -1,11 +1,9 @@
 package com.epam.training2016.aviacompany.services;
 
 import javax.inject.Inject;
-import javax.management.InvalidAttributeValueException;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.EmptyResultDataAccessException;

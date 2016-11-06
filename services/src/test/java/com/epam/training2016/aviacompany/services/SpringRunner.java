@@ -2,7 +2,6 @@ package com.epam.training2016.aviacompany.services;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.impl.AirportServiceImpl;
 
 public class SpringRunner {

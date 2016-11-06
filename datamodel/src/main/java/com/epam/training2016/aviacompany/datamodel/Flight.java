@@ -2,6 +2,13 @@ package com.epam.training2016.aviacompany.datamodel;
 
 import java.sql.Time;
 
+/**
+ * Класс Расписание полетов
+ * вылет по рейсу раз в день
+ * дни недели по рейсу в классе FlightDayWeek 
+ * @author alex
+ *
+ */
 public class Flight extends AbstractModel {
 	private String name;
 	private Long airportSrcId;

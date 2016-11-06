@@ -20,12 +20,24 @@ public interface Flight2EmployeeService{
 	List<Flight2Employee> getByFlightId(Long id);
 	List<Flight2Employee> getByEmployeeId(Long id);
 	List<Flight2Employee> getByDeparture(Date dt);
-	List<Flight2Employee> getFreeEmployeesForDate(String nameJobTitle, Long flightId, Date date, int count);
+	/**
+	 * Составление бригады на рейс
+	 * @param team
+	 * @param nameJobTitle
+	 * @param flightId
+	 * @param date
+	 * @param count
+	 * @return false - в список не надо добавлять
+	 * 		   true - в список добавлено нужное кол-во сотрудников
+	 */
+	boolean addInListFreeEmployeesForDate(List<Flight2Employee> team, String nameJobTitle, Long flightId, Date date, int count);
 	void deleteByEmployeeId(Long employeeId);
 	void deleteByFlightId(Long flightId);
 	void createTeam(Long flightId, Date date, 
 			int countPilot, int countNavigator, int countRadioman, int countStewardess) throws InvalidAttributeValueException;
 	void deleteTeam(Long flightId, Date date);
 	List<Flight2Employee> getTeam(Long flightId, Date date);
+	List<Flight> getFlightsWithoutJobtitleByDate(String nameJobTitle, Date date);
+	boolean isJobTitleInFlightByDate(Long flightId, String nameJobTitle, Date date);
 }
 			

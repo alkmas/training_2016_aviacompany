@@ -8,14 +8,10 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.EmployeeDaoImpl;
-import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.services.EmployeeService;
-import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
-import com.epam.training2016.aviacompany.services.JobTitleService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Service
@@ -23,10 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 	@Inject
 	private EmployeeDaoImpl employeeDao;
-	@Inject
-	private Flight2EmployeeService flight2EmployeeService;
-	@Inject
-	private JobTitleService jobtitleService;
+
 
 	@Override
 	public void saveAll(List<Employee> entities) {

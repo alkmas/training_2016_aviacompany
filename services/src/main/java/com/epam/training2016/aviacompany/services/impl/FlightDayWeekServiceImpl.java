@@ -1,22 +1,18 @@
 package com.epam.training2016.aviacompany.services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDayWeekDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
 import com.epam.training2016.aviacompany.services.FlightDayWeekService;
 
 @Service
 public class FlightDayWeekServiceImpl implements FlightDayWeekService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(FlightDayWeekServiceImpl.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(FlightDayWeekServiceImpl.class);
 	@Inject
 	private FlightDayWeekDaoImpl flightDayWeekDao;
 

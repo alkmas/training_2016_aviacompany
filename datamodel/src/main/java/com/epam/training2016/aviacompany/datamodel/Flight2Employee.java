@@ -1,8 +1,14 @@
 package com.epam.training2016.aviacompany.datamodel;
 
-import java.util.Date;
+import java.sql.Date;
 
-
+/**
+ * Класс Рейс с членами экипажа
+ * член экипажа может быть назначен на рейс один раз в день
+ * данное условие также определено в БД
+ * @author alex
+ *
+ */
 public class Flight2Employee extends AbstractModel {
 	private Long flightId;
 	private Long employeeId;

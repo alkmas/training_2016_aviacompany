@@ -1,5 +1,11 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+/**
+ * Класс Полеты по дням недели
+ * для класса Flight
+ * @author alex
+ *
+ */
 public class FlightDayWeek {
 	private Long flightId;
 	private Long dayWeek;

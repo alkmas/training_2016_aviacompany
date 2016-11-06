@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.epam.training2016.aviacompany.daodb.EmployeeDao;
 import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithJobTitleMapper;
 import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
 
 @Repository

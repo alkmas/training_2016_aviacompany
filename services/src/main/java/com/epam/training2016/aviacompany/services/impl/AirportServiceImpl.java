@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.AirportService;
-import com.epam.training2016.aviacompany.services.FlightService;
 
 
 @Service
@@ -20,8 +19,7 @@ public class AirportServiceImpl implements AirportService {
     private static final Logger LOGGER = LoggerFactory.getLogger(AirportServiceImpl.class);
     @Inject
 	private AirportDaoImpl airportDao;
-    @Inject
-    private FlightService flightService;
+
     
     @Override
     public boolean isDaoExist() {

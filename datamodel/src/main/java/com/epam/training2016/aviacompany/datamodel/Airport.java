@@ -1,5 +1,10 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+/**
+ * Класс Аэропорт
+ * @author alex
+ *
+ */
 public class Airport extends AbstractModel {
 	private String name;
 

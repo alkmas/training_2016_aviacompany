@@ -1,5 +1,10 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+/**
+ * Класс Должности сотрудников компании
+ * @author alex
+ *
+ */
 public class JobTitle extends AbstractModel {
 	private String name;
 	

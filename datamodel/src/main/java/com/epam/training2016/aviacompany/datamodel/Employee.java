@@ -2,6 +2,11 @@ package com.epam.training2016.aviacompany.datamodel;
 
 import java.util.Date;
 
+/**
+ * Класс Сотрудники Компании
+ * @author alex
+ *
+ */
 public class Employee extends AbstractModel {
 	private String firstName;
 	private String lastName;
