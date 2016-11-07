@@ -16,7 +16,6 @@ public interface Flight2EmployeeService{
     Flight2Employee getById(Long id);
 	Flight2Employee getByEmployeeIdAndDate(Long id, Date date);
     List<Flight2Employee> getAll();
-    List<Flight2Employee> filter(Flight2Employee entityFilter);
 	List<Flight2Employee> getByFlightId(Long id);
 	List<Flight2Employee> getByEmployeeId(Long id);
 	List<Flight2Employee> getByDeparture(Date dt);
@@ -33,7 +32,7 @@ public interface Flight2EmployeeService{
 	boolean addInListFreeEmployeesForDate(List<Flight2Employee> team, String nameJobTitle, Long flightId, Date date, int count);
 	void deleteByEmployeeId(Long employeeId);
 	void deleteByFlightId(Long flightId);
-	void createTeam(Long flightId, Date date, 
+	void createTeamAndSave(Long flightId, Date date, 
 			int countPilot, int countNavigator, int countRadioman, int countStewardess) throws InvalidAttributeValueException;
 	void deleteTeam(Long flightId, Date date);
 	List<Flight2Employee> getTeam(Long flightId, Date date);

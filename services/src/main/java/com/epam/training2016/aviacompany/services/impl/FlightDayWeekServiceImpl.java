@@ -1,9 +1,12 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDayWeekDaoImpl;
@@ -12,7 +15,7 @@ import com.epam.training2016.aviacompany.services.FlightDayWeekService;
 
 @Service
 public class FlightDayWeekServiceImpl implements FlightDayWeekService {
-//    private static final Logger LOGGER = LoggerFactory.getLogger(FlightDayWeekServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlightDayWeekServiceImpl.class);
 	@Inject
 	private FlightDayWeekDaoImpl flightDayWeekDao;
 
@@ -34,18 +37,45 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	}
 
 	@Override
-	public List<FlightDayWeek> getByFlightId(Long id) {
-		return flightDayWeekDao.getByFlightId(id);
-	}
-
-	@Override
-	public void insert(FlightDayWeek entity) {
-		flightDayWeekDao.insert(entity);
+	public List<FlightDayWeek> getByFlightId(Long flightId) {
+		return flightDayWeekDao.getByFlightId(flightId);
 	}
 
 	@Override
 	public void delete(FlightDayWeek entity) {
 		flightDayWeekDao.delete(entity);
+	}
+
+	@Override
+	public void saveDaysWeekForFlight(Long flightId, List<Long> days) {
+		if ((days == null) || (days.size() == 0) || flightId == null) {
+			
+		}
+		else {
+			List<FlightDayWeek> flightDayWeekList = new ArrayList<FlightDayWeek>();
+			for(Long day: days) {
+				flightDayWeekList.add(new FlightDayWeek(flightId, day));
+			}
+			saveAll(flightDayWeekList);
+		}
+		
+	}
+
+	@Override
+	public void deleteByFlightId(Long flightId) {
+		flightDayWeekDao.deleteByFlightId(flightId);
+	}
+
+	@Override
+	public List<Long> getDaysFromList(List<FlightDayWeek> flightDaysWeek) {
+		if ((flightDaysWeek == null) || (flightDaysWeek.size() == 0)) {
+			return null;
+		}
+		List<Long> resultList = new ArrayList<Long>();
+		for(FlightDayWeek flightDayWeek: flightDaysWeek) {
+			resultList.add(flightDayWeek.getDayWeek());
+		}
+		return resultList;
 	}
 
 }

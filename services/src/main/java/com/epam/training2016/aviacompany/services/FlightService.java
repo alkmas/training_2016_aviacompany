@@ -14,12 +14,6 @@ public interface FlightService {
     Flight getById(Long id);
     Flight getByName(String name);
     List<Flight> getAll();
-    List<Flight> filter(Flight entityFilter);
-	/**
-	 * Вернуть все рейсы на дату
-	 * @param date
-	 * @return
-	 */
 	List<FlightWithAirport> getAllByDate(Date date);
 	/**
 	 * Есть ли данный рейс на данную дату

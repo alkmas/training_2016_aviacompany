@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
@@ -22,7 +23,6 @@ public class FlightServiceImpl implements FlightService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FlightServiceImpl.class);
 	@Inject
 	private FlightDaoImpl flightDao;
-
 
 	@Override
 	public void saveAll(List<Flight> entities) {
@@ -47,7 +47,14 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public Flight getById(Long id) {
-		return flightDao.getById(id);
+		Flight flight;
+		try {
+			flight = flightDao.getById(id);
+		} catch (EmptyResultDataAccessException e) {
+			LOGGER.error("Flight with id=" + id + " doesnt' exist");
+			return null;
+		}
+		return flight;
 	}
 
 	@Override
@@ -67,17 +74,6 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public Flight getByName(String name) {
 		return flightDao.getByName(name);
-	}
-
-	@Override
-	public List<Flight> filter(Flight entityFilter) {
-		List<Flight> resultList = new ArrayList<Flight>(); 
-		for(Flight flight: flightDao.getAll()) {
-			if (flight.filter(entityFilter)) {
-				resultList.add(flight);
-			}
-		}
-		return resultList;
 	}
 
 	@Override

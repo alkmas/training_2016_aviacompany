@@ -44,7 +44,7 @@ public class Employee extends AbstractModel {
 	public void setJobTitleId(Long jobTitleId) {
 		this.jobTitleId = jobTitleId;
 	}
-
+/*
 	public boolean equals(Employee obj) {
 		if (super.equals(obj) && this.firstName.equals(obj.getFirstName()) 
 				&& this.lastName.equals(obj.getLastName())
@@ -53,9 +53,52 @@ public class Employee extends AbstractModel {
 		}
 		return false;
 	}
-
+*/
 	public boolean isNullFirstName() {
 		return firstName == null;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((jobTitleId == null) ? 0 : jobTitleId.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (birthday == null) {
+			if (other.birthday != null)
+				return false;
+		} else if (!birthday.equals(other.birthday))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (jobTitleId == null) {
+			if (other.jobTitleId != null)
+				return false;
+		} else if (!jobTitleId.equals(other.jobTitleId))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		return true;
 	}
 
 	public boolean isNullLastName() {
@@ -70,16 +113,6 @@ public class Employee extends AbstractModel {
 		return jobTitleId == null;
 	}
 
-	public boolean filter(Employee objFilter) {
-		if (super.filter(objFilter)
-				&& (this.firstName.equals(objFilter.getFirstName()) || (objFilter.getFirstName() == null))
-				&& (this.lastName.equals(objFilter.getLastName()) || (objFilter.getLastName() == null))
-				&& ((this.birthday.getTime() == objFilter.getBirthday().getTime()) || (objFilter.getBirthday() == null))
-				&& (this.jobTitleId == objFilter.getJobTitleId()) || (objFilter.getJobTitleId() == null)) {
-			return true;
-		}
-		return false;
-	}
 
 	@Override
 	public String toString() {

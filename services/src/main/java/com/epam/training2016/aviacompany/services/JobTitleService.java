@@ -12,5 +12,4 @@ public interface JobTitleService {
     JobTitle getById(Long id);
     JobTitle getByName(String name);
     List<JobTitle> getAll();
-    List<JobTitle> filter(JobTitle entityFilter);
 }

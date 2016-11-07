@@ -12,6 +12,4 @@ public interface AirportService {
     Airport getById(Long id);
     Airport getByName(String name);
     List<Airport> getAll();
-    List<Airport> filter(Airport entityFilter);
-
 }

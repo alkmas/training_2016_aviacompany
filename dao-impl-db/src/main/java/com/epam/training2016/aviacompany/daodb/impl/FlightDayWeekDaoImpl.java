@@ -43,9 +43,10 @@ public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
 	}
 
 	@Override
-	public void deleteForFlightId(Long id) {
+	public void deleteByFlightId(Long flightId) {
 		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID, 
-				new Object[] { id });
+				new Object[] { flightId });
 	}
+
 
 }

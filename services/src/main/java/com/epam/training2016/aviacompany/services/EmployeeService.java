@@ -13,7 +13,6 @@ public interface EmployeeService {
     Employee getById(Long id);
     Employee getByName(String name);
     List<Employee> getAll();
-    List<Employee> filter(Employee entityFilter);
 	EmployeeWithJobtitle getWithJobtitle(Long id);
 	List<Employee> getByJobTitleName(String nameJob);
 	void deleteByJobTitleId(Long jobtitleId);

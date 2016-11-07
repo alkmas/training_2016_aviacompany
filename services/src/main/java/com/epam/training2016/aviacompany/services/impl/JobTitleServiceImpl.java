@@ -31,13 +31,7 @@ public class JobTitleServiceImpl implements JobTitleService {
 	@Override
 	public void save(JobTitle entity) {
 		if (entity.getId() == null) {
-			try {
-				entity.setId(jobtitleDao.insert(entity));				
-			}
-			catch (DuplicateKeyException e) {
-				LOGGER.error(String.format("Duplacate Name: %s", entity.getName()));
-			}
-
+			entity.setId(jobtitleDao.insert(entity));				
 		} else {
 			jobtitleDao.update(entity);
 		}
@@ -69,17 +63,6 @@ public class JobTitleServiceImpl implements JobTitleService {
 	@Override
 	public JobTitle getByName(String name) {
 		return jobtitleDao.getByName(name);
-	}
-
-	@Override
-	public List<JobTitle> filter(JobTitle entityFilter) {
-		List<JobTitle> resultList = new ArrayList<JobTitle>(); 
-		for(JobTitle jobtitle: jobtitleDao.getAll()) {
-			if (jobtitle.filter(entityFilter)) {
-				resultList.add(jobtitle);
-			}
-		}
-		return resultList;
 	}
 
 }

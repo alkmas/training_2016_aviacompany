@@ -56,27 +56,53 @@ public class Flight extends AbstractModel {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public boolean equals(Flight obj) {
-		if (super.equals(obj) && this.name.equals(obj.getName()) 
-				&& (this.airportSrcId == obj.getAirportSrcId())
-				&& (this.airportDstId == obj.getAirportDstId()) 
-				&& (this.departureTime.getTime() == obj.getDepartureTime().getTime())
-				&& (this.arrivalTime.getTime() == obj.getArrivalTime().getTime())) {
-			return true;
-		}
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((airportDstId == null) ? 0 : airportDstId.hashCode());
+		result = prime * result + ((airportSrcId == null) ? 0 : airportSrcId.hashCode());
+		result = prime * result + ((arrivalTime == null) ? 0 : arrivalTime.hashCode());
+		result = prime * result + ((departureTime == null) ? 0 : departureTime.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
-	public boolean filter(Flight objFilter) {
-		if (super.filter(objFilter)
-				&& (this.name.equals(objFilter.getName()) || (objFilter.getName() == null))
-				&& ((this.airportSrcId == objFilter.getAirportSrcId()) || (objFilter.getAirportSrcId() == null))
-				&& ((this.airportDstId == objFilter.getAirportDstId()) || (objFilter.getAirportDstId() == null))
-				&& ((this.departureTime.getTime() == objFilter.getDepartureTime().getTime()) || (objFilter.getDepartureTime() == null))
-				&& ((this.arrivalTime.getTime() == objFilter.getArrivalTime().getTime()) || (objFilter.getArrivalTime() == null))) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		return false;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flight other = (Flight) obj;
+		if (airportDstId == null) {
+			if (other.airportDstId != null)
+				return false;
+		} else if (!airportDstId.equals(other.airportDstId))
+			return false;
+		if (airportSrcId == null) {
+			if (other.airportSrcId != null)
+				return false;
+		} else if (!airportSrcId.equals(other.airportSrcId))
+			return false;
+		if (arrivalTime == null) {
+			if (other.arrivalTime != null)
+				return false;
+		} else if (!arrivalTime.equals(other.arrivalTime))
+			return false;
+		if (departureTime == null) {
+			if (other.departureTime != null)
+				return false;
+		} else if (!departureTime.equals(other.departureTime))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -66,15 +66,4 @@ public class AirportServiceImpl implements AirportService {
 		return airport;
 	}
 
-	@Override
-	public List<Airport> filter(Airport entityFilter) {
-		List<Airport> resultList = new ArrayList<Airport>(); 
-		for(Airport airport: airportDao.getAll()) {
-			if (airport.filter(entityFilter)) {
-				resultList.add(airport);
-			}
-		}
-		return resultList;
-	}
-
 }

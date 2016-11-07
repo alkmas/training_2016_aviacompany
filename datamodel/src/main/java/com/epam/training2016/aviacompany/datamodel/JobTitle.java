@@ -16,18 +16,29 @@ public class JobTitle extends AbstractModel {
 		this.name = name;
 	}
 
-	public boolean equals(JobTitle obj) {
-		if (this.name.equals(obj.getName())) return true;			
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
-	public boolean filter(JobTitle objFilter) {
-		if (super.filter(objFilter)	
-				&& (this.name.equals(objFilter.getName()) 
-						|| (objFilter.getName() == null))) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		return false;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		JobTitle other = (JobTitle) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	@Override

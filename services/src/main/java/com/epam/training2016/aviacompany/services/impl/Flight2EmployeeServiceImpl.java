@@ -103,17 +103,6 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public List<Flight2Employee> filter(Flight2Employee entityFilter) {
-		List<Flight2Employee> resultList = new ArrayList<Flight2Employee>(); 
-		for(Flight2Employee f2e: flight2EmployeeDao.getAll()) {
-			if (f2e.filter(entityFilter)) {
-				resultList.add(f2e);
-			}
-		}
-		return resultList;
-	}
-
-	@Override
 	public void deleteById(Long id) {
 		String f2eString = getById(id).toString();
 		flight2EmployeeDao.deleteById(id);
@@ -163,7 +152,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	
 	@Override
 	@Transactional
-	public void createTeam(Long flightId, Date date, 
+	public void createTeamAndSave(Long flightId, Date date, 
 			int countPilot, int countNavigator, int countRadioman, int countStewardess) throws InvalidAttributeValueException {
 		List<Flight2Employee> team = new ArrayList<Flight2Employee>();
 		addInListFreeEmployeesForDate(team, "Пилот", flightId, date, countPilot);

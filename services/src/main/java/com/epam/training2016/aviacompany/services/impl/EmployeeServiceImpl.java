@@ -89,16 +89,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 
-	@Override
-	public List<Employee> filter(Employee entityFilter) {
-		List<Employee> resultList = new ArrayList<Employee>(); 
-		for(Employee employee: employeeDao.getAll()) {
-			if (employee.filter(entityFilter)) {
-				resultList.add(employee);
-			}
-		}
-		return resultList;
-	}
-
-
 }

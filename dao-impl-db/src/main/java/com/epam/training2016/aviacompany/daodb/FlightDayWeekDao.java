@@ -11,5 +11,5 @@ public interface FlightDayWeekDao {
 	List<FlightDayWeek> getByFlightId(Long id);
 	void insert(FlightDayWeek entity);
 	void delete(FlightDayWeek entity);
-	void deleteForFlightId(Long id);
+	void deleteByFlightId(Long flightId);
 }

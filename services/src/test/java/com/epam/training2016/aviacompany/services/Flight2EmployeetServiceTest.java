@@ -74,7 +74,7 @@ public class Flight2EmployeetServiceTest {
 		// Удаляем старую бригаду
 		flight2EmployeeService.deleteTeam(flightId, flightDate);
 		// Назначаем новую бригаду
-		flight2EmployeeService.createTeam(flightId, flightDate, 2, 1, 0, 3);
+		flight2EmployeeService.createTeamAndSave(flightId, flightDate, 2, 1, 0, 3);
 		// Распечатать новую бригаду
 		for(Flight2Employee f2e: flight2EmployeeService.getTeam(flightId, flightDate)) {
 			System.out.println(f2e);
@@ -90,7 +90,7 @@ public class Flight2EmployeetServiceTest {
 			flight2EmployeeService.deleteTeam(flightWithAirport.getFlight().getId(), flightDate);
 			// Назначаем новую бригаду
 			try{
-				flight2EmployeeService.createTeam(flightWithAirport.getFlight().getId(), flightDate, 2, 1, 0, 3);
+				flight2EmployeeService.createTeamAndSave(flightWithAirport.getFlight().getId(), flightDate, 2, 1, 0, 3);
 			} catch (EmptyResultDataAccessException e) {
 				
 			}

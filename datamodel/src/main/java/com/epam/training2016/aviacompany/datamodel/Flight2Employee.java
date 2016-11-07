@@ -38,24 +38,41 @@ public class Flight2Employee extends AbstractModel {
 		this.departure = departure;
 	}
 
-	public boolean equals(Flight2Employee obj) {
-		if (super.equals(obj)
-				&& (this.flightId == obj.getFlightId())
-				&& (this.employeeId == obj.getEmployeeId())
-				&& (this.departure.getTime() == obj.getDeparture().getTime())) {
-			return true;			
-		}
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((departure == null) ? 0 : departure.hashCode());
+		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
+		result = prime * result + ((flightId == null) ? 0 : flightId.hashCode());
+		return result;
 	}
 
-	public boolean filter(Flight2Employee objFilter) {
-		if (super.filter(objFilter)
-				&& (this.flightId.equals(objFilter.getFlightId()) || (objFilter.getFlightId() == null))
-				&& (this.employeeId.equals(objFilter.getEmployeeId()) || (objFilter.getEmployeeId() == null))
-				&& ((this.departure.getTime() == objFilter.getDeparture().getTime()) || (objFilter.getDeparture() == null))) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		return false;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Flight2Employee other = (Flight2Employee) obj;
+		if (departure == null) {
+			if (other.departure != null)
+				return false;
+		} else if (!departure.equals(other.departure))
+			return false;
+		if (employeeId == null) {
+			if (other.employeeId != null)
+				return false;
+		} else if (!employeeId.equals(other.employeeId))
+			return false;
+		if (flightId == null) {
+			if (other.flightId != null)
+				return false;
+		} else if (!flightId.equals(other.flightId))
+			return false;
+		return true;
 	}
 
 	@Override

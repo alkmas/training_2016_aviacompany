@@ -2,13 +2,16 @@ package com.epam.training2016.aviacompany.services;
 
 import javax.inject.Inject;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 
@@ -20,37 +23,49 @@ public class JobTitleServiceTest {
 	@Inject
 	private JobTitleService jobtitleService;
 	
-	@Before
-	public void init() {
+	private void init() {
 		jobtitle = new JobTitle();
 		jobtitle.setName("Механик");
 		jobtitleService.save(jobtitle);
 	}
-/*	
-	@After
-	public void close() {
+	
+	private void close() {
 		jobtitleService.deleteById(jobtitle.getId());
 		
 	}
-*/
+
 	@Test(expected = EmptyResultDataAccessException.class)
     public void getByNameTest() {
-    	jobtitle = jobtitleService.getByName("МЕХАНИК");
+		jobtitleService.getByName("МЕХАНИК");
     }
 
 	@Test
     public void updateNameTest() {
+		init();
     	jobtitle.setName("Mechanic");
     	jobtitleService.save(jobtitle);
     	JobTitle jobtitleFromBase = jobtitleService.getById(jobtitle.getId());
-    	Assert.assertNotNull("Get jobtitle is not null", jobtitleFromBase);
+    	Assert.assertNotNull("Got jobtitle is not null", jobtitleFromBase);
     	Assert.assertEquals(jobtitleFromBase.getId(), jobtitle.getId());
+    	close();
     }
 	
-	@Test
-	public void deleteTest() {
-		jobtitleService.deleteById(jobtitle.getId());
+	@Test(expected=DuplicateKeyException.class)
+	@Transactional
+	public void insertDuplicateTest() {
+		String name = "Механик";
+		
+		jobtitle = new JobTitle();
+		jobtitle.setName(name);
+		jobtitleService.save(jobtitle);
+		
+		JobTitle jobtitleFromBase = jobtitleService.getById(jobtitle.getId());
+    	Assert.assertNotNull("Got jobtitle is not null", jobtitleFromBase);
+    	Assert.assertEquals(jobtitleFromBase.getId(), jobtitle.getId());
+		
+		jobtitle = new JobTitle();
+		jobtitle.setName(name);
+		jobtitleService.save(jobtitle);
+		
 	}
-	
-   
 }

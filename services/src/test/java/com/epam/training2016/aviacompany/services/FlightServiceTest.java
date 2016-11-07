@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.services;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,8 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 public class FlightServiceTest {
     @Inject
     private FlightService flightService;
+    @Inject
+    private AirportService airportService;
     
     @Test
     public void getByIdtest() {
@@ -33,9 +36,19 @@ public class FlightServiceTest {
     @Test
     public void insertIntoFlight() throws InvalidAttributeValueException {
     	Flight flight = new Flight();
-    	flight.setName("D11111");
+    	flight.setName("D10101");
+    	flight.setAirportSrcId(airportService.getByName("Афины").getId());
+    	flight.setAirportDstId(airportService.getByName("Хельсинки").getId());
+    	flight.setDepartureTime(Time.valueOf("12:00:00"));
+    	flight.setArrivalTime(Time.valueOf("15:00:00"));
     	flightService.save(flight);
+ 
     	Assert.assertNotNull("id should not be 0", flight.getId());
+    	Assert.assertEquals(flightService.getById(flight.getId()).getId(), flight.getId());
+    	
+    	flightService.deleteById(flight.getId());
+    	Flight flightFromBase = flightService.getById(flight.getId());
+    	Assert.assertNull("Flight doesn't exist", flightFromBase);
    }
 
 

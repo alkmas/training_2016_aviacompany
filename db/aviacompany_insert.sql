@@ -1,4 +1,5 @@
 DELETE FROM flight_2_employee;
+SELECT pg_catalog.setval('flight_2_employee_id_seq', 1, true);
 DELETE FROM employee;
 DELETE FROM job_title;
 
