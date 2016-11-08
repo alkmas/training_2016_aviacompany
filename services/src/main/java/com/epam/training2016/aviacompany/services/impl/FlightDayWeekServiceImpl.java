@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDayWeekDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
@@ -21,7 +20,6 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	private FlightDayWeekDaoImpl flightDayWeekDao;
 
 	@Override
-	@Transactional
 	public void saveAll(List<FlightDayWeek> entities) {
 		for(FlightDayWeek entity: entities) {
 			save(entity);
@@ -63,13 +61,11 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 		
 	}
 
-	
 	@Override
 	public void deleteByFlightId(Long flightId) {
 		flightDayWeekDao.deleteByFlightId(flightId);
 	}
 
-	
 	@Override
 	public List<Long> getDaysFromList(List<FlightDayWeek> flightDaysWeek) {
 		if ((flightDaysWeek == null) || (flightDaysWeek.size() == 0)) {
