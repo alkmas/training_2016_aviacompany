@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.JobTitleDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
@@ -22,6 +23,7 @@ public class JobTitleServiceImpl implements JobTitleService {
 
 
 	@Override
+	@Transactional
 	public void saveAll(List<JobTitle> entities) {
 		for(JobTitle entity: entities) {
 			save(entity);

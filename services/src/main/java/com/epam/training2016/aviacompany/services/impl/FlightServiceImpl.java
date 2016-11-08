@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
@@ -25,6 +26,7 @@ public class FlightServiceImpl implements FlightService {
 	private FlightDaoImpl flightDao;
 
 	@Override
+	@Transactional
 	public void saveAll(List<Flight> entities) {
 		for (Flight entity : entities) {
 			save(entity);
@@ -47,14 +49,12 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public Flight getById(Long id) {
-		Flight flight;
 		try {
-			flight = flightDao.getById(id);
+			return flightDao.getById(id);
 		} catch (EmptyResultDataAccessException e) {
 			LOGGER.error("Flight with id=" + id + " doesnt' exist");
 			return null;
 		}
-		return flight;
 	}
 
 	@Override
@@ -78,14 +78,14 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void deleteById(Long id) {
-		String flightString = getById(id).toString();
+		String flightString = this.getById(id).toString();
 		flightDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Flight", flightString));
 	}
 
 	@Override
 	public boolean isFlightExistByDate(Long flightId, Date date) {
-		for(FlightWithAirport flightWithAirport: getAllByDate(date)) {
+		for(FlightWithAirport flightWithAirport: this.getAllByDate(date)) {
 			if (flightWithAirport.getFlight().getId() == flightId) {
 				return true;
 			}
