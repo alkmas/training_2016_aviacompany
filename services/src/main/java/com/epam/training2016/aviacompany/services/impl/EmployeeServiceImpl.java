@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.EmployeeDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
@@ -22,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
+	@Transactional
 	public void saveAll(List<Employee> entities) {
 		for(Employee entity: entities) {
 			save(entity);
@@ -82,9 +84,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
+	@Transactional
 	public void deleteByJobTitleId(Long jobtitleId) {
 		for(Employee emp: employeeDao.getByJobTitleId(jobtitleId)) {
-			deleteById(emp.getId());
+			this.deleteById(emp.getId());
 		}
 		
 	}

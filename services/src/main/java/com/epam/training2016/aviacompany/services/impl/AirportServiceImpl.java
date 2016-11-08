@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.AirportDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Airport;
@@ -27,6 +28,7 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
+    @Transactional
     public void saveAll(List<Airport> airports) {
         for (Airport airport : airports) {
             save(airport);
@@ -54,7 +56,7 @@ public class AirportServiceImpl implements AirportService {
 
 	@Override
 	public void deleteById(Long id) {
-		String airString = getById(id).toString();
+		String airString = this.getById(id).toString();
 		airportDao.deleteById(id);
 		LOGGER.info(String.format("Deleted (%s) from table Airport", airString));
 	}

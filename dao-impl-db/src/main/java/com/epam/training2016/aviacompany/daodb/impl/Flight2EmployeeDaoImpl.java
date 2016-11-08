@@ -20,8 +20,12 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 			"SELECT * FROM flight_2_employee WHERE flight_id=?";
 	private String SQL_SELECT_BY_EMPLOYEE_ID =
 			"SELECT * FROM flight_2_employee WHERE employee_id=?";
+	private String SQL_SELECT_BY_EMPLOYEE_ID_AND_DATE =
+			"SELECT * FROM flight_2_employee WHERE employee_id=? AND departure=?";
 	private String SQL_DELETE_BY_FLIGHT_ID_AND_DATE = 
 			"DELETE FROM flight_2_employee WHERE flight_id=? AND departure=?";	
+	private String SQL_DELETE_BY_EMPLOYEE_ID = 
+			"DELETE FROM flight_2_employee WHERE employee_id=?";	
 	
 	Flight2EmployeeDaoImpl() {
 		super(Flight2Employee.class, NAME_TABLE);
@@ -33,16 +37,23 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 	}
 
 	@Override
-	public List<Flight2Employee> getByFlightId(Long id) {
+	public List<Flight2Employee> getByFlightId(Long flightId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_FLIGHT_ID,
-				new Object[] { id },
+				new Object[] { flightId },
 				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
 	}
 
 	@Override
-	public List<Flight2Employee> getByEmployeeId(Long id) {
+	public List<Flight2Employee> getByEmployeeId(Long employeeId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_EMPLOYEE_ID,
-				new Object[] { id },
+				new Object[] { employeeId },
+				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
+	}
+
+	@Override
+	public Flight2Employee getByEmployeeIdAndDate(Long employeeId, Date date) {
+		return jdbcTemplate.queryForObject(SQL_SELECT_BY_EMPLOYEE_ID_AND_DATE,
+				new Object[] { employeeId, date },
 				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
 	}
 
@@ -50,6 +61,12 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 	public void deleteByFlightIdAndDate(Long flightId, Date date) {
 		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID_AND_DATE, 
 				new Object[] { flightId, date });
+	}
+
+	@Override
+	public void deleteByEmployeeId(Long employeeId) {
+		jdbcTemplate.update(SQL_DELETE_BY_EMPLOYEE_ID, 
+				new Object[] { employeeId });
 	}
 
 }

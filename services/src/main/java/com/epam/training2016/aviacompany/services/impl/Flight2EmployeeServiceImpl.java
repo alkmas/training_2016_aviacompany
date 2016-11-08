@@ -38,6 +38,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	private JobTitleService jobtitleService;
 
 	@Override
+	@Transactional
 	public void saveAll(List<Flight2Employee> entities) throws InvalidAttributeValueException {
 		for(Flight2Employee entity: entities) {
 			save(entity);
@@ -46,11 +47,14 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	@Override
 	public void save(Flight2Employee entity) throws InvalidAttributeValueException {
+		// Проверка на существование на дату
+		// т.к. сам рейс может существовать (связь по ключу в БД), но в данный день недели отсутствовать
 		if (!flightService.isFlightExistByDate(entity.getFlightId(), entity.getDeparture())) {
 			throw new InvalidAttributeValueException(
 					String.format("Not exist flight(%d) by date(%s)", 
 							entity.getFlightId(), entity.getDeparture()));
 		};
+		// ---
 		if (entity.getId() == null) {
 			entity.setId(flight2EmployeeDao.insert(entity));
 		} else {
@@ -69,11 +73,12 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	}
 
 	@Override
-	public Flight2Employee getByEmployeeIdAndDate(Long id, Date date) {
-		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(id)) {
-			if (f2e.getDeparture().getTime() == date.getTime()) return f2e;
+	public Flight2Employee getByEmployeeIdAndDate(Long employeeId, Date date) {
+		try {
+			return flight2EmployeeDao.getByEmployeeIdAndDate(employeeId, date);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
@@ -111,11 +116,9 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	
 	@Override
-	@Transactional
 	public void deleteByEmployeeId(Long employeeId) {
-		for(Flight2Employee f2e: flight2EmployeeDao.getByEmployeeId(employeeId)) {
-			deleteById(f2e.getId());
-		}
+		flight2EmployeeDao.deleteByEmployeeId(employeeId);
+		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", employeeId));
 	}
 
 	@Override

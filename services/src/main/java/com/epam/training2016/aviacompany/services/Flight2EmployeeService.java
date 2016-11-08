@@ -14,7 +14,7 @@ public interface Flight2EmployeeService{
     void deleteById(Long id);
     boolean isDaoExist();
     Flight2Employee getById(Long id);
-	Flight2Employee getByEmployeeIdAndDate(Long id, Date date);
+	Flight2Employee getByEmployeeIdAndDate(Long employeeId, Date date);
     List<Flight2Employee> getAll();
 	List<Flight2Employee> getByFlightId(Long id);
 	List<Flight2Employee> getByEmployeeId(Long id);
