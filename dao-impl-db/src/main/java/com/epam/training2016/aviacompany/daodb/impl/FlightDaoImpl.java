@@ -11,7 +11,6 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Repository
 public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
-	final private static String NAME_TABLE = "flight";
 
 	private String SQL_UPDATE_BY_ID = "UPDATE flight SET name=:name,"
 			+ "airport_src_id=:airportSrcId,"

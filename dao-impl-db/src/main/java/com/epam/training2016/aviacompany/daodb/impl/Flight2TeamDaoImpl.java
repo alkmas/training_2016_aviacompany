@@ -6,26 +6,25 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.epam.training2016.aviacompany.daodb.Flight2EmployeeDao;
+import com.epam.training2016.aviacompany.daodb.Flight2TeamDao;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
-public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Team> implements Flight2EmployeeDao {
-	final private static String NAME_TABLE = "flight_2_employee";
+public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements Flight2TeamDao {
 	private String SQL_UPDATE_BY_ID = 
-			"UPDATE flight_2_employee SET flight_id=:flightId,"
-			+ "employee_id=:employeeId,"
+			"UPDATE flight_2_team SET flight_id=:flightId,"
+			+ "team_id=:teamId,"
 			+ "departure=:departure WHERE id=:id";
 	private String SQL_SELECT_BY_FLIGHT_ID =
-			"SELECT * FROM flight_2_employee WHERE flight_id=?";
-	private String SQL_SELECT_BY_EMPLOYEE_ID =
-			"SELECT * FROM flight_2_employee WHERE employee_id=?";
-	private String SQL_SELECT_BY_EMPLOYEE_ID_AND_DATE =
-			"SELECT * FROM flight_2_employee WHERE employee_id=? AND departure=?";
+			"SELECT * FROM flight_2_team WHERE flight_id=?";
+	private String SQL_SELECT_BY_TEAM_ID =
+			"SELECT * FROM flight_2_team WHERE team_id=?";
+	private String SQL_SELECT_BY_TEAM_ID_AND_DATE =
+			"SELECT * FROM flight_2_team WHERE team_id=? AND departure=?";
 	private String SQL_DELETE_BY_FLIGHT_ID_AND_DATE = 
-			"DELETE FROM flight_2_employee WHERE flight_id=? AND departure=?";	
-	private String SQL_DELETE_BY_EMPLOYEE_ID = 
-			"DELETE FROM flight_2_employee WHERE employee_id=?";	
+			"DELETE FROM flight_2_team WHERE flight_id=? AND departure=?";	
+	private String SQL_DELETE_BY_TEAM_ID = 
+			"DELETE FROM flight_2_team WHERE team_id=?";	
 	
 
 	@Override
@@ -41,15 +40,15 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Team> implements 
 	}
 
 	@Override
-	public List<Flight2Team> getByEmployeeId(Long employeeId) {
-		return jdbcTemplate.query(SQL_SELECT_BY_EMPLOYEE_ID,
+	public List<Flight2Team> getByTeamId(Long employeeId) {
+		return jdbcTemplate.query(SQL_SELECT_BY_TEAM_ID,
 				new Object[] { employeeId },
 				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
 	@Override
-	public Flight2Team getByEmployeeIdAndDate(Long employeeId, Date date) {
-		return jdbcTemplate.queryForObject(SQL_SELECT_BY_EMPLOYEE_ID_AND_DATE,
+	public Flight2Team getByTeamIdAndDate(Long employeeId, Date date) {
+		return jdbcTemplate.queryForObject(SQL_SELECT_BY_TEAM_ID_AND_DATE,
 				new Object[] { employeeId, date },
 				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
@@ -61,8 +60,8 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Team> implements 
 	}
 
 	@Override
-	public void deleteByEmployeeId(Long employeeId) {
-		jdbcTemplate.update(SQL_DELETE_BY_EMPLOYEE_ID, 
+	public void deleteByTeamId(Long employeeId) {
+		jdbcTemplate.update(SQL_DELETE_BY_TEAM_ID, 
 				new Object[] { employeeId });
 	}
 

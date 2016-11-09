@@ -387,3 +387,16 @@
 16:12:20.104 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=139) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Штурман) 
 17:25:24.221 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
 17:25:24.261 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+20:59:02.828 [main] INFO  com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl - Deleted (JobTitle [name=Mechanic]) from table Jobtitle
+20:59:43.558 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:16:44.663 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+22:16:44.682 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+22:16:58.582 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+22:16:58.604 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+22:27:38.667 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+22:33:22.316 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:33:38.062 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:37:32.713 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:38:07.441 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:38:15.984 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+22:40:32.924 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee

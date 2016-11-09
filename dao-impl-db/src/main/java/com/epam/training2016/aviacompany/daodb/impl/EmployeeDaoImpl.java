@@ -12,7 +12,6 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitl
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
-	final static String NAME_TABLE = "employee";
 	private String SQL_UPDATE_BY_ID = 
 			"UPDATE employee SET first_name=:firstName,"
 			+ "last_name=:lastName,"

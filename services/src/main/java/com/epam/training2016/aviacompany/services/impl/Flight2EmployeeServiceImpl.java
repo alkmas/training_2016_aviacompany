@@ -13,7 +13,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.epam.training2016.aviacompany.daodb.impl.Flight2EmployeeDaoImpl;
+import com.epam.training2016.aviacompany.daodb.impl.Flight2TeamDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
@@ -29,7 +29,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(Flight2EmployeeServiceImpl.class);
 
 	@Inject
-	private Flight2EmployeeDaoImpl flight2EmployeeDao;
+	private Flight2TeamDaoImpl flight2EmployeeDao;
 	@Inject
 	private FlightService flightService;
 	@Inject
@@ -75,7 +75,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	@Override
 	public Flight2Team getByEmployeeIdAndDate(Long employeeId, Date date) {
 		try {
-			return flight2EmployeeDao.getByEmployeeIdAndDate(employeeId, date);
+			return flight2EmployeeDao.getByTeamIdAndDate(employeeId, date);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -93,7 +93,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 
 	@Override
 	public List<Flight2Team> getByEmployeeId(Long id) {
-		return flight2EmployeeDao.getByEmployeeId(id);
+		return flight2EmployeeDao.getByTeamId(id);
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
 	
 	@Override
 	public void deleteByEmployeeId(Long employeeId) {
-		flight2EmployeeDao.deleteByEmployeeId(employeeId);
+		flight2EmployeeDao.deleteByTeamId(employeeId);
 		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", employeeId));
 	}
 

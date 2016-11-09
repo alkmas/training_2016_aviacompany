@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
-public interface Flight2EmployeeDao extends BaseDao<Flight2Team> {
+public interface Flight2TeamDao extends BaseDao<Flight2Team> {
 	List<Flight2Team> getByFlightId(Long flightId);
-	List<Flight2Team> getByEmployeeId(Long employeeId);
-	Flight2Team getByEmployeeIdAndDate(Long employeeId, Date date);
+	List<Flight2Team> getByTeamId(Long teamId);
+	Flight2Team getByTeamIdAndDate(Long teamId, Date date);
 	void deleteByFlightIdAndDate(Long flightId, Date date);
-	void deleteByEmployeeId(Long employeeId);
+	void deleteByTeamId(Long teamId);
 }
