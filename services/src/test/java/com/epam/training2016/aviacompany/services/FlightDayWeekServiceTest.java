@@ -13,18 +13,18 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
 public class FlightDayWeekServiceTest {
-	private FlightDayWeek flightDayWeek;
+	private FlightDays flightDayWeek;
 	@Inject
 	private FlightDayWeekService flightDayWeekService;
 
 	private void init(Long flightId, Long dayWeek) {
-		flightDayWeek = new FlightDayWeek();
+		flightDayWeek = new FlightDays();
 		flightDayWeek.setFlightId(flightId);
 		flightDayWeek.setDayWeek(dayWeek);
 		flightDayWeekService.save(flightDayWeek);
@@ -43,7 +43,7 @@ public class FlightDayWeekServiceTest {
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void getByNameExceptionTest() {
-		List<FlightDayWeek> fDW = flightDayWeekService.getByFlightId(500L);
+		List<FlightDays> fDW = flightDayWeekService.getByFlightId(500L);
 		fDW.get(0);
 	}
 	
@@ -56,7 +56,7 @@ public class FlightDayWeekServiceTest {
 		Collections.addAll(daysWeek, 0L,2L,4L,6L);
 		flightDayWeekService.saveDaysWeekForFlight(flightId, daysWeek);
 		
-		List<FlightDayWeek> flightDaysWeekFromBase = flightDayWeekService.getByFlightId(flightId);
+		List<FlightDays> flightDaysWeekFromBase = flightDayWeekService.getByFlightId(flightId);
 		Assert.assertEquals(flightDayWeekService.getDaysFromList(flightDaysWeekFromBase), daysWeek);
 	}
 }

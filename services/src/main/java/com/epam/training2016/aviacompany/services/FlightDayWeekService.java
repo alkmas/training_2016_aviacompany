@@ -2,15 +2,15 @@ package com.epam.training2016.aviacompany.services;
 
 import java.util.List;
 
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 public interface FlightDayWeekService {
-    void saveAll(List<FlightDayWeek> entities);
-    void save(FlightDayWeek entity);
-    void delete(FlightDayWeek entity);
+    void saveAll(List<FlightDays> entities);
+    void save(FlightDays entity);
+    void delete(FlightDays entity);
     void deleteByFlightId(Long flightId);
     boolean isDaoExist();
-    List<FlightDayWeek> getByFlightId(Long flightId);
+    List<FlightDays> getByFlightId(Long flightId);
     void saveDaysWeekForFlight(Long flightId, List<Long> days);
-    List<Long> getDaysFromList(List<FlightDayWeek> flightDaysWeek);
+    List<Long> getDaysFromList(List<FlightDays> flightDaysWeek);
 }

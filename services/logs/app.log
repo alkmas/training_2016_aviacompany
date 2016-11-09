@@ -385,3 +385,5 @@
 16:12:20.058 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=132) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Штурман) 
 16:12:20.081 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=138) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Штурман) 
 16:12:20.104 [main] ERROR com.epam.training2016.aviacompany.services.impl.Flight2EmployeeServiceImpl - Team for flight(id=139) and date(2016-12-18) not forming, not enough people. Not enough jobtitle(Штурман) 
+17:25:24.221 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport
+17:25:24.261 [main] INFO  com.epam.training2016.aviacompany.services.impl.AirportServiceImpl - Deleted (Airport [Варшава]) from table Airport

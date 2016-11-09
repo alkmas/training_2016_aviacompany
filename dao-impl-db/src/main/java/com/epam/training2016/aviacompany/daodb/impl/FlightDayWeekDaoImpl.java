@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.FlightDayWeekDao;
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
 public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
@@ -25,19 +25,19 @@ public class FlightDayWeekDaoImpl implements FlightDayWeekDao {
 
 	
 	@Override
-	public void insert(FlightDayWeek entity) {
+	public void insert(FlightDays entity) {
 		jdbcTemplate.update(SQL_INSERT, entity.getFlightId(), entity.getDayWeek());
 	}
 
 	@Override
-	public List<FlightDayWeek> getByFlightId(Long id) {
+	public List<FlightDays> getByFlightId(Long id) {
 		return jdbcTemplate.query(SQL_SELECT_BY_FLIGHT_ID,
 				new Object[] { id },
-				new BeanPropertyRowMapper<FlightDayWeek>(FlightDayWeek.class));
+				new BeanPropertyRowMapper<FlightDays>(FlightDays.class));
 	}
 
 	@Override
-	public void delete(FlightDayWeek entity) {
+	public void delete(FlightDays entity) {
 		jdbcTemplate.update(SQL_DELETE_RECORD, 
 				new Object[] { entity.getFlightId(), entity.getDayWeek() });
 	}

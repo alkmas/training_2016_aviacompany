@@ -6,14 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
 public class FlightWithAirportAndDaysWeek {
 	private Flight flight;
 	private Airport airportSrc;
 	private Airport airportDst;
-	private List<FlightDayWeek> dayWeeks;
+	private List<FlightDays> dayWeeks;
 	
 	public Flight getFlight() {
 		return flight;
@@ -33,10 +33,10 @@ public class FlightWithAirportAndDaysWeek {
 	public void setAirportDst(Airport airportDst) {
 		this.airportDst = airportDst;
 	}
-	public List<FlightDayWeek> getDayWeeks() {
+	public List<FlightDays> getDayWeeks() {
 		return dayWeeks;
 	}
-	public void setDayWeeks(List<FlightDayWeek> dayWeeks) {
+	public void setDayWeeks(List<FlightDays> dayWeeks) {
 		this.dayWeeks = dayWeeks;
 	}
 

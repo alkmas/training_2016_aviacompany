@@ -6,6 +6,7 @@ CREATE TABLE "employee" (
 	"last_name" character varying(256) NOT NULL,
 	"birthday" DATE,
 	"job_title_id" bigint,
+	UNIQUE("first_name", "last_name", "birthday"),
 	CONSTRAINT employee_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -40,8 +41,9 @@ CREATE TABLE "flight" (
 CREATE TABLE "flight_2_team" (
 	"id" serial NOT NULL,
 	"flight_id" bigint NOT NULL,
-	"team_id" bigint NOT NULL UNIQUE,
-	"departure" DATE NOT NULL UNIQUE,
+	"team_id" bigint NOT NULL,
+	"departure" DATE NOT NULL,
+	UNIQUE("team_id", "departure"), 
 	CONSTRAINT flight_2_team_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -87,7 +89,8 @@ CREATE TABLE "team" (
 
 CREATE TABLE "team_2_employee" (
 	"team_id" bigint NOT NULL,
-	"employee_id" bigint NOT NULL
+	"employee_id" bigint NOT NULL,
+	UNIQUE("team_id", "employee_id")
 ) WITH (
   OIDS=FALSE
 );

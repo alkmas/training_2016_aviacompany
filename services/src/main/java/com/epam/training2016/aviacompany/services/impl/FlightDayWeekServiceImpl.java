@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDayWeekDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 import com.epam.training2016.aviacompany.services.FlightDayWeekService;
 
 @Service
@@ -20,14 +20,14 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	private FlightDayWeekDaoImpl flightDayWeekDao;
 
 	@Override
-	public void saveAll(List<FlightDayWeek> entities) {
-		for(FlightDayWeek entity: entities) {
+	public void saveAll(List<FlightDays> entities) {
+		for(FlightDays entity: entities) {
 			save(entity);
 		}
 	}
 
 	@Override
-	public void save(FlightDayWeek entity) {
+	public void save(FlightDays entity) {
 		flightDayWeekDao.insert(entity);
 	}
 
@@ -37,12 +37,12 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	}
 
 	@Override
-	public List<FlightDayWeek> getByFlightId(Long flightId) {
+	public List<FlightDays> getByFlightId(Long flightId) {
 		return flightDayWeekDao.getByFlightId(flightId);
 	}
 
 	@Override
-	public void delete(FlightDayWeek entity) {
+	public void delete(FlightDays entity) {
 		flightDayWeekDao.delete(entity);
 	}
 
@@ -52,9 +52,9 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 			
 		}
 		else {
-			List<FlightDayWeek> flightDayWeekList = new ArrayList<FlightDayWeek>();
+			List<FlightDays> flightDayWeekList = new ArrayList<FlightDays>();
 			for(Long day: days) {
-				flightDayWeekList.add(new FlightDayWeek(flightId, day));
+				flightDayWeekList.add(new FlightDays(flightId, day));
 			}
 			saveAll(flightDayWeekList);
 		}
@@ -67,12 +67,12 @@ public class FlightDayWeekServiceImpl implements FlightDayWeekService {
 	}
 
 	@Override
-	public List<Long> getDaysFromList(List<FlightDayWeek> flightDaysWeek) {
+	public List<Long> getDaysFromList(List<FlightDays> flightDaysWeek) {
 		if ((flightDaysWeek == null) || (flightDaysWeek.size() == 0)) {
 			return null;
 		}
 		List<Long> resultList = new ArrayList<Long>();
-		for(FlightDayWeek flightDayWeek: flightDaysWeek) {
+		for(FlightDays flightDayWeek: flightDaysWeek) {
 			resultList.add(flightDayWeek.getDayWeek());
 		}
 		return resultList;

@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,7 +15,8 @@ import org.springframework.jdbc.support.KeyHolder;
 import com.epam.training2016.aviacompany.daodb.BaseDao;
 
 public class BaseDaoImpl<T> implements BaseDao<T> {
-	private Class<T> type;
+	private Class<T> genericClass;
+	private String genericNameClass;
 	private String nameTable;
 	private String SQL_UPDATE_BY_ID = "UPDATE %s SET name=:name WHERE id=:id";
 	private String SQL_SELECT_ALL = "SELECT * FROM %s";
@@ -27,16 +29,29 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	BaseDaoImpl(Class<T> type, String nameTable) {
-		this.type = type;
-		this.nameTable = nameTable;
+	BaseDaoImpl() {
+		setGenericNameAndTypeClass();
+		nameTable = genericNameClass.substring(genericNameClass.lastIndexOf('.') + 1);
 		SQL_UPDATE_BY_ID = String.format(SQL_UPDATE_BY_ID, nameTable);
 		SQL_SELECT_ALL = String.format(SQL_SELECT_ALL, nameTable);
 		SQL_SELECT_BY_ID = String.format(SQL_SELECT_BY_ID, nameTable);
 		SQL_SELECT_BY_NAME = String.format(SQL_SELECT_BY_NAME, nameTable);
 		SQL_DELETE_BY_ID = String.format(SQL_DELETE_BY_ID, nameTable);
 	}
-
+	
+	// Установка текущего имени класса и самого класса
+	@SuppressWarnings("unchecked")
+    private void setGenericNameAndTypeClass() {
+        try {
+            this.genericNameClass = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
+            Class<?> clazz = Class.forName(this.genericNameClass);
+            this.genericClass = (Class<T>) clazz;
+        } catch (Exception e) {
+            throw new IllegalStateException("Class is not parametrized with generic type!!! Please use extends <> ");
+        }
+    } 
+	
+	
 	/**
 	 * Возвращает шаблон для UPDATE запроса 
 	 * @return
@@ -49,7 +64,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public T getById(Long id) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, 
 				new Object[] { id }, 
-				new BeanPropertyRowMapper<T>(type));
+				new BeanPropertyRowMapper<T>(genericClass));
 	}
 	
 	@Override
@@ -75,14 +90,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Override
 	public List<T> getAll() {
-		return jdbcTemplate.query(SQL_SELECT_ALL, new BeanPropertyRowMapper<T>(type));
+		return jdbcTemplate.query(SQL_SELECT_ALL, new BeanPropertyRowMapper<T>(genericClass));
 	}
 
 	@Override
 	public T getByName(String name) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME,
 				new Object[] { name },
-				new BeanPropertyRowMapper<T>(type));
+				new BeanPropertyRowMapper<T>(genericClass));
 	}
 
 }

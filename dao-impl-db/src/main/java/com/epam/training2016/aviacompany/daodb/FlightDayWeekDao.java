@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.epam.training2016.aviacompany.datamodel.FlightDayWeek;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
 public interface FlightDayWeekDao {
-	List<FlightDayWeek> getByFlightId(Long id);
-	void insert(FlightDayWeek entity);
-	void delete(FlightDayWeek entity);
+	List<FlightDays> getByFlightId(Long id);
+	void insert(FlightDays entity);
+	void delete(FlightDays entity);
 	void deleteByFlightId(Long flightId);
 }

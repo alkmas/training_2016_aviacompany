@@ -32,10 +32,6 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 	private String SQL_DELETE_BY_AIRPORT_SRC_ID = "DELETE FROM flight WHERE airport_src_id=?";
 	private String SQL_DELETE_BY_AIRPORT_DST_ID = "DELETE FROM flight WHERE airport_dst_id=?";
 	
-	FlightDaoImpl() {
-		super(Flight.class, NAME_TABLE);
-	}
-
 	@Override
 	protected String getStringSQLUpdate() {
 		return SQL_UPDATE_BY_ID;

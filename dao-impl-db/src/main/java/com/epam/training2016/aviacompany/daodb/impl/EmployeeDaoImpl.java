@@ -26,10 +26,6 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	private String SQL_SELECT_BY_JOBTITLE_ID =
 			"SELECT * FROM employee WHERE job_title_id=?";
 	
-	EmployeeDaoImpl() {
-		super(Employee.class, NAME_TABLE);
-	}
-
 	@Override
 	protected String getStringSQLUpdate() {
 		return SQL_UPDATE_BY_ID;

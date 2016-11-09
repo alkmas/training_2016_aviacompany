@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.Flight2EmployeeDao;
-import com.epam.training2016.aviacompany.datamodel.Flight2Employee;
+import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
-public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> implements Flight2EmployeeDao {
+public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Team> implements Flight2EmployeeDao {
 	final private static String NAME_TABLE = "flight_2_employee";
 	private String SQL_UPDATE_BY_ID = 
 			"UPDATE flight_2_employee SET flight_id=:flightId,"
@@ -27,9 +27,6 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 	private String SQL_DELETE_BY_EMPLOYEE_ID = 
 			"DELETE FROM flight_2_employee WHERE employee_id=?";	
 	
-	Flight2EmployeeDaoImpl() {
-		super(Flight2Employee.class, NAME_TABLE);
-	}
 
 	@Override
 	protected String getStringSQLUpdate() {
@@ -37,24 +34,24 @@ public class Flight2EmployeeDaoImpl extends BaseDaoImpl<Flight2Employee> impleme
 	}
 
 	@Override
-	public List<Flight2Employee> getByFlightId(Long flightId) {
+	public List<Flight2Team> getByFlightId(Long flightId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_FLIGHT_ID,
 				new Object[] { flightId },
-				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
+				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
 	@Override
-	public List<Flight2Employee> getByEmployeeId(Long employeeId) {
+	public List<Flight2Team> getByEmployeeId(Long employeeId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_EMPLOYEE_ID,
 				new Object[] { employeeId },
-				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
+				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
 	@Override
-	public Flight2Employee getByEmployeeIdAndDate(Long employeeId, Date date) {
+	public Flight2Team getByEmployeeIdAndDate(Long employeeId, Date date) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_EMPLOYEE_ID_AND_DATE,
 				new Object[] { employeeId, date },
-				new BeanPropertyRowMapper<Flight2Employee>(Flight2Employee.class));
+				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
 	@Override
