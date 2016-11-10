@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +21,7 @@ import com.epam.training2016.aviacompany.datamodel.Airport;
 public class AirportServiceTest {
 	private Airport airport;
     @Inject
-    private AirportService airportService;
+    private BaseServiceImpl<Airport> airportService;
 
 	@Before
 	public void init() throws InvalidAttributeValueException {

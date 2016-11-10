@@ -18,45 +18,45 @@ import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
-public class FlightDayWeekServiceTest {
+public class FlightDaysServiceTest {
 	private FlightDays flightDayWeek;
 	@Inject
-	private FlightDayWeekService flightDayWeekService;
+	private BaseService<FlightDays> flightDaysService;
 
 	private void init(Long flightId, Long dayWeek) {
 		flightDayWeek = new FlightDays();
 		flightDayWeek.setFlightId(flightId);
 		flightDayWeek.setDayWeek(dayWeek);
-		flightDayWeekService.save(flightDayWeek);
+		flightDaysService.save(flightDayWeek);
 	}
 
 	private void close() {
-		flightDayWeekService.delete(flightDayWeek);
+		flightDaysService.delete(flightDayWeek);
 	}
 
 	@Test(expected = DuplicateKeyException.class)
 	public void insertDuplicateRecordTest() {
 		init(1L, 0L);
-		flightDayWeekService.save(flightDayWeek);
+		flightDaysService.save(flightDayWeek);
 		close();
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void getByNameExceptionTest() {
-		List<FlightDays> fDW = flightDayWeekService.getByFlightId(500L);
+		List<FlightDays> fDW = flightDaysService.getByFlightId(500L);
 		fDW.get(0);
 	}
 	
 	@Test
 	public void insertForFlightListDaysWeekTest() {
 		Long flightId = 100L;
-		flightDayWeekService.deleteByFlightId(flightId);
+		flightDaysService.deleteByFlightId(flightId);
 		
 		List<Long> daysWeek = new ArrayList<Long>();
 		Collections.addAll(daysWeek, 0L,2L,4L,6L);
-		flightDayWeekService.saveDaysWeekForFlight(flightId, daysWeek);
+		flightDaysService.saveDaysWeekForFlight(flightId, daysWeek);
 		
-		List<FlightDays> flightDaysWeekFromBase = flightDayWeekService.getByFlightId(flightId);
-		Assert.assertEquals(flightDayWeekService.getDaysFromList(flightDaysWeekFromBase), daysWeek);
+		List<FlightDays> flightDaysWeekFromBase = flightDaysService.getByFlightId(flightId);
+		Assert.assertEquals(flightDaysService.getDaysFromList(flightDaysWeekFromBase), daysWeek);
 	}
 }

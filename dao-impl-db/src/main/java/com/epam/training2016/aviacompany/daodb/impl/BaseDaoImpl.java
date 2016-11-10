@@ -3,16 +3,14 @@ package com.epam.training2016.aviacompany.daodb.impl;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.support.KeyHolder;
-
 import com.epam.training2016.aviacompany.daodb.BaseDao;
 import com.epam.training2016.aviacompany.daodb.util.StringUtils;
 
@@ -41,7 +39,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		SQL_DELETE_BY_ID = String.format(SQL_DELETE_BY_ID, nameTable);
 	}
 	
-	// Установка текущего имени класса и самого класса
+	// Установка generic класса и его имени
 	@SuppressWarnings("unchecked")
     private void setGenericNameAndTypeClass() {
         try {
@@ -64,47 +62,61 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	
 	@Override
 	public T getById(Long id) {
+		return getById(id, new BeanPropertyRowMapper<T>(genericClass));
+	}
+
+	@Override
+	public T getById(Long id, RowMapper<T> rowMapper) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, 
 				new Object[] { id }, 
-				new BeanPropertyRowMapper<T>(genericClass));
+				rowMapper);
 	}
+	
 	
 	@Override
 	public Long insert(T entity) {
+		return insert(entity, new BeanPropertySqlParameterSource(entity));
+	}
+
+	@Override
+	public Long insert(T entity, SqlParameterSource parameterSource) {
 		SimpleJdbcInsert createCustomer = new SimpleJdbcInsert(jdbcTemplate)
 				   .withTableName(this.nameTable)
 				   .usingGeneratedKeyColumns("id");
-		KeyHolder keyHolder = createCustomer.executeAndReturnKeyHolder(
-				new BeanPropertySqlParameterSource(entity));
-		return keyHolder.getKey().longValue();
+		Number newId = createCustomer.executeAndReturnKey(parameterSource);
+		return newId.longValue();
 	}
+	
 	
 	@Override
 	public void update(T entity) {
-		namedParameterJdbcTemplate.update(getStringSQLUpdate(),
-				new BeanPropertySqlParameterSource(entity));
+		update(entity, new BeanPropertySqlParameterSource(entity));
 	}
-	
+
+	@Override
+	public void update(T entity, SqlParameterSource parameterSource) {
+		namedParameterJdbcTemplate.update(getStringSQLUpdate(),	parameterSource);
+	}
+
 	@Override
 	public void deleteById(Long id) {
 		jdbcTemplate.update(SQL_DELETE_BY_ID, new Object[] { id });
 	}
 
+
 	@Override
 	public List<T> getAll() {
-		return jdbcTemplate.query(SQL_SELECT_ALL, new BeanPropertyRowMapper<T>(genericClass));
+		return getAll(new BeanPropertyRowMapper<T>(genericClass));
+	}
+
+	public List<T> getAll(RowMapper<T> rowMapper) {
+		return jdbcTemplate.query(SQL_SELECT_ALL, rowMapper);
 	}
 
 	@Override
 	public T getByName(String name) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME,
 				new Object[] { name },
-				new BeanPropertyRowMapper<T>(genericClass));
-	}
-
-	@Override
-	public T getByParams(Map<String, Object> params) {
-		return namedParameterJdbcTemplate.queryForObject("", params, 
 				new BeanPropertyRowMapper<T>(genericClass));
 	}
 

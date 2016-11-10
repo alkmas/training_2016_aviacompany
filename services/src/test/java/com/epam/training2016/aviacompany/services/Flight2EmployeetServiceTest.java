@@ -22,7 +22,7 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 @ContextConfiguration(locations = "classpath:service-context.xml")
 public class Flight2EmployeetServiceTest {
     @Inject
-    private Flight2EmployeeService flight2EmployeeService;
+    private Flight2TeamService flight2EmployeeService;
     @Inject
     private FlightService flightService;
     @Inject

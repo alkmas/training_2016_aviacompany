@@ -400,3 +400,6 @@
 22:38:07.441 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
 22:38:15.984 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
 22:40:32.924 [main] INFO  com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table Employee
+15:25:46.143 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+15:25:46.225 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+15:29:40.835 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)

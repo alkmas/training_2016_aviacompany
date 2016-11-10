@@ -8,7 +8,7 @@ import javax.management.InvalidAttributeValueException;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
-public interface Flight2EmployeeService{
+public interface Flight2TeamService{
     void saveAll(List<Flight2Team> entities) throws InvalidAttributeValueException;
     void save(Flight2Team entity) throws InvalidAttributeValueException;
     void deleteById(Long id);

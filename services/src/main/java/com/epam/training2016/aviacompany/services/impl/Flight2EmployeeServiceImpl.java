@@ -19,13 +19,13 @@ import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.services.EmployeeService;
-import com.epam.training2016.aviacompany.services.Flight2EmployeeService;
+import com.epam.training2016.aviacompany.services.Flight2TeamService;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.JobTitleService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Service
-public class Flight2EmployeeServiceImpl implements Flight2EmployeeService {
+public class Flight2EmployeeServiceImpl implements Flight2TeamService {
     private static final Logger LOGGER = LoggerFactory.getLogger(Flight2EmployeeServiceImpl.class);
 
 	@Inject
