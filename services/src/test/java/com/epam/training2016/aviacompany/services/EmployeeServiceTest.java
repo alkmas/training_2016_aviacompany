@@ -21,7 +21,7 @@ public class EmployeeServiceTest {
     @Inject
     private EmployeeService employeeService;
     @Inject
-    private JobTitleService jobtitleService;
+    private BaseService<JobTitle> jobtitleService;
 
     
     @Test

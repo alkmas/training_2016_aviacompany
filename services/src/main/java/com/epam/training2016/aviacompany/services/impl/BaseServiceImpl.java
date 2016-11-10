@@ -51,8 +51,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	// !!!! обработать исключение !!!
 	public void save(T entity) {
 		try {
-			Object[] params = new Object[] {};
-			Long id = (Long) genericClass.getMethod("getId").invoke(entity, params);
+			Long id = (Long) genericClass.getMethod("getId").invoke(entity, new Object[] {});
 			if (id == null) {
 				genericClass.getMethod("setId", Long.class).invoke(entity, baseDao.insert(entity));
 			} else {

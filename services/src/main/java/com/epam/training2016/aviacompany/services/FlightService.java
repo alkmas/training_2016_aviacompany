@@ -6,14 +6,7 @@ import java.util.List;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
-public interface FlightService {
-    void saveAll(List<Flight> entities);
-    void save(Flight entity);
-    void deleteById(Long id);
-    boolean isDaoExist();
-    Flight getById(Long id);
-    Flight getByName(String name);
-    List<Flight> getAll();
+public interface FlightService extends BaseService<Flight>{
 	List<FlightWithAirport> getAllByDate(Date date);
 	/**
 	 * Есть ли данный рейс на данную дату

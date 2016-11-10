@@ -10,5 +10,4 @@ public interface BaseService<T> {
     T getById(Long id);
     T getByName(String name);
     List<T> getAll();
-
 }

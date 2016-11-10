@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
     } 
 	
-	
 	/**
 	 * Возвращает шаблон для UPDATE запроса 
 	 * @return
@@ -72,7 +72,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				rowMapper);
 	}
 	
-	
 	@Override
 	public Long insert(T entity) {
 		return insert(entity, new BeanPropertySqlParameterSource(entity));
@@ -83,8 +82,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		SimpleJdbcInsert createCustomer = new SimpleJdbcInsert(jdbcTemplate)
 				   .withTableName(this.nameTable)
 				   .usingGeneratedKeyColumns("id");
-		Number newId = createCustomer.executeAndReturnKey(parameterSource);
-		return newId.longValue();
+		Long newId = (Long)createCustomer.executeAndReturnKey(parameterSource);
+		
+		try {
+			this.genericClass.getMethod("setId", Long.class).invoke(entity, newId);
+		} catch (Exception e) {
+		}
+		return newId;
 	}
 	
 	

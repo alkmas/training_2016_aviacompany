@@ -20,7 +20,7 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
-public class Flight2EmployeetServiceTest {
+public class Flight2TeamServiceTest {
     @Inject
     private Flight2TeamService flight2EmployeeService;
     @Inject
@@ -43,7 +43,7 @@ public class Flight2EmployeetServiceTest {
 		Date flightDate = Date.valueOf("2016-12-18");
 		Flight2Team f2e = new Flight2Team();
 		f2e.setFlightId(1L);
-		f2e.setEmployeeId(1L);
+		f2e.setTeamId(1L);
 		f2e.setDeparture(flightDate);
 		flight2EmployeeService.save(f2e);
 	}
@@ -57,12 +57,12 @@ public class Flight2EmployeetServiceTest {
 		List<Flight> flights = flight2EmployeeService.getFlightsWithoutJobtitleByDate("Радист", flightDate);
 		Flight2Team f2e = new Flight2Team();
 		f2e.setFlightId(flights.get(0).getId());
-		f2e.setEmployeeId(employeeService.getByJobTitleName("Радист").get(0).getId());
+		f2e.setTeamId(employeeService.getByJobTitleName("Радист").get(0).getId());
 		f2e.setDeparture(flightDate);
 		flight2EmployeeService.save(f2e);
 		Assert.assertNotNull(flight2EmployeeService.getById(f2e.getId()));
 		System.out.println("На рейс " + f2e + " назначен:");
-		System.out.println(employeeService.getById(f2e.getEmployeeId()));
+		System.out.println(employeeService.getById(f2e.getTeamId()));
 	}
 
     @Test

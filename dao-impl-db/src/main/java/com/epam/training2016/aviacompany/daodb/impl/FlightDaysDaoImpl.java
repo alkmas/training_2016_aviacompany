@@ -10,6 +10,8 @@ import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -24,8 +26,8 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 			+ "day6=:day6, day7=:day7 WHERE id=:id";
 
 	final private String SQL_INSERT = 
-			"INSERT INTO flight_days(day1,day2,day3,day4,day5,day6,day7) "
-			+ "VALUES(:day1, day2, :day3, :day4, :day5, :day6, day7)";
+			"INSERT INTO flight_days(day1,day2,day3,day4,day5,day6,day7)"
+			+ " VALUES(:day1, day2, :day3, :day4, :day5, :day6, day7)";
 	
 	@Inject
 	protected JdbcTemplate jdbcTemplate;
@@ -35,22 +37,16 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 		return SQL_UPDATE_BY_ID;
 	}
 	
-	@Override
-	public Long insert(final FlightDays entity) {
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		jdbcTemplate.update(
-		    new PreparedStatementCreator() {
-		        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-		            PreparedStatement ps = connection.prepareStatement(SQL_INSERT, new String[] {"id"});
-		            for(int i=1; i<=7; i++) {
-		            	ps.setBoolean(i, entity.getDay(i));		            	
-		            }
-		            return ps;
-		        }
-		    },
-		    keyHolder);
-		return null;
+	
+	private MapSqlParameterSource getSqlParameterSource(FlightDays entity) {
+		MapSqlParameterSource parameters = new MapSqlParameterSource();
+		parameters.addValue("id", entity.getId());
+		for(int i=1; i<=7; i++) {
+			parameters.addValue("day"+i, entity.getDay(i));
+		}
+		return parameters;
 	}
+	
 	
 	public FlightDays getById(Long id) {
 		return super.getById(id, new FlightDaysMapper());
@@ -58,5 +54,13 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 
 	public List<FlightDays> getAll() {
 		return super.getAll(new FlightDaysMapper());
+	}
+
+	public void update(FlightDays entity) {
+		super.update(entity, getSqlParameterSource(entity));
+	}
+
+	public Long insert(FlightDays entity) {
+		return super.insert(entity, getSqlParameterSource(entity));
 	}
 }

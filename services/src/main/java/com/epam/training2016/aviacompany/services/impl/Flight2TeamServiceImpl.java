@@ -21,29 +21,20 @@ import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
 import com.epam.training2016.aviacompany.services.FlightService;
-import com.epam.training2016.aviacompany.services.JobTitleService;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Service
-public class Flight2EmployeeServiceImpl implements Flight2TeamService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Flight2EmployeeServiceImpl.class);
+public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> implements Flight2TeamService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Flight2TeamServiceImpl.class);
 
 	@Inject
-	private Flight2TeamDaoImpl flight2EmployeeDao;
+	private Flight2TeamDaoImpl flight2TeamDao;
 	@Inject
 	private FlightService flightService;
 	@Inject
 	private EmployeeService employeeService;
 	@Inject
-	private JobTitleService jobtitleService;
-
-	@Override
-	@Transactional
-	public void saveAll(List<Flight2Team> entities) throws InvalidAttributeValueException {
-		for(Flight2Team entity: entities) {
-			save(entity);
-		}
-	}
+	private BaseServiceImpl<JobTitle> jobtitleService;
 
 	@Override
 	public void save(Flight2Team entity) throws InvalidAttributeValueException {
@@ -56,50 +47,36 @@ public class Flight2EmployeeServiceImpl implements Flight2TeamService {
 		};
 		// ---
 		if (entity.getId() == null) {
-			entity.setId(flight2EmployeeDao.insert(entity));
+			entity.setId(flight2TeamDao.insert(entity));
 		} else {
-			flight2EmployeeDao.update(entity);
+			flight2TeamDao.update(entity);
 		}
 	}
 
-	@Override
-	public boolean isDaoExist() {
-		return flight2EmployeeDao != null;
-	}
-
-	@Override
-	public Flight2Team getById(Long id) {
-		return flight2EmployeeDao.getById(id);
-	}
-
+	
 	@Override
 	public Flight2Team getByEmployeeIdAndDate(Long employeeId, Date date) {
 		try {
-			return flight2EmployeeDao.getByTeamIdAndDate(employeeId, date);
+			return flight2TeamDao.getByTeamIdAndDate(employeeId, date);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
 	}
 
 	@Override
-	public List<Flight2Team> getAll() {
-		return flight2EmployeeDao.getAll();
-	}
-
-	@Override
 	public List<Flight2Team> getByFlightId(Long id) {
-		return flight2EmployeeDao.getByFlightId(id);
+		return flight2TeamDao.getByFlightId(id);
 	}
 
 	@Override
 	public List<Flight2Team> getByEmployeeId(Long id) {
-		return flight2EmployeeDao.getByTeamId(id);
+		return flight2TeamDao.getByTeamId(id);
 	}
 
 	@Override
 	public List<Flight2Team> getByDeparture(Date dt) {
 		List<Flight2Team> resultList = new ArrayList<Flight2Team>();
-		for(Flight2Team f2e: flight2EmployeeDao.getAll()){
+		for(Flight2Team f2e: flight2TeamDao.getAll()){
 			if (f2e.getDeparture().getTime() == dt.getTime()) {
 				resultList.add(f2e);
 			}
@@ -107,24 +84,17 @@ public class Flight2EmployeeServiceImpl implements Flight2TeamService {
 		return resultList;
 	}
 
-	@Override
-	public void deleteById(Long id) {
-		String f2eString = getById(id).toString();
-		flight2EmployeeDao.deleteById(id);
-		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", f2eString));
-	}
-
 	
 	@Override
 	public void deleteByEmployeeId(Long employeeId) {
-		flight2EmployeeDao.deleteByTeamId(employeeId);
+		flight2TeamDao.deleteByTeamId(employeeId);
 		LOGGER.info(String.format("Deleted (%s) from table Flight2Employee", employeeId));
 	}
 
 	@Override
 	@Transactional
 	public void deleteByFlightId(Long flightId) {
-		for(Flight2Team f2e: flight2EmployeeDao.getByFlightId(flightId)) {
+		for(Flight2Team f2e: flight2TeamDao.getByFlightId(flightId)) {
 			deleteById(f2e.getId());
 		}
 	}
@@ -138,7 +108,7 @@ public class Flight2EmployeeServiceImpl implements Flight2TeamService {
 				// Сотрудник emp свободен на дату date
 				Flight2Team newMember = new Flight2Team();
 				newMember.setFlightId(flightId);
-				newMember.setEmployeeId(emp.getId());
+				newMember.setTeamId(emp.getId());
 				newMember.setDeparture(date);
 				team.add(newMember);
 				if (--count == 0) break;
@@ -167,7 +137,7 @@ public class Flight2EmployeeServiceImpl implements Flight2TeamService {
 
 	@Override
 	public void deleteTeam(Long flightId, Date date) {
-		flight2EmployeeDao.deleteByFlightIdAndDate(flightId, date);
+		flight2TeamDao.deleteByFlightIdAndDate(flightId, date);
 	}
 
 	@Override
@@ -196,7 +166,7 @@ public class Flight2EmployeeServiceImpl implements Flight2TeamService {
 	public boolean isJobTitleInFlightByDate(Long flightId, String nameJobTitle, Date date) {
 		JobTitle jobtitle = jobtitleService.getByName(nameJobTitle);
 		for(Flight2Team f2e: getTeam(flightId, date)) {
-			if (employeeService.getById(f2e.getEmployeeId()).getJobTitleId() == jobtitle.getId()) {
+			if (employeeService.getById(f2e.getTeamId()).getJobTitleId() == jobtitle.getId()) {
 				return true;
 			};
 		}

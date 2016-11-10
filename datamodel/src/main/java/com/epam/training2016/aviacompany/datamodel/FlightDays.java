@@ -1,5 +1,7 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.util.Arrays;
+
 /**
  * Класс Полеты по дням недели
  * для класса Flight
@@ -21,6 +23,18 @@ public class FlightDays extends AbstractModel{
 	public void setDay(int numDay, Boolean value) {
 		days[numDay-1] = value;
 	}
-	
+
+	public Boolean[] getDays() {
+		return days;
+	}
+
+	public void setDays(Boolean[] days) {
+		this.days = days;
+	}
+
+	@Override
+	public String toString() {
+		return "FlightDays [days=" + Arrays.toString(days) + "]";
+	}
 	
 }
