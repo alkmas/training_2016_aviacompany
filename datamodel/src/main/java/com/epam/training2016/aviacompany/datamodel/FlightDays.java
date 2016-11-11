@@ -2,12 +2,15 @@ package com.epam.training2016.aviacompany.datamodel;
 
 import java.util.Arrays;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Класс Полеты по дням недели
  * для класса Flight
  * @author alex
  *
  */
+@Component
 public class FlightDays extends AbstractModel{
 	private Boolean[] days;
 	

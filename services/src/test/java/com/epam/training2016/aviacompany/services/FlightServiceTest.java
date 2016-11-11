@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
@@ -22,8 +23,8 @@ public class FlightServiceTest {
     @Inject
     private FlightService flightService;
     @Inject
-    private AirportService airportService;
-    
+    private BaseService<Airport> airportService;
+
     @Test
     public void getByIdtest() {
     	Flight flight = flightService.getById(1L);
@@ -35,8 +36,9 @@ public class FlightServiceTest {
     
     @Test
     public void insertIntoFlight() throws InvalidAttributeValueException {
+    	System.out.println("-----------insertIntoFlight------------");
     	Flight flight = new Flight();
-    	flight.setName("D10101");
+    	flight.setName("D21212");
     	flight.setAirportSrcId(airportService.getByName("Афины").getId());
     	flight.setAirportDstId(airportService.getByName("Хельсинки").getId());
     	flight.setDepartureTime(Time.valueOf("12:00:00"));
@@ -55,6 +57,7 @@ public class FlightServiceTest {
     @Test
     public void getFlight() {
     	// ------------ПОЛУЧИТЬ ВСЕ РЕЙСЫ НА СЕГОДНЯ----------------
+    	System.out.println("-----------getFlight------------");
     	Date date = new Date();
     	List<FlightWithAirport> flights = 
     			flightService.getAllByDate(date);

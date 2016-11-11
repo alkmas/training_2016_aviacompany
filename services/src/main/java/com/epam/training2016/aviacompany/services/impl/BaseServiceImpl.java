@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.management.InvalidAttributeValueException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +54,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		try {
 			Long id = (Long) genericClass.getMethod("getId").invoke(entity, new Object[] {});
 			if (id == null) {
-				genericClass.getMethod("setId", Long.class).invoke(entity, baseDao.insert(entity));
+				id = baseDao.insert(entity);
+				genericClass.getMethod("setId", Long.class).invoke(entity, id);
 			} else {
 				baseDao.update(entity);
 			}

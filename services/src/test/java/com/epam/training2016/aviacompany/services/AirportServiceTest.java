@@ -6,6 +6,7 @@ import javax.management.InvalidAttributeValueException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -35,7 +36,9 @@ public class AirportServiceTest {
 		airportService.deleteById(airport.getId());
 	}
 
-	@Test(expected = EmptyResultDataAccessException.class)
+	
+	@Test
+	(expected = EmptyResultDataAccessException.class)
     public void getByNameExceptionTest() {
 		airport = airportService.getByName("ВАРШАВА");
     }

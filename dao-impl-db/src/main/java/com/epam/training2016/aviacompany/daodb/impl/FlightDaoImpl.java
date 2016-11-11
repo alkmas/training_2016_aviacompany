@@ -18,15 +18,14 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 			+ "departure_time=:departureTime,"
 			+ "arrival_time=:arrivalTime WHERE id=:id";
 	private String SQL_FLIGHT_WITH_AIRPORT = 
-			"SELECT * FROM flight f "
-			+ "LEFT JOIN airport a_src ON f.airport_src_id = a_src.id "
-			+ "LEFT JOIN airport a_dst ON f.airport_dst_id = a_dst.id";
+			"SELECT f.id, f.name, f.airport_src_id, f.airport_dst_id, f.departure_time," 
+			+ " f.arrival_time, a_src.name AS a_src_name, a_dst.name AS a_dst_name  FROM flight f"
+			+ " LEFT JOIN airport a_src ON f.airport_src_id = a_src.id"
+			+ " LEFT JOIN airport a_dst ON f.airport_dst_id = a_dst.id";
 	private String SQL_FLIGHT_WITH_AIRPORT_BY_ID =
 			SQL_FLIGHT_WITH_AIRPORT + " WHERE f.id=?";
-	private String SQL_FLIGHT_WITH_AIRPORT_BY_WEEKDAY = 
-			SQL_FLIGHT_WITH_AIRPORT +
-			" LEFT JOIN flight_day_week d ON d.flight_id = f.id" +
-			" WHERE d.day_week=?";
+	private String SQL_FLIGHT_WITH_AIRPORT_BY_WEEKDAY =
+			SQL_FLIGHT_WITH_AIRPORT	+ " LEFT JOIN flight_days d ON d.id = f.id WHERE d.day%d=TRUE";
 	private String SQL_DELETE_BY_FLIGHT_ID = "DELETE FROM flight WHERE id=?";
 	private String SQL_DELETE_BY_AIRPORT_SRC_ID = "DELETE FROM flight WHERE airport_src_id=?";
 	private String SQL_DELETE_BY_AIRPORT_DST_ID = "DELETE FROM flight WHERE airport_dst_id=?";
@@ -50,9 +49,8 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements FlightDao{
 	}
 
 	@Override
-	public List<FlightWithAirport> getAllForDayWeek(Long dayWeek) {
-		return jdbcTemplate.query(SQL_FLIGHT_WITH_AIRPORT_BY_WEEKDAY, 
-				new Object[] { dayWeek }, 
+	public List<FlightWithAirport> getAllForDays(Long dayWeek) {
+		return jdbcTemplate.query(String.format(SQL_FLIGHT_WITH_AIRPORT_BY_WEEKDAY, dayWeek), 
 				new FlightWithAirportMapper());
 	}
 

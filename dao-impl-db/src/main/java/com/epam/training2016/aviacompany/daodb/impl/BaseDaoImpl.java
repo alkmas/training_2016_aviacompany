@@ -1,9 +1,7 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import java.util.Map;
 import javax.inject.Inject;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -82,7 +80,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		SimpleJdbcInsert createCustomer = new SimpleJdbcInsert(jdbcTemplate)
 				   .withTableName(this.nameTable)
 				   .usingGeneratedKeyColumns("id");
-		Long newId = (Long)createCustomer.executeAndReturnKey(parameterSource);
+		Long newId = createCustomer.executeAndReturnKey(parameterSource).longValue();
 		
 		try {
 			this.genericClass.getMethod("setId", Long.class).invoke(entity, newId);

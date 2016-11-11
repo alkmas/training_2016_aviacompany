@@ -20,6 +20,7 @@ public class FlightDaysServiceTest {
 	@Test
 	public void insertDuplicateRecordTest() {
 		FlightDays flightDays = new FlightDays();
+		flightDays.setId(1L);
 		flightDays.setDay(1, true);
 		flightDaysService.save(flightDays);
 	}

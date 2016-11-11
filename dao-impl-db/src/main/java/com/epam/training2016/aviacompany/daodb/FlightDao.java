@@ -11,7 +11,7 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 public interface FlightDao extends BaseDao<Flight> {
 	FlightWithAirport getWithAirport(Long id);
 	List<FlightWithAirport> getAllWithAirport();
-	List<FlightWithAirport> getAllForDayWeek(Long dayWeek);
+	List<FlightWithAirport> getAllForDays(Long dayWeek);
 	void deleteByFlightId(Long flightId);
 	void deleteByAirportSrcId(Long airportId);
 	void deleteByAirportDstId(Long airportId);

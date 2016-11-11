@@ -412,3 +412,57 @@
 22:03:37.733 [main] ERROR com.epam.training2016.aviacompany.datamodel.FlightDays - PreparedStatementCallback; SQL []; ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
   Подробности: Ошибочная строка содержит (null, t, f, f, f, f, f, f).; nested exception is org.postgresql.util.PSQLException: ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
   Подробности: Ошибочная строка содержит (null, t, f, f, f, f, f, f).
+09:54:46.880 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:13:50.522 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D10101)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D10101)" уже существует.
+10:14:06.460 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:19:50.465 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:24:40.444 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:47:51.519 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21111)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21111)" уже существует.
+10:51:00.404 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21111)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21111)" уже существует.
+10:51:29.095 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:54:24.927 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - java.lang.Integer cannot be cast to java.lang.Long
+10:58:33.207 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+10:58:33.256 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.
+10:59:32.577 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+10:59:32.641 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.
+11:01:18.725 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+11:01:18.774 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.
+11:02:45.943 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+11:03:28.266 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+11:07:03.684 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
+  Подробности: Ключ "(name)=(Варшава)" уже существует.
+11:08:01.106 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+11:45:32.262 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - java.lang.Integer cannot be cast to java.lang.Long
+12:05:32.865 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:06:20.510 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:06:25.607 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:06:36.279 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:06:36.294 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:09:34.584 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)
+12:09:51.677 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)
+12:10:52.327 [main] ERROR com.epam.training2016.aviacompany.datamodel.FlightDays - PreparedStatementCallback; SQL []; ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
+  Подробности: Ошибочная строка содержит (null, t, f, f, f, f, f, f).; nested exception is org.postgresql.util.PSQLException: ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
+  Подробности: Ошибочная строка содержит (null, t, f, f, f, f, f, f).
+13:59:46.116 [main] ERROR com.epam.training2016.aviacompany.services.impl.FlightDaysServiceImpl - Id for FlightDays should not be null
+16:05:53.325 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21212)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21212)" уже существует.
+16:07:23.337 [main] ERROR com.epam.training2016.aviacompany.datamodel.Flight - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21212)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "flight_name_key"
+  Подробности: Ключ "(name)=(D21212)" уже существует.
+16:25:07.927 [main] ERROR com.epam.training2016.aviacompany.daodb.impl.FlightDaysDaoImpl - PreparedStatementCallback; SQL []; ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
+  Подробности: Ошибочная строка содержит (null, f, f, f, f, f, f, f).; nested exception is org.postgresql.util.PSQLException: ОШИБКА: нулевое значение в колонке "id" нарушает ограничение NOT NULL
+  Подробности: Ошибочная строка содержит (null, f, f, f, f, f, f, f).

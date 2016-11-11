@@ -15,20 +15,20 @@ public final class FlightWithAirportMapper implements
     public FlightWithAirport mapRow(ResultSet rs, int rowNum)
             throws SQLException {
     	Flight flight = new Flight();
-    	flight.setId(rs.getLong(1));
-    	flight.setName(rs.getString(2));
-    	flight.setAirportSrcId(rs.getLong(3));
-    	flight.setAirportDstId(rs.getLong(4));
-    	flight.setDepartureTime(rs.getTime(5));
-    	flight.setArrivalTime(rs.getTime(6));
+    	flight.setId(rs.getLong("id"));
+    	flight.setName(rs.getString("name"));
+    	flight.setAirportSrcId(rs.getLong("airport_src_id"));
+    	flight.setAirportDstId(rs.getLong("airport_dst_id"));
+    	flight.setDepartureTime(rs.getTime("departure_time"));
+    	flight.setArrivalTime(rs.getTime("arrival_time"));
     	
     	Airport airportSrc = new Airport();
-    	airportSrc.setId(rs.getLong(7));
-    	airportSrc.setName(rs.getString(8));
+    	airportSrc.setId(rs.getLong("airport_src_id"));
+    	airportSrc.setName(rs.getString("a_src_name"));
 
         Airport airportDst = new Airport();
-        airportDst.setId(rs.getLong(9));
-        airportDst.setName(rs.getString(10));
+        airportDst.setId(rs.getLong("airport_dst_id"));
+        airportDst.setName(rs.getString("a_dst_name"));
         
         FlightWithAirport flightWithAirport = new FlightWithAirport();
         flightWithAirport.setFlight(flight);

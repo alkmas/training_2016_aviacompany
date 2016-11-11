@@ -1,7 +1,6 @@
 package com.epam.training2016.aviacompany.daodb;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
