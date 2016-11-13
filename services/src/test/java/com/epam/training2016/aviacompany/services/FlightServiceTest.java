@@ -1,7 +1,7 @@
 package com.epam.training2016.aviacompany.services;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
+import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,6 +26,8 @@ public class FlightServiceTest {
     private FlightService flightService;
     @Inject
     private BaseService<Airport> airportService;
+    @Inject
+    private BaseService<FlightDays> flightDaysService;
 
     @Test
     public void getByIdtest() {
@@ -33,9 +37,8 @@ public class FlightServiceTest {
         System.out.println(flight.getName());
     }
 
-    
     @Test
-    public void insertIntoFlight() throws InvalidAttributeValueException {
+    public void insertIntoFlight() throws InvalidAttributeValueException, InvalidDataException {
     	System.out.println("-----------insertIntoFlight------------");
     	Flight flight = new Flight();
     	flight.setName("D21212");
@@ -58,9 +61,9 @@ public class FlightServiceTest {
     public void getFlight() {
     	// ------------ПОЛУЧИТЬ ВСЕ РЕЙСЫ НА СЕГОДНЯ----------------
     	System.out.println("-----------getFlight------------");
-    	Date date = new Date();
-    	List<FlightWithAirport> flights = 
-    			flightService.getAllByDate(date);
+    	Date date = Date.valueOf("2016-11-12");
+    	List<FlightWithAirport> flights = flightService.getAllByDate(date);
+
     	Assert.assertNotNull(flights);
     	System.out.println(date);
     	for(FlightWithAirport flight: flights) {

@@ -7,13 +7,13 @@ import javax.inject.Inject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
+import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
+import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context.xml")
@@ -26,13 +26,14 @@ public class EmployeeServiceTest {
     
     @Test
     public void getByIdTest() {
-    	EmployeeWithJobtitle employee = employeeService.getWithJobtitle(1L);
+    	Employee employee = employeeService.getById(1L);
+    	Assert.assertNotNull(employee);
     	System.out.println(employee);
     }
     
     
-    @Test(expected=EmptyResultDataAccessException.class)
-    public void createEmployeeTest() {
+    @Test
+    public void createEmployeeTest() throws InvalidDataException {
     	
     	Employee employee = new Employee();
     	employee.setFirstName("Дарья");
@@ -53,5 +54,24 @@ public class EmployeeServiceTest {
     	employeeService.deleteById(id);
     	// Повторно получить из базы сотрудника по id
     	employeeFromBase = employeeService.getById(id);
+    	Assert.assertNull(employeeFromBase);
     }
+    
+    @Test
+    public void getAllWhoHaveTeamTest() {
+    	for(EmployeeWithTeam emp: employeeService.getAllWithTeam()) {
+    		if (emp.getTeamId() != null) {
+    			System.out.println(emp);
+    		}
+    	}
+    }
+    
+    @Test
+    public void getPilots() {
+    	for(EmployeeWithTeam emp: employeeService.getAllWithTeamByJobName("Пилот")) {
+    		System.out.println(emp.getEmployee().getLastName() +
+    				"->" + (emp.getTeamId()==null? "Свободен" : "Занят"));
+    	}
+    }
+    
 }

@@ -1,4 +1,3 @@
-DELETE FROM team_2_employee;
 DELETE FROM flight_2_team;
 DELETE FROM team;
 

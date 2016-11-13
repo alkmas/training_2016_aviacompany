@@ -4,14 +4,14 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.management.InvalidAttributeValueException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.epam.training2016.aviacompany.daodb.impl.BaseDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.FlightDays;
 import com.epam.training2016.aviacompany.services.BaseService;
+import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
 public class BaseServiceImpl<T> implements BaseService<T> {
     private Logger LOGGER;
@@ -42,7 +42,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     
 	
 	@Override
-	public void saveAll(List<T> entities) {
+	public void saveAll(List<T> entities) throws InvalidDataException {
         for (T entity : entities) {
             save(entity);
         }
@@ -50,7 +50,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Override
 	// !!!! обработать исключение !!!
-	public void save(T entity) {
+	public void save(T entity) throws InvalidDataException {
 		try {
 			Long id = (Long) genericClass.getMethod("getId").invoke(entity, new Object[] {});
 			if (id == null) {
@@ -66,9 +66,14 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Override
 	public void deleteById(Long id) {
-		String delRecord = this.getById(id).toString();
-		baseDao.deleteById(id);
-		LOGGER.info(String.format("Deleted (%s) from table (%s)", delRecord, this.genericNameClass));
+		if (id != null) {
+			String delRecord = this.getById(id).toString();
+			baseDao.deleteById(id);
+			LOGGER.info(String.format("Deleted (%s) from table (%s)", delRecord, this.genericNameClass));
+		}
+		else {
+			LOGGER.info("Method: deleteById. Input parameter is null");
+		}
 	}
 
 	@Override
@@ -78,7 +83,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Override
 	public T getById(Long id) {
-		return baseDao.getById(id);
+		try {
+			return baseDao.getById(id);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override

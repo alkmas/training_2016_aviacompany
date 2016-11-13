@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
+import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
@@ -25,7 +26,7 @@ public class AirportServiceTest {
     private BaseServiceImpl<Airport> airportService;
 
 	@Before
-	public void init() throws InvalidAttributeValueException {
+	public void init() throws InvalidAttributeValueException, InvalidDataException {
 		airport = new Airport();
 		airport.setName("Варшава");
 		airportService.save(airport);

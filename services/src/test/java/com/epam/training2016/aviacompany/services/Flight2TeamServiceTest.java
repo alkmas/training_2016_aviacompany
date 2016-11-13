@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
+import com.epam.training2016.aviacompany.datamodel.Team;
+import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.training2016.aviacompany.services.utils.SortedByDepartureAndFlight;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
@@ -22,7 +24,9 @@ import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 @ContextConfiguration(locations = "classpath:service-context.xml")
 public class Flight2TeamServiceTest {
     @Inject
-    private Flight2TeamService flight2EmployeeService;
+    private Flight2TeamService flight2TeamService;
+    @Inject
+    private TeamService teamService;
     @Inject
     private FlightService flightService;
     @Inject
@@ -30,81 +34,33 @@ public class Flight2TeamServiceTest {
 
     
     
-	@Test(expected = EmptyResultDataAccessException.class)
-    public void getByIdExceptiontest() {
-    	Flight2Team flight2Employee = flight2EmployeeService.getById(1000L);
-        Assert.assertNotNull("The object isn't null", flight2Employee);
-        Assert.assertEquals(new Long(1000L), flight2Employee.getId());
-    }
-    
-	@Test(expected = InvalidAttributeValueException.class)
-	public void insertEmployeeForFlightExceptionTest() throws InvalidAttributeValueException {
-		System.out.println("-----------insertEmployeeForFlightExceptionTest-------------");
-		Date flightDate = Date.valueOf("2016-12-18");
-		Flight2Team f2e = new Flight2Team();
-		f2e.setFlightId(1L);
-		f2e.setTeamId(1L);
-		f2e.setDeparture(flightDate);
-		flight2EmployeeService.save(f2e);
-	}
-
-	
-	@Test
-	public void insertRadiomanForFlightTest() throws InvalidAttributeValueException {
-		System.out.println("-----------insertEmployeeForFlightTest-------------");
-		Date flightDate = Date.valueOf("2016-12-18");
-		// Получить рейсы на дату без Радиста
-		List<Flight> flights = flight2EmployeeService.getFlightsWithoutJobtitleByDate("Радист", flightDate);
-		Flight2Team f2e = new Flight2Team();
-		f2e.setFlightId(flights.get(0).getId());
-		f2e.setTeamId(employeeService.getByJobTitleName("Радист").get(0).getId());
-		f2e.setDeparture(flightDate);
-		flight2EmployeeService.save(f2e);
-		Assert.assertNotNull(flight2EmployeeService.getById(f2e.getId()));
-		System.out.println("На рейс " + f2e + " назначен:");
-		System.out.println(employeeService.getById(f2e.getTeamId()));
-	}
-
-    @Test
-    public void createTeamTest() throws InvalidAttributeValueException {
-		System.out.println("-----------createTeamTest-------------");
-		Date flightDate = Date.valueOf("2016-12-18");
-		Long flightId = flightService.getAllByDate(flightDate).get(0).getFlight().getId();
-		// Удаляем старую бригаду
-		flight2EmployeeService.deleteTeam(flightId, flightDate);
-		// Назначаем новую бригаду
-		flight2EmployeeService.createTeamAndSave(flightId, flightDate, 2, 1, 0, 3);
-		// Распечатать новую бригаду
-		for(Flight2Team f2e: flight2EmployeeService.getTeam(flightId, flightDate)) {
-			System.out.println(f2e);
-		};
-    }
-
-    @Test
-    public void createTeamsTest() throws InvalidAttributeValueException {
-		System.out.println("-----------createTeamsTest-------------");
-		Date flightDate = Date.valueOf("2016-12-18");
-		for(FlightWithAirport flightWithAirport: flightService.getAllByDate(flightDate)) {
-			// Удаляем старую бригаду
-			flight2EmployeeService.deleteTeam(flightWithAirport.getFlight().getId(), flightDate);
-			// Назначаем новую бригаду
-			try{
-				flight2EmployeeService.createTeamAndSave(flightWithAirport.getFlight().getId(), flightDate, 2, 1, 0, 3);
-			} catch (EmptyResultDataAccessException e) {
-				
-			}
-			
-		};
-    }
-    
     @Test
     public void getTeamsByDateTest() {
 		System.out.println("-----------getTeamsByDateTest-------------");
     	Date flightDate = Date.valueOf("2016-12-18");
-    	List<Flight2Team> f2eList =	flight2EmployeeService.getByDeparture(flightDate);
-    	f2eList.sort(new SortedByDepartureAndFlight<Flight2Team>());
-    	for(Flight2Team f2e: f2eList) {
+    	List<Flight2Team> f2tList =	flight2TeamService.getByDeparture(flightDate);
+    	f2tList.sort(new SortedByDepartureAndFlight<Flight2Team>());
+    	for(Flight2Team f2e: f2tList) {
     		System.out.println(f2e);
     	}
+    }
+    
+    @Test
+    public void createTest() throws InvalidDataException {
+		System.out.println("-----------createTest-------------");
+    	Date testDate = Date.valueOf("2016-11-13");
+    	FlightWithAirport flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
+    	Team team = teamService.getAll().get(0);
+    	Flight2Team f2t = new Flight2Team();
+    	f2t.setFlightId(flight.getFlight().getId());
+    	f2t.setTeamId(team.getId());
+    	f2t.setDeparture(testDate);
+    	flight2TeamService.save(f2t);
+    	
+    	Assert.assertNotNull(flight2TeamService.getById(f2t.getId()));
+    	
+    	flight2TeamService.deleteById(f2t.getId());
+    	Assert.assertNull(flight2TeamService.getById(f2t.getId()));
+    	
     }
 }

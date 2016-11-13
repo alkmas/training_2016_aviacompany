@@ -6,7 +6,6 @@ CREATE TABLE "employee" (
 	"last_name" character varying(256) NOT NULL,
 	"birthday" DATE,
 	"job_title_id" bigint,
-	UNIQUE("first_name", "last_name", "birthday"),
 	CONSTRAINT employee_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -43,7 +42,7 @@ CREATE TABLE "flight_2_team" (
 	"flight_id" bigint NOT NULL,
 	"team_id" bigint NOT NULL,
 	"departure" DATE NOT NULL,
-	UNIQUE("team_id", "departure"), 
+	UNIQUE("team_id", "departure"),
 	CONSTRAINT flight_2_team_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -79,18 +78,12 @@ CREATE TABLE "flight_days" (
 
 CREATE TABLE "team" (
 	"id" serial NOT NULL,
-	"name" character varying(256) NOT NULL UNIQUE,
+	"pilot" bigint NOT NULL UNIQUE,
+	"navigator" bigint NOT NULL UNIQUE,
+	"radioman" bigint NOT NULL UNIQUE,
+	"stewardess1" bigint NOT NULL UNIQUE,
+	"stewardess2" bigint NOT NULL UNIQUE,
 	CONSTRAINT team_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "team_2_employee" (
-	"team_id" bigint NOT NULL,
-	"employee_id" bigint NOT NULL,
-	UNIQUE("team_id", "employee_id")
 ) WITH (
   OIDS=FALSE
 );
@@ -109,7 +102,9 @@ ALTER TABLE "flight_2_team" ADD CONSTRAINT "flight_2_team_fk1" FOREIGN KEY ("tea
 
 ALTER TABLE "flight_days" ADD CONSTRAINT "flight_days_fk0" FOREIGN KEY ("id") REFERENCES "flight"("id");
 
-
-ALTER TABLE "team_2_employee" ADD CONSTRAINT "team_2_employee_fk0" FOREIGN KEY ("team_id") REFERENCES "team"("id");
-ALTER TABLE "team_2_employee" ADD CONSTRAINT "team_2_employee_fk1" FOREIGN KEY ("employee_id") REFERENCES "employee"("id");
+ALTER TABLE "team" ADD CONSTRAINT "team_fk0" FOREIGN KEY ("pilot") REFERENCES "employee"("id");
+ALTER TABLE "team" ADD CONSTRAINT "team_fk1" FOREIGN KEY ("navigator") REFERENCES "employee"("id");
+ALTER TABLE "team" ADD CONSTRAINT "team_fk2" FOREIGN KEY ("radioman") REFERENCES "employee"("id");
+ALTER TABLE "team" ADD CONSTRAINT "team_fk3" FOREIGN KEY ("stewardess1") REFERENCES "employee"("id");
+ALTER TABLE "team" ADD CONSTRAINT "team_fk4" FOREIGN KEY ("stewardess2") REFERENCES "employee"("id");
 

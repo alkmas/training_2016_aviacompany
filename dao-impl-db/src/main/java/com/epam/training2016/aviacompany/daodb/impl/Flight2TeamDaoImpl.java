@@ -21,6 +21,8 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements Flig
 			"SELECT * FROM flight_2_team WHERE team_id=?";
 	private String SQL_SELECT_BY_TEAM_ID_AND_DATE =
 			"SELECT * FROM flight_2_team WHERE team_id=? AND departure=?";
+	private String SQL_SELECT_BY_DATE =
+			"SELECT * FROM flight_2_team WHERE departure=?";
 	private String SQL_DELETE_BY_FLIGHT_ID_AND_DATE = 
 			"DELETE FROM flight_2_team WHERE flight_id=? AND departure=?";	
 	private String SQL_DELETE_BY_TEAM_ID = 
@@ -40,16 +42,23 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements Flig
 	}
 
 	@Override
-	public List<Flight2Team> getByTeamId(Long employeeId) {
+	public List<Flight2Team> getByTeamId(Long teamId) {
 		return jdbcTemplate.query(SQL_SELECT_BY_TEAM_ID,
-				new Object[] { employeeId },
+				new Object[] { teamId },
 				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
 	@Override
-	public Flight2Team getByTeamIdAndDate(Long employeeId, Date date) {
+	public Flight2Team getByTeamIdAndDate(Long teamId, Date date) {
 		return jdbcTemplate.queryForObject(SQL_SELECT_BY_TEAM_ID_AND_DATE,
-				new Object[] { employeeId, date },
+				new Object[] { teamId, date },
+				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
+	}
+
+	@Override
+	public List<Flight2Team> getByDeparture(Date date) {
+		return jdbcTemplate.query(SQL_SELECT_BY_DATE,
+				new Object[] { date },
 				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
 	}
 
@@ -60,9 +69,10 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements Flig
 	}
 
 	@Override
-	public void deleteByTeamId(Long employeeId) {
+	public void deleteByTeamId(Long teamId) {
 		jdbcTemplate.update(SQL_DELETE_BY_TEAM_ID, 
-				new Object[] { employeeId });
+				new Object[] { teamId });
 	}
+
 
 }

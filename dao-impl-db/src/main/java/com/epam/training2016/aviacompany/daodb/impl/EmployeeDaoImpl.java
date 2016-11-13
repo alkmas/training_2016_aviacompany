@@ -6,9 +6,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.EmployeeDao;
-import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithJobTitleMapper;
+import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithTeamMapper;
 import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithJobtitle;
+import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
@@ -17,13 +17,18 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 			+ "last_name=:lastName,"
 			+ "birthday=:birthday,"
 			+ "job_title_id=:jobTitleId WHERE id=:id";
-	private String SQL_EMPLOYEE_WITH_JOBTITLE = 
-			"SELECT * FROM employee e"
-			+ " LEFT JOIN job_title j ON e.job_title_id = j.id";
-	private String SQL_EMPLOYEE_WITH_JOBTITLE_BY_ID =
-			SQL_EMPLOYEE_WITH_JOBTITLE + " WHERE e.id=?";
-	private String SQL_SELECT_BY_JOBTITLE_ID =
-			"SELECT * FROM employee WHERE job_title_id=?";
+	
+	private String SQL_SELECT_EMPLOYEE_WITH_TEAM_ID = 
+			"SELECT e.id, e.first_name, e.last_name, e.birthday, e.job_title_id, t.id AS team_id"
+			+ " FROM employee e LEFT JOIN team t ON t.pilot = e.id OR t.navigator = e.id"
+			+ " OR t.radioman = e.id  OR t.stewardess1 = e.id  OR t.stewardess2 = e.id"; 
+	
+	private String SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_ID =
+			SQL_SELECT_EMPLOYEE_WITH_TEAM_ID + " WHERE e.id=?";
+	
+	private String SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_JOB_ID =
+			SQL_SELECT_EMPLOYEE_WITH_TEAM_ID + " WHERE e.job_title_id=?";
+
 	
 	@Override
 	protected String getStringSQLUpdate() {
@@ -31,23 +36,23 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDa
 	}
 
 	@Override
-	public EmployeeWithJobtitle getWithJobtitle(Long id) {
-		return jdbcTemplate.queryForObject(SQL_EMPLOYEE_WITH_JOBTITLE_BY_ID, 
+	public EmployeeWithTeam getWithTeamById(Long id) {
+		return jdbcTemplate.queryForObject(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_ID, 
 				new Object[] { id }, 
-				new EmployeeWithJobTitleMapper());
+				new EmployeeWithTeamMapper());
 	}
 
 	@Override
-	public List<EmployeeWithJobtitle> getAllWithJobtitle() {
-		return jdbcTemplate.query(SQL_EMPLOYEE_WITH_JOBTITLE, 
-				new EmployeeWithJobTitleMapper());
+	public List<EmployeeWithTeam> getAllWithTeam() {
+		return jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID, 
+				new EmployeeWithTeamMapper());
 	}
 
 	@Override
-	public List<Employee> getByJobTitleId(Long jobtitleId) {
-		return jdbcTemplate.query(SQL_SELECT_BY_JOBTITLE_ID,
-				new Object[] {jobtitleId},
-				new BeanPropertyRowMapper<Employee>(Employee.class));
+	public List<EmployeeWithTeam> getAllWithTeamByJobId(Long jobId) {
+		return jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_JOB_ID,
+				new Object[] {jobId},
+				new EmployeeWithTeamMapper());
 	}
 
 }

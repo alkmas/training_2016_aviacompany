@@ -17,7 +17,7 @@ public class FlightDaysServiceImpl extends BaseServiceImpl<FlightDays> {
 	@Override
 	public void save(FlightDays entity) {
 		if (entity.getId() == null) {
-			LOGGER.error("Operation save. Id for FlightDays should not be null");
+			LOGGER.error("Operation: save. Id for FlightDays should not be null");
 		}
 		else {
 			if (flightDaysDao.getById(entity.getId()) != null) {

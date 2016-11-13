@@ -3,6 +3,9 @@ package com.epam.training2016.aviacompany.daodb.impl;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.inject.Inject;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -65,9 +68,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Override
 	public T getById(Long id, RowMapper<T> rowMapper) {
-		return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, 
-				new Object[] { id }, 
-				rowMapper);
+		try {
+			return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, 
+					new Object[] { id }, 
+					rowMapper);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	@Override
