@@ -33,7 +33,7 @@ public class TeamServiceTest {
     }
     
     @Test (expected = InvalidDataException.class)
-    public void insertTest() throws InvalidDataException {
+    public void insertInvalidDataTest() throws InvalidDataException {
     	System.out.println("-------------insertTest--------------");
     	Team team = new Team();
     	team.setPilot(employeeService.getById(1L).getId());
@@ -67,6 +67,10 @@ public class TeamServiceTest {
     	Team teamFromBase = teamService.getById(newTeam.getId());
     	Assert.assertNotNull(teamFromBase);
     	
+    	// Проверка на удаление
+    	teamService.deleteById(teamFromBase.getId());
+    	teamFromBase = teamService.getById(teamFromBase.getId());
+    	Assert.assertNull(teamFromBase);
     }
     
     

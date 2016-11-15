@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,13 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.TeamDaoImpl;
+import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.datamodel.Team;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.EmployeeService;
+import com.epam.training2016.aviacompany.services.Flight2TeamService;
+import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.TeamService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
+import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Service
 public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamService {
@@ -29,6 +34,10 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 	private EmployeeService employeeService;
 	@Inject
 	private BaseService<JobTitle> jobtitleService;
+	@Inject
+	private FlightService flightService;
+	@Inject
+	private Flight2TeamService flight2TeamService;
 	
 	// Проверка перед сохранением в базу
 	private boolean checkTeam(Team entity) {
@@ -91,6 +100,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 				resultList.add(emp);
 			}
 		}
+		if (resultList.size() == 0) return null;
 		return resultList;
 	}
 	
@@ -103,6 +113,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 				resultList.add(emp);
 			}
 		}
+		if (resultList.isEmpty()) return null;
 		return resultList;
 	}
 
@@ -110,6 +121,28 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 	@Override
 	public List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobName(String name) {
 		return getAllEmployeeWithTeamFreeByJobId(jobtitleService.getByName(name).getId());
+	}
+
+	@Override
+	public List<Team> getAllTeamFreeByDate(Date date) {
+		List<Team> allTeam = getAll();
+		List<Flight2Team> f2tBusy =	flight2TeamService.getByDeparture(date);
+		if (f2tBusy.isEmpty()) return allTeam;
+		List<Team> resultList = new ArrayList<Team>();
+		int sizeListBusy = f2tBusy.size();
+		int index;
+		for(Team team: allTeam) {
+			for(index=0; index < sizeListBusy; index++) {
+				if (f2tBusy.get(index).getTeamId() == team.getId()) {
+					break;
+				}
+			}
+			if (index == sizeListBusy) {
+				resultList.add(team);
+			}
+		}
+		if (resultList.isEmpty()) return null;
+		return resultList;
 	}
 
 }

@@ -28,7 +28,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 
 	@Override
 	public boolean haveJobTitle(Long id, Long jobtitleId) {
-		return (getById(jobtitleId).getJobTitleId() == jobtitleId);
+		return (getById(id).getJobTitleId() == jobtitleId);
 	}
 
 	

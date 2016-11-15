@@ -49,18 +49,23 @@ public class Flight2TeamServiceTest {
     public void createTest() throws InvalidDataException {
 		System.out.println("-----------createTest-------------");
     	Date testDate = Date.valueOf("2016-11-13");
-    	FlightWithAirport flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
-    	Team team = teamService.getAll().get(0);
-    	Flight2Team f2t = new Flight2Team();
-    	f2t.setFlightId(flight.getFlight().getId());
-    	f2t.setTeamId(team.getId());
-    	f2t.setDeparture(testDate);
-    	flight2TeamService.save(f2t);
     	
-    	Assert.assertNotNull(flight2TeamService.getById(f2t.getId()));
+   		FlightWithAirport flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
+   	
+   		Team teamFree = teamService.getAllTeamFreeByDate(testDate).get(0);
     	
-    	flight2TeamService.deleteById(f2t.getId());
-    	Assert.assertNull(flight2TeamService.getById(f2t.getId()));
+    	
+   		Flight2Team newF2T = new Flight2Team();
+   		newF2T.setFlightId(flight.getFlight().getId());
+   		newF2T.setDeparture(testDate);
+   		newF2T.setTeamId(teamFree.getId());
+   	
+   		flight2TeamService.save(newF2T);
+    	
+   		Assert.assertNotNull(flight2TeamService.getById(newF2T.getId()));
+    	
+    	flight2TeamService.deleteById(newF2T.getId());
+    	Assert.assertNull(flight2TeamService.getById(newF2T.getId()));
     	
     }
 }
