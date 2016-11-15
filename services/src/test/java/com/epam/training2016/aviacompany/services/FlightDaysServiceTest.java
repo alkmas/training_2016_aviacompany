@@ -15,7 +15,7 @@ import com.epam.training2016.aviacompany.services.exceptions.InvalidDataExceptio
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:service-context.xml")
+@ContextConfiguration(locations = "classpath:service-context-test.xml")
 public class FlightDaysServiceTest {
 	@Inject
 	private BaseService<FlightDays> flightDaysService;

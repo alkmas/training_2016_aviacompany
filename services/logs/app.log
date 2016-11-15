@@ -9,3 +9,24 @@
   Подробности: Ключ "(team_id, departure)=(2, 2016-11-13)" уже существует.
 17:15:39.168 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight2Team - Deleted (Flight2Team [flightId=2, teamId=2, departure=2016-11-13]) from table (com.epam.training2016.aviacompany.datamodel.Flight2Team)
 17:18:01.748 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays [days=[false, false, false, false, false, false, false]]) from table (com.epam.training2016.aviacompany.datamodel.FlightDays)
+11:26:20.989 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:26:21.034 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:26:43.930 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:26:43.939 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:45:50.105 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:45:50.113 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:45:58.192 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:45:58.210 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+11:46:17.453 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)
+11:51:15.092 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)
+12:03:19.315 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:03:19.324 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (com.epam.training2016.aviacompany.datamodel.Airport)
+12:03:28.304 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (com.epam.training2016.aviacompany.datamodel.Employee)
+15:56:44.382 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Mechanic]) from table (com.epam.training2016.aviacompany.datamodel.JobTitle)
+15:56:44.427 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (com.epam.training2016.aviacompany.datamodel.JobTitle)
+15:56:44.865 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
+  Подробности: Ключ "(name)=(Механик)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
+  Подробности: Ключ "(name)=(Механик)" уже существует.
+15:56:44.867 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (com.epam.training2016.aviacompany.datamodel.JobTitle)
+15:57:02.061 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays [days=[false, false, false, false, false, false, false]]) from table (com.epam.training2016.aviacompany.datamodel.FlightDays)
+15:57:10.210 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays [days=[true, false, false, false, false, false, false]]) from table (com.epam.training2016.aviacompany.datamodel.FlightDays)

@@ -16,7 +16,7 @@ import com.epam.training2016.aviacompany.services.exceptions.InvalidDataExceptio
 import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:service-context.xml")
+@ContextConfiguration(locations = "classpath:service-context-test.xml")
 public class EmployeeServiceTest {
     @Inject
     private EmployeeService employeeService;
@@ -57,21 +57,5 @@ public class EmployeeServiceTest {
     	Assert.assertNull(employeeFromBase);
     }
     
-    @Test
-    public void getAllWhoHaveTeamTest() {
-    	for(EmployeeWithTeam emp: employeeService.getAllWithTeam()) {
-    		if (emp.getTeamId() != null) {
-    			System.out.println(emp);
-    		}
-    	}
-    }
-    
-    @Test
-    public void getPilots() {
-    	for(EmployeeWithTeam emp: employeeService.getAllWithTeamByJobName("Пилот")) {
-    		System.out.println(emp.getEmployee().getLastName() +
-    				"->" + (emp.getTeamId()==null? "Свободен" : "Занят"));
-    	}
-    }
     
 }

@@ -17,6 +17,10 @@
 			<artifactId>dao-impl-db</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.epam.training2016.aviacompany</groupId>
+			<artifactId>dao-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.inject</groupId>

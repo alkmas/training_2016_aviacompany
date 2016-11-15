@@ -24,7 +24,7 @@
 
 
 	<context:property-placeholder
-		ignore-unresolvable="true" location="classpath:db.properties" />
+		ignore-unresolvable="true" location="classpath:db-test.properties" />
 
 
 

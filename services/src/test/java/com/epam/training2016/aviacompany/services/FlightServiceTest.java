@@ -20,7 +20,7 @@ import com.epam.training2016.aviacompany.services.exceptions.InvalidDataExceptio
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:service-context.xml")
+@ContextConfiguration(locations = "classpath:service-context-test.xml")
 public class FlightServiceTest {
     @Inject
     private FlightService flightService;

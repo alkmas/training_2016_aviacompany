@@ -1,12 +1,15 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.TeamDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
@@ -15,6 +18,7 @@ import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.TeamService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
+import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @Service
 public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamService {
@@ -59,10 +63,53 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 		}
 	}
 
+	
 	@Override
-	public Map<Long, Boolean> getFreeEmployeesByJobtitle(Long jobId) {
-		employeeService.getAllWithTeamFree()
-		return null;
+	public List<EmployeeWithTeam> getAllEmployeeWithTeamByJobId(Long jobtitleId) {
+		return teamDao.getAllEmployeeWithTeamByJobId(jobtitleId);
+	}
+	
+	
+	@Override
+	public List<EmployeeWithTeam> getAllEmployeeWithTeamByJobName(String name) {
+		Long jobId = jobtitleService.getByName(name).getId();
+		return getAllEmployeeWithTeamByJobId(jobId);
+	}
+	
+
+	@Override
+	public List<EmployeeWithTeam> getAllEmployeeWithTeam() {
+		return teamDao.getAllEmployeeWithTeam();
+	}
+
+	
+	@Override
+	public List<EmployeeWithTeam> getAllEmployeeWithTeamFree() {
+		List<EmployeeWithTeam> resultList = new ArrayList<EmployeeWithTeam>();
+		for(EmployeeWithTeam emp: getAllEmployeeWithTeam()) {
+			if (emp.getTeamId() == null) {
+				resultList.add(emp);
+			}
+		}
+		return resultList;
+	}
+	
+	
+	@Override
+	public List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobId(Long jobId) {
+		List<EmployeeWithTeam> resultList = new ArrayList<EmployeeWithTeam>();
+		for(EmployeeWithTeam emp: getAllEmployeeWithTeamFree()) {
+			if (emp.getEmployee().getJobTitleId() == jobId) {
+				resultList.add(emp);
+			}
+		}
+		return resultList;
+	}
+
+	
+	@Override
+	public List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobName(String name) {
+		return getAllEmployeeWithTeamFreeByJobId(jobtitleService.getByName(name).getId());
 	}
 
 }

@@ -20,7 +20,7 @@ import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:service-context.xml")
+@ContextConfiguration(locations = "classpath:service-context-test.xml")
 public class JobTitleServiceTest {
 	private JobTitle jobtitle;
 	@Inject

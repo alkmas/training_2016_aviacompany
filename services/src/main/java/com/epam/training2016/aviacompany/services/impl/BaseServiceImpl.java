@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.daodb.impl.BaseDaoImpl;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
@@ -19,8 +20,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	private String genericNameClass;
 	
     @Inject
-	private BaseDaoImpl<T> baseDao;
-	
+//	private BaseDaoImpl<T> baseDao;
+    private IBaseDao<T> baseDao;
     
 	public BaseServiceImpl() {
 		setGenericTypeClass();

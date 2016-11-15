@@ -7,7 +7,7 @@ import com.epam.training2016.aviacompany.services.impl.AirportServiceImpl;
 public class SpringRunner {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("service-context.xml");
+        ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("service-context-test.xml");
 
         String[] beanDefinitionNames = springContext.getBeanDefinitionNames();
         for (String beanName : beanDefinitionNames) {

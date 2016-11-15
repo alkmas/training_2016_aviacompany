@@ -19,11 +19,11 @@ import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:service-context.xml")
+@ContextConfiguration(locations = "classpath:service-context-test.xml")
 public class AirportServiceTest {
 	private Airport airport;
     @Inject
-    private BaseServiceImpl<Airport> airportService;
+    private BaseService<Airport> airportService;
 
 	@Before
 	public void init() throws InvalidAttributeValueException, InvalidDataException {
