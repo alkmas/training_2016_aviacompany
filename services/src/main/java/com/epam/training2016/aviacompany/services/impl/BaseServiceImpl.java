@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
-import com.epam.training2016.aviacompany.daodb.impl.BaseDaoImpl;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
@@ -93,7 +92,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Override
 	public T getByName(String name) {
-		return baseDao.getByName(name);
+		try {
+			return baseDao.getByName(name);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override

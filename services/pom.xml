@@ -19,6 +19,11 @@
 
 		<dependency>
 			<groupId>com.epam.training2016.aviacompany</groupId>
+			<artifactId>dao-impl-xml</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.epam.training2016.aviacompany</groupId>
 			<artifactId>dao-api</artifactId>
 		</dependency>
 

@@ -25,14 +25,6 @@ public class EmployeeServiceTest {
 
     
     @Test
-    public void getByIdTest() {
-    	Employee employee = employeeService.getById(1L);
-    	Assert.assertNotNull(employee);
-    	System.out.println(employee);
-    }
-    
-    
-    @Test
     public void createEmployeeTest() throws InvalidDataException {
     	
     	Employee employee = new Employee();
@@ -41,8 +33,10 @@ public class EmployeeServiceTest {
     	employee.setBirthday(Date.valueOf("1980-04-03"));
     	
     	JobTitle jobtitle = jobtitleService.getByName("Стюардесса");
-    	
-    	employee.setJobTitleId(jobtitle.getId());
+    	if (jobtitle != null) {
+        	employee.setJobTitleId(jobtitle.getId());
+    	}
+
     	employeeService.save(employee);
     	Long id = employee.getId();
     			

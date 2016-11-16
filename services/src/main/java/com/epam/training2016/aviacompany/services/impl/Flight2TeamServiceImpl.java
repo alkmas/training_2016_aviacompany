@@ -1,11 +1,9 @@
 package com.epam.training2016.aviacompany.services.impl;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.management.InvalidAttributeValueException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,14 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.Flight2TeamDaoImpl;
-import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
-import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
-import com.epam.training2016.aviacompany.services.FlightService;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Service
 public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> implements Flight2TeamService {
@@ -29,13 +21,14 @@ public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> impleme
 
 	@Inject
 	private Flight2TeamDaoImpl flight2TeamDao;
+/*	
 	@Inject
 	private FlightService flightService;
 	@Inject
 	private EmployeeService employeeService;
 	@Inject
 	private BaseServiceImpl<JobTitle> jobtitleService;
-
+*/
 	@Override
 	public Flight2Team getByTeamIdAndDate(Long teamId, Date date) {
 		try {

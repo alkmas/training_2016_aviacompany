@@ -38,9 +38,10 @@ public class JobTitleServiceTest {
 		jobtitleService.deleteById(jobtitle.getId());
 	}
 
-	@Test(expected = EmptyResultDataAccessException.class)
+	@Test
     public void getByNameTest() {
-		jobtitleService.getByName("МЕХАНИК");
+		JobTitle job = jobtitleService.getByName("МЕХАНИК");
+		Assert.assertNull(job);
     }
 
 	@Test
@@ -53,14 +54,21 @@ public class JobTitleServiceTest {
     }
 	
 	@Test
-	public void insertDuplicateTest() throws InvalidDataException {
+	public void insertJobsTest() throws InvalidDataException {
+		String[] jobNames = new String[] {"Пилот", "Штурман", "Радист", "Стюардесса"};
+		for(String name: jobNames) {
+			if (jobtitleService.getByName(name) == null) {
+				JobTitle job = new JobTitle();
+				job.setName(name);
+				jobtitleService.save(job);
+			}
+		}
 		
-		JobTitle jobtitleFromBase = jobtitleService.getById(jobtitle.getId());
-    	Assert.assertNotNull("Got jobtitle is not null", jobtitleFromBase);
-    	Assert.assertEquals(jobtitleFromBase.getId(), jobtitle.getId());
+
+		for(String name: jobNames) {
+			JobTitle jobFromBase = jobtitleService.getByName(name);
+			Assert.assertNotNull(jobFromBase);
+		}
 		
-    	JobTitle jobtitleNew = new JobTitle();
-    	jobtitleNew.setName(jobtitle.getName());
-		jobtitleService.save(jobtitleNew);
 	}
 }

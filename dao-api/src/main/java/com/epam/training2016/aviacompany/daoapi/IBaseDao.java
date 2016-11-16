@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface IBaseDao<T> {
 	T getById(Long id);
 	T getByName(String name);
-	Long insert(T entity) throws Exception;
+	Long insert(T entity);
 	void update(T entity);
 	void deleteById(Long id);
 	List<T> getAll();

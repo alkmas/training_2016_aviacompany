@@ -1,0 +1,18 @@
+<list>
+  <JobTitle>
+    <id>2</id>
+    <name>Пилот</name>
+  </JobTitle>
+  <JobTitle>
+    <id>3</id>
+    <name>Штурман</name>
+  </JobTitle>
+  <JobTitle>
+    <id>4</id>
+    <name>Радист</name>
+  </JobTitle>
+  <JobTitle>
+    <id>5</id>
+    <name>Стюардесса</name>
+  </JobTitle>
+</list>

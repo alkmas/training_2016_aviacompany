@@ -6,16 +6,13 @@ import javax.management.InvalidAttributeValueException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
-import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,9 +36,9 @@ public class AirportServiceTest {
 
 	
 	@Test
-	(expected = EmptyResultDataAccessException.class)
-    public void getByNameExceptionTest() {
-		airport = airportService.getByName("ВАРШАВА");
+    public void airportNotExistTest() {
+		Airport airport = airportService.getByName("ВАРШАВА");
+		Assert.assertNull(airport);
     }
 
     @Test

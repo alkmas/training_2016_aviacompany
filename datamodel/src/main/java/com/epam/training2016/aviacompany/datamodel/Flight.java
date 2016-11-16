@@ -56,54 +56,6 @@ public class Flight extends AbstractModel {
 		this.arrivalTime = arrivalTime;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((airportDstId == null) ? 0 : airportDstId.hashCode());
-		result = prime * result + ((airportSrcId == null) ? 0 : airportSrcId.hashCode());
-		result = prime * result + ((arrivalTime == null) ? 0 : arrivalTime.hashCode());
-		result = prime * result + ((departureTime == null) ? 0 : departureTime.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flight other = (Flight) obj;
-		if (airportDstId == null) {
-			if (other.airportDstId != null)
-				return false;
-		} else if (!airportDstId.equals(other.airportDstId))
-			return false;
-		if (airportSrcId == null) {
-			if (other.airportSrcId != null)
-				return false;
-		} else if (!airportSrcId.equals(other.airportSrcId))
-			return false;
-		if (arrivalTime == null) {
-			if (other.arrivalTime != null)
-				return false;
-		} else if (!arrivalTime.equals(other.arrivalTime))
-			return false;
-		if (departureTime == null) {
-			if (other.departureTime != null)
-				return false;
-		} else if (!departureTime.equals(other.departureTime))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
 
 	@Override
 	public String toString() {

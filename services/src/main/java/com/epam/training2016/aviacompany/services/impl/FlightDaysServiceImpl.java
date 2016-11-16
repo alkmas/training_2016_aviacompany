@@ -1,9 +1,11 @@
 package com.epam.training2016.aviacompany.services.impl;
 
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaysDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 

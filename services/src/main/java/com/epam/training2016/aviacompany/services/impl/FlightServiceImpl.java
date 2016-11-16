@@ -1,17 +1,17 @@
 package com.epam.training2016.aviacompany.services.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.Date;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
-import com.epam.training2016.aviacompany.daodb.impl.FlightDaysDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
