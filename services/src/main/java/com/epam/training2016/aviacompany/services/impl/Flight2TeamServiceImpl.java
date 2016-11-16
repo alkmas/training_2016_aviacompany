@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
 import com.epam.training2016.aviacompany.daodb.impl.Flight2TeamDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
@@ -20,7 +21,7 @@ public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> impleme
     private static final Logger LOGGER = LoggerFactory.getLogger(Flight2TeamServiceImpl.class);
 
 	@Inject
-	private Flight2TeamDaoImpl flight2TeamDao;
+	private IFlight2TeamDao flight2TeamDao;
 /*	
 	@Inject
 	private FlightService flightService;

@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.epam.training2016.aviacompany.daodb.Flight2TeamDao;
+import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
-public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements Flight2TeamDao {
+public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFlight2TeamDao {
 	private String SQL_UPDATE_BY_ID = 
 			"UPDATE flight_2_team SET flight_id=:flightId,"
 			+ "team_id=:teamId,"

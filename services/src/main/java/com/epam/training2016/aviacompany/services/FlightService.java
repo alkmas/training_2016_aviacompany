@@ -7,7 +7,8 @@ import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 public interface FlightService extends BaseService<Flight>{
-	List<FlightWithAirport> getAllByDate(Date date);
+//	List<FlightWithAirport> getAllByDate(Date date);
+	List<Flight> getAllByDate(Date date);
 	/**
 	 * Есть ли данный рейс на данную дату
 	 * @param flightId
@@ -15,5 +16,5 @@ public interface FlightService extends BaseService<Flight>{
 	 * @return
 	 */
 	boolean isFlightExistByDate(Long flightId, Date date);
-	List<FlightWithAirport> getAllByDateWithoutTeam(Date date);
+	List<Flight> getAllByDateWithoutTeam(Date date);
 }

@@ -29,8 +29,6 @@ public class Flight2TeamServiceTest {
     private TeamService teamService;
     @Inject
     private FlightService flightService;
-    @Inject
-    private EmployeeService employeeService;
 
     
     
@@ -50,13 +48,13 @@ public class Flight2TeamServiceTest {
 		System.out.println("-----------createTest-------------");
     	Date testDate = Date.valueOf("2016-11-13");
     	
-   		FlightWithAirport flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
+   		Flight flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
    	
    		Team teamFree = teamService.getAllTeamFreeByDate(testDate).get(0);
     	
     	
    		Flight2Team newF2T = new Flight2Team();
-   		newF2T.setFlightId(flight.getFlight().getId());
+   		newF2T.setFlightId(flight.getId());
    		newF2T.setDeparture(testDate);
    		newF2T.setTeamId(teamFree.getId());
    	

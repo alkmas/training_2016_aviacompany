@@ -30,7 +30,7 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 	private Flight2TeamService flight2TeamService;
 	
 	@Override
-	public List<FlightWithAirport> getAllByDate(Date date) {
+	public List<Flight> getAllByDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
 		return flightDao.getAllForDays(
@@ -40,8 +40,8 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 
 	@Override
 	public boolean isFlightExistByDate(Long flightId, Date date) {
-		for(FlightWithAirport flightWithAirport: getAllByDate(date)) {
-			if (flightWithAirport.getFlight().getId() == flightId) {
+		for(Flight flight: getAllByDate(date)) {
+			if (flight.getId() == flightId) {
 				return true;
 			}
 		}
@@ -70,10 +70,10 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 
 	
 	@Override
-	public List<FlightWithAirport> getAllByDateWithoutTeam(Date date) {
-		List<FlightWithAirport> resultList = new ArrayList<FlightWithAirport>();
-		for(FlightWithAirport flight: getAllByDate(date)) {
-			if (flight2TeamService.getByFlightIdAndDate(flight.getFlight().getId(), date) == null) {
+	public List<Flight> getAllByDateWithoutTeam(Date date) {
+		List<Flight> resultList = new ArrayList<Flight>();
+		for(Flight flight: getAllByDate(date)) {
+			if (flight2TeamService.getByFlightIdAndDate(flight.getId(), date) == null) {
 				resultList.add(flight);
 			}
 		}

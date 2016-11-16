@@ -1,11 +1,11 @@
-package com.epam.training2016.aviacompany.daodb;
+package com.epam.training2016.aviacompany.daoapi;
 
 import java.sql.Date;
 import java.util.List;
 
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
-public interface Flight2TeamDao extends BaseDao<Flight2Team> {
+public interface IFlight2TeamDao extends IBaseDao<Flight2Team> {
 	List<Flight2Team> getByFlightId(Long flightId);
 	List<Flight2Team> getByTeamId(Long teamId);
 	List<Flight2Team> getByDeparture(Date date);

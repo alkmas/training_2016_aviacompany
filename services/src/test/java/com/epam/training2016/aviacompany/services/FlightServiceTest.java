@@ -1,7 +1,7 @@
 package com.epam.training2016.aviacompany.services;
 
-import java.sql.Time;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,8 +26,6 @@ public class FlightServiceTest {
     private FlightService flightService;
     @Inject
     private BaseService<Airport> airportService;
-    @Inject
-    private BaseService<FlightDays> flightDaysService;
 
     @Test
     public void getByIdtest() {
@@ -62,11 +60,11 @@ public class FlightServiceTest {
     	// ------------ПОЛУЧИТЬ ВСЕ РЕЙСЫ НА СЕГОДНЯ----------------
     	System.out.println("-----------getFlight------------");
     	Date date = Date.valueOf("2016-11-12");
-    	List<FlightWithAirport> flights = flightService.getAllByDate(date);
+    	List<Flight> flights = flightService.getAllByDate(date);
 
     	Assert.assertNotNull(flights);
     	System.out.println(date);
-    	for(FlightWithAirport flight: flights) {
+    	for(Flight flight: flights) {
         	System.out.println(flight);    		
     	}
 
