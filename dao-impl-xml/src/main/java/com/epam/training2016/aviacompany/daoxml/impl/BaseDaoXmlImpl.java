@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
@@ -21,9 +22,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	private String shortNameClass;
     private XStream xstream;
     private File file;
-    
     private List<T> baseList;
-    
 
     @Value("${basePath}")
     private String basePath;
@@ -49,6 +48,15 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 		shortNameClass = genericNameClass.substring(genericNameClass.lastIndexOf('.') + 1);
 	}
 	
+	public List<T> getBaseList() {
+		return baseList;
+	}
+
+	public void setBaseList(List<T> baseList) {
+		this.baseList = baseList;
+		this.writeCollection(baseList);
+	}
+
 	// Установка generic класса и его имени
 	@SuppressWarnings("unchecked")
     private void setGenericNameAndTypeClass() {
@@ -70,7 +78,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
     }
 
     
-    private Object getField(T entity, String field) {
+    protected Object getField(T entity, String field) {
     	try {
     		return genericClass.getMethod(field).invoke(entity, new Object[] {});
 		} catch (Exception e) {
@@ -80,12 +88,12 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 
     
 	@SuppressWarnings("unchecked")
-    private List<T> readCollection() {
+    protected List<T> readCollection() {
         return (List<T>) xstream.fromXML(file);
     }
 
     
-    private void writeCollection(List<T> newList) {
+    protected void writeCollection(List<T> newList) {
         try {
             xstream.toXML(newList, new FileOutputStream(file));
         } catch (FileNotFoundException e) {
@@ -93,11 +101,28 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
         }
     }
 
+    /**
+     * Удаление объекта по полю класса Long
+     * @param fieldName
+     * @param id
+     */
+	protected void deleteByField(String fieldName, Long id) {
+		List<T> resultList = new ArrayList<T>();
+		Long idGet;
+		fieldName = "get" + StringUtils.capitalize(fieldName);
+		for(T entity: baseList) {
+			idGet = (Long) getField(entity, fieldName);
+			if (idGet == id) continue;
+			resultList.add(entity);
+		}
+		this.setBaseList(resultList);
+	}
+
 	
 	@Override
 	public T getById(Long id) {
 		Long idGet;
-		for(T entity: this.baseList) {
+		for(T entity: baseList) {
 			idGet = (Long) getField(entity, "getId");
 			if (idGet == id) return entity;
 		}
@@ -142,21 +167,12 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 				resultList.add(entityGet);
 			}
 		}
-		baseList = resultList;
-		this.writeCollection(baseList);
+		this.setBaseList(resultList);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		List<T> resultList = new ArrayList<T>();
-		Long idGet;
-		for(T entity: baseList) {
-			idGet = (Long) getField(entity, "getId");
-			if (idGet == id) continue;
-			resultList.add(entity);
-		}
-		baseList = resultList;
-		this.writeCollection(baseList);
+		deleteByField("id", id);
 	}
 
 	@Override

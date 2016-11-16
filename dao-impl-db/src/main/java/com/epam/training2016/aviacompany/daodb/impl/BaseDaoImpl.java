@@ -2,9 +2,9 @@ package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
 import javax.inject.Inject;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,10 +13,11 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import com.epam.training2016.aviacompany.daodb.BaseDao;
+
+import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.daodb.util.StringUtils;
 
-public class BaseDaoImpl<T> implements BaseDao<T> {
+public class BaseDaoImpl<T> implements IBaseDao<T> {
 	private Class<T> genericClass;
 	private String genericNameClass;
 	private String nameTable;
@@ -66,8 +67,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return getById(id, new BeanPropertyRowMapper<T>(genericClass));
 	}
 
-	@Override
-	public T getById(Long id, RowMapper<T> rowMapper) {
+
+	protected T getById(Long id, RowMapper<T> rowMapper) {
 		try {
 			return jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, 
 					new Object[] { id }, 
@@ -82,8 +83,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return insert(entity, new BeanPropertySqlParameterSource(entity));
 	}
 
-	@Override
-	public Long insert(T entity, SqlParameterSource parameterSource) {
+	protected Long insert(T entity, SqlParameterSource parameterSource) {
 		SimpleJdbcInsert createCustomer = new SimpleJdbcInsert(jdbcTemplate)
 				   .withTableName(this.nameTable)
 				   .usingGeneratedKeyColumns("id");
@@ -102,8 +102,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		update(entity, new BeanPropertySqlParameterSource(entity));
 	}
 
-	@Override
-	public void update(T entity, SqlParameterSource parameterSource) {
+
+	protected void update(T entity, SqlParameterSource parameterSource) {
 		namedParameterJdbcTemplate.update(getStringSQLUpdate(),	parameterSource);
 	}
 
@@ -118,7 +118,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return getAll(new BeanPropertyRowMapper<T>(genericClass));
 	}
 
-	public List<T> getAll(RowMapper<T> rowMapper) {
+	protected List<T> getAll(RowMapper<T> rowMapper) {
 		return jdbcTemplate.query(SQL_SELECT_ALL, rowMapper);
 	}
 

@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.epam.training2016.aviacompany.daoapi.IFlightDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
 import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
@@ -17,13 +19,12 @@ import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 
 @Service
 public class FlightServiceImpl extends BaseServiceImpl<Flight> implements FlightService {
 	@Inject
-	private FlightDaoImpl flightDao;
+	private IFlightDao flightDao;
 	@Inject
 	private BaseService<FlightDays> flightDaysService;
 	@Inject
@@ -57,7 +58,6 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 			FlightDays flightDays = new FlightDays();
 			flightDays.setId(entity.getId());
 			flightDaysService.save(flightDays);
-//			flightDaysDao.insert(flightDays);
 		}
 	}
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
 import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithTeamMapper;
 import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @Repository
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> {

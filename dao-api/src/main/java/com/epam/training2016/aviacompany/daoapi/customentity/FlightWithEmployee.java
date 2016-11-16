@@ -1,4 +1,4 @@
-package com.epam.traininng2016.aviacompany.daodb.customentity;
+package com.epam.training2016.aviacompany.daoapi.customentity;
 
 import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.Flight;

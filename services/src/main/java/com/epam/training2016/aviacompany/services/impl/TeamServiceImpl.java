@@ -12,6 +12,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.epam.training2016.aviacompany.daoapi.ITeamDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
 import com.epam.training2016.aviacompany.daodb.impl.TeamDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
@@ -22,14 +25,12 @@ import com.epam.training2016.aviacompany.services.Flight2TeamService;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.TeamService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Service
 public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamService {
 	
 	@Inject
-	private TeamDaoImpl teamDao;
+	private ITeamDao teamDao;
 	@Inject
 	private EmployeeService employeeService;
 	@Inject

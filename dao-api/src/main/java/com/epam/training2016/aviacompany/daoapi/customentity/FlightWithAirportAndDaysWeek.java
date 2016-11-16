@@ -1,12 +1,19 @@
-package com.epam.traininng2016.aviacompany.daodb.customentity;
+package com.epam.training2016.aviacompany.daoapi.customentity;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
+import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
-public class FlightWithAirport {
+@Repository
+public class FlightWithAirportAndDaysWeek {
 	private Flight flight;
 	private Airport airportSrc;
 	private Airport airportDst;
+	private List<FlightDays> dayWeeks;
 	
 	public Flight getFlight() {
 		return flight;
@@ -26,11 +33,19 @@ public class FlightWithAirport {
 	public void setAirportDst(Airport airportDst) {
 		this.airportDst = airportDst;
 	}
+	public List<FlightDays> getDayWeeks() {
+		return dayWeeks;
+	}
+	public void setDayWeeks(List<FlightDays> dayWeeks) {
+		this.dayWeeks = dayWeeks;
+	}
+
 	@Override
 	public String toString() {
-		return "FlightWithAirport [flight=" + flight 
-				+ ", airportSrc=" + airportSrc 
-				+ ", airportDst=" + airportDst + "]";
+		return "FlightWithAirportAndDaysWeek [flight=" + flight.getName() + 
+				", airportSrc=" + airportSrc.getName() + 
+				", airportDst="	+ airportDst.getName() + 
+				", dayWeeks=" + dayWeeks + "]";
 	}
 
 	

@@ -7,18 +7,20 @@ import javax.inject.Inject;
 import javax.management.InvalidAttributeValueException;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.Team;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.training2016.aviacompany.services.utils.SortedByDepartureAndFlight;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:service-context-test.xml")

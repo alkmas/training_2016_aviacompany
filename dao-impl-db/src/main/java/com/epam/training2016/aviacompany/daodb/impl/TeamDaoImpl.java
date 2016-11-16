@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.epam.training2016.aviacompany.daodb.TeamDao;
+import com.epam.training2016.aviacompany.daoapi.ITeamDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
 import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithTeamMapper;
 import com.epam.training2016.aviacompany.datamodel.Team;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 @Repository
-public class TeamDaoImpl extends BaseDaoImpl<Team> implements TeamDao{
+public class TeamDaoImpl extends BaseDaoImpl<Team> implements ITeamDao{
 	final private String SQL_UPDATE_BY_ID = 
 			"UPDATE team SET pilot=:pilot, navigator=:navigator, radioman=:radioman," 
 			+ " stewardess1=:stewardess1,stewardess2=:stewardess2 WHERE id=:id";

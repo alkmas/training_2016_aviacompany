@@ -6,9 +6,9 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
 import com.epam.training2016.aviacompany.daodb.mapper.FlightWithAirportMapper;
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 @Repository
 public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {

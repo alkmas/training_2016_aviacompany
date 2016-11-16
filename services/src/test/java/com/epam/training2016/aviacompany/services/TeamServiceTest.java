@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
 import com.epam.training2016.aviacompany.datamodel.Team;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)

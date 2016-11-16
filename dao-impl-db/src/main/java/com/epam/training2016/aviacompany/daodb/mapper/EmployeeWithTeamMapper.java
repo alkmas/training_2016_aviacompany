@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
 import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.traininng2016.aviacompany.daodb.customentity.EmployeeWithTeam;
 
 
 public final class EmployeeWithTeamMapper implements

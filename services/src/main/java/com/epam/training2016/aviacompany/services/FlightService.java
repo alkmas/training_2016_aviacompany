@@ -3,8 +3,8 @@ package com.epam.training2016.aviacompany.services;
 import java.sql.Date;
 import java.util.List;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
-import com.epam.traininng2016.aviacompany.daodb.customentity.FlightWithAirport;
 
 public interface FlightService extends BaseService<Flight>{
 //	List<FlightWithAirport> getAllByDate(Date date);

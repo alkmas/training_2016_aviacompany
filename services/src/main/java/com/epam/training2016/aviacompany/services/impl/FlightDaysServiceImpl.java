@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.epam.training2016.aviacompany.daodb.impl.FlightDaysDaoImpl;
+import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Service
@@ -14,7 +14,7 @@ public class FlightDaysServiceImpl extends BaseServiceImpl<FlightDays> {
     
 	private static final Logger LOGGER = LoggerFactory.getLogger(FlightDaysServiceImpl.class);
 	@Inject
-	private FlightDaysDaoImpl flightDaysDao;
+	private IBaseDao<FlightDays> flightDaysDao;
 	
 	@Override
 	public void save(FlightDays entity) {

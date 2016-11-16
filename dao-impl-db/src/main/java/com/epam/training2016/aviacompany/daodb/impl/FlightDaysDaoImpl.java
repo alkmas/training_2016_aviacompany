@@ -49,15 +49,15 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 	
 	
 	public FlightDays getById(Long id) {
-		return super.getById(id, new FlightDaysMapper());
+		return this.getById(id, new FlightDaysMapper());
 	}
 
 	public List<FlightDays> getAll() {
-		return super.getAll(new FlightDaysMapper());
+		return this.getAll(new FlightDaysMapper());
 	}
 
 	public void update(FlightDays entity) {
-		super.update(entity, getSqlParameterSource(entity));
+		this.update(entity, getSqlParameterSource(entity));
 	}
 
 	public Long insert(FlightDays entity) {
