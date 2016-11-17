@@ -50,7 +50,8 @@ public class Flight2TeamServiceTest {
 		System.out.println("-----------createTest-------------");
     	Date testDate = Date.valueOf("2016-11-13");
     	
-   		Flight flight = flightService.getAllByDateWithoutTeam(testDate).get(0);
+    	List<Flight> allFlight = flightService.getAllByDateWithoutTeam(testDate); 
+   		Flight flight = allFlight.get(0);
    	
    		Team teamFree = teamService.getAllTeamFreeByDate(testDate).get(0);
     	

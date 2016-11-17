@@ -18,7 +18,6 @@ import com.epam.training2016.aviacompany.services.Flight2TeamService;
 import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
-
 @Service
 public class FlightServiceImpl extends BaseServiceImpl<Flight> implements FlightService {
 	@Inject
@@ -27,26 +26,24 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 	private BaseService<FlightDays> flightDaysService;
 	@Inject
 	private Flight2TeamService flight2TeamService;
-	
+
 	@Override
 	public List<Flight> getAllByDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
-		return flightDao.getAllForDays(
-				new Integer(calendar.get(Calendar.DAY_OF_WEEK)));
+		return flightDao.getAllForDays(new Integer(calendar.get(Calendar.DAY_OF_WEEK)));
 	}
-
 
 	@Override
 	public boolean isFlightExistByDate(Long flightId, Date date) {
-		for(Flight flight: getAllByDate(date)) {
+		for (Flight flight : getAllByDate(date)) {
 			if (flight.getId() == flightId) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	@Transactional
 	public void save(Flight entity) throws InvalidDataException {
@@ -66,12 +63,13 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 		flightDao.deleteById(id);
 	}
 
-	
 	@Override
 	public List<Flight> getAllByDateWithoutTeam(Date date) {
 		List<Flight> resultList = new ArrayList<Flight>();
-		for(Flight flight: getAllByDate(date)) {
-			if (flight2TeamService.getByFlightIdAndDate(flight.getId(), date) == null) {
+
+		for (Flight flight : getAllByDate(date)) {
+			Long id = flight.getId();
+			if (flight2TeamService.getByFlightIdAndDate(id, date) == null) {
 				resultList.add(flight);
 			}
 		}

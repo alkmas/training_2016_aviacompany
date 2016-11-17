@@ -22,7 +22,8 @@ public class FlightDaoXmlImpl extends BaseDaoXmlImpl<Flight> implements IFlightD
 	public List<Flight> getAllForDays(Integer dayWeek) {
 		List<Flight> resultList = new ArrayList<>();
 		for(FlightDays flightDays: flightDaysDao.getAllByDay(dayWeek)) {
-			resultList.add(this.getById(flightDays.getId()));
+			Flight flight = this.getById(flightDays.getId());
+			resultList.add(flight);
 		}
 		return resultList;
 	}

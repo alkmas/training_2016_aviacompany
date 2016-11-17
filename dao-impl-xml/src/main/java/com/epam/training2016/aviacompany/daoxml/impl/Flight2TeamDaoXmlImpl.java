@@ -19,7 +19,7 @@ public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implement
 	}
 
 	
-	// Получить список объектов 
+	// Получить список объектов из списка
 	private List<Flight2Team> getFromListByFieldLong(List<Flight2Team> inList, String fieldName, Long value) {
 		List<Flight2Team> listResult = new ArrayList<>();
 		for(Flight2Team f2t: inList) {
