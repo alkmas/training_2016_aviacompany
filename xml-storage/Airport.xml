@@ -1,1 +1,26 @@
-<list/>
+<list>
+  <Airport>
+    <id>1</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>2</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>3</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>4</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>5</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>6</id>
+    <name>Варшава</name>
+  </Airport>
+</list>

@@ -11,9 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
+import com.epam.training2016.aviacompany.datamodel.Employee;
 import com.epam.training2016.aviacompany.datamodel.Team;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
-import com.epam.training2016.aviacompany.services.impl.BaseServiceImpl;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,19 +35,35 @@ public class TeamServiceTest {
     @Test (expected = InvalidDataException.class)
     public void insertInvalidDataTest() throws InvalidDataException {
     	System.out.println("-------------insertTest--------------");
+    	
+    	Employee emp = new Employee();
+    	emp.setFirstName("Елена");
+    	emp.setLastName("Бобко");
+    	employeeService.save(emp);
+    	
     	Team team = new Team();
-    	team.setPilot(employeeService.getById(1L).getId());
-    	team.setNavigator(employeeService.getById(1L).getId());
-    	team.setRadioman(employeeService.getById(1L).getId());
-    	team.setStewardess1(employeeService.getById(1L).getId());
-    	team.setStewardess2(employeeService.getById(1L).getId());
-    	teamService.save(team);
+    	team.setPilot(emp.getId());
+    	team.setNavigator(emp.getId());
+    	team.setRadioman(emp.getId());
+    	team.setStewardess1(emp.getId());
+    	team.setStewardess2(emp.getId());
+    	
+    	try {
+			teamService.save(team);
+		} catch (InvalidDataException e) {
+			employeeService.deleteById(emp.getId());
+			throw e;
+		}
+    	
+    	
     }
      
     
     @Test
     public void createTeamTest() throws InvalidDataException {
     	System.out.println("-------------createTeamTest--------------");
+    	
+    	
     	EmployeeWithTeam pilot = teamService.getAllEmployeeWithTeamFreeByJobName("Пилот").get(0);
     	EmployeeWithTeam navigator = teamService.getAllEmployeeWithTeamFreeByJobName("Штурман").get(0);
     	EmployeeWithTeam radioman = teamService.getAllEmployeeWithTeamFreeByJobName("Радист").get(0);

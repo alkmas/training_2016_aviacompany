@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
-import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
-import com.epam.training2016.aviacompany.daodb.impl.FlightDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 import com.epam.training2016.aviacompany.services.BaseService;
@@ -35,7 +33,7 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
 		return flightDao.getAllForDays(
-				new Long(calendar.get(Calendar.DAY_OF_WEEK)));
+				new Integer(calendar.get(Calendar.DAY_OF_WEEK)));
 	}
 
 

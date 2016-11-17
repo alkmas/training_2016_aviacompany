@@ -61,7 +61,7 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {
 */
 	
 	@Override
-	public List<Flight> getAllForDays(Long dayWeek) {
+	public List<Flight> getAllForDays(Integer dayWeek) {
 		return jdbcTemplate.query(String.format(SQL_SELECT_FLIGHT_BY_WEEKDAY, dayWeek), 
 				new BeanPropertyRowMapper<Flight>(Flight.class));
 	}

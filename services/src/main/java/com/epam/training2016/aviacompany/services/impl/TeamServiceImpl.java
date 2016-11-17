@@ -4,18 +4,14 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daoapi.ITeamDao;
 import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
-import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirport;
-import com.epam.training2016.aviacompany.daodb.impl.TeamDaoImpl;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.JobTitle;
 import com.epam.training2016.aviacompany.datamodel.Team;

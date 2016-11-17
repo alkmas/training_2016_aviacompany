@@ -49,7 +49,6 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	}
 
 	@Override
-	// !!!! обработать исключение !!!
 	public void save(T entity) throws InvalidDataException {
 		try {
 			Long id = (Long) genericClass.getMethod("getId").invoke(entity, new Object[] {});
@@ -60,7 +59,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 				baseDao.update(entity);
 			}
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage());
+			throw new RuntimeException(e);
 		}
 	}
 

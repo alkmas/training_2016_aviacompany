@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -69,18 +70,39 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
         }
     } 
 	
+
+	private void sortBaseListById() {
+    	baseList.sort(new Comparator<T>(){
+    		public int compare(T entity1, T entity2) {
+    			Long idEntity1 = (Long) getValueField(entity1, "id");
+    			Long idEntity2 = (Long) getValueField(entity2, "id");
+    			if (idEntity1 > idEntity2) {
+    				return 1;
+    			} else if (idEntity1 < idEntity2) {
+    				return -1;
+    			} else {
+    				return 0;
+    			}
+    		}
+    	});
+	}
 	
-    private Long getNextId(List<T> entities) {
-    	if (entities.isEmpty()) return 1L;
-    	T entity = entities.get(entities.size() - 1);
-       	Long id = (Long) getField(entity, "getId");
+	
+	// Возвращает id + 1 последнего объекта. 
+    private Long getNextId() {
+    	if (baseList.isEmpty()) return 1L;
+    	// сортируем перед получением следующего id
+    	sortBaseListById();
+    	T entity = baseList.get(baseList.size() - 1);
+       	Long id = (Long) getValueField(entity, "id");
        	return id + 1;
     }
 
     
-    protected Object getField(T entity, String field) {
+    protected Object getValueField(T entity, String fieldName) {
+		String newName = "get" + StringUtils.capitalize(fieldName);
     	try {
-    		return genericClass.getMethod(field).invoke(entity, new Object[] {});
+    		return genericClass.getMethod(newName).invoke(entity, new Object[] {});
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -109,9 +131,8 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	protected void deleteByField(String fieldName, Long id) {
 		List<T> resultList = new ArrayList<T>();
 		Long idGet;
-		fieldName = "get" + StringUtils.capitalize(fieldName);
 		for(T entity: baseList) {
-			idGet = (Long) getField(entity, fieldName);
+			idGet = (Long) getValueField(entity, fieldName);
 			if (idGet == id) continue;
 			resultList.add(entity);
 		}
@@ -123,7 +144,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	public T getById(Long id) {
 		Long idGet;
 		for(T entity: baseList) {
-			idGet = (Long) getField(entity, "getId");
+			idGet = (Long) getValueField(entity, "id");
 			if (idGet == id) return entity;
 		}
 		return null;
@@ -134,7 +155,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	public T getByName(String name) {
 		String nameGet;
 		for(T entity: baseList) {
-			nameGet = (String) getField(entity, "getName");
+			nameGet = (String) getValueField(entity, "name");
 			if (nameGet.equals(name)) return entity;
 		}
 		return null;
@@ -143,9 +164,12 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	
 	@Override
 	public Long insert(T entity) {
-        Long id = getNextId(baseList);
 		try {
-			genericClass.getMethod("setId", Long.class).invoke(entity, id);
+			Long id = (Long) getValueField(entity, "id");
+			if (id == null) {
+				id = getNextId();
+				genericClass.getMethod("setId", Long.class).invoke(entity, id);
+			}
 			baseList.add(entity);
 	        writeCollection(baseList);
 	        return id;
@@ -156,18 +180,28 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 
 	@Override
 	public void update(T entity) {
-		Long id = (Long) getField(entity, "getId");
+		Long id = (Long) getValueField(entity, "id");
 		List<T> resultList = new ArrayList<T>();
+		boolean flagFound = false;
 		Long idGet;
 		for(T entityGet: baseList) {
-			idGet = (Long) getField(entity, "getId");
+			idGet = (Long) getValueField(entity, "id");
 			if (idGet == id) {
+				// поменять объект если id совпадают
 				resultList.add(entity);
+				flagFound = true;
 			} else {
+				// оставить старый
 				resultList.add(entityGet);
 			}
 		}
-		this.setBaseList(resultList);
+		if (flagFound) {
+			this.setBaseList(resultList);
+		} else {
+			// если объект с id не найден то вставить его
+			insert(entity);
+		}
+		
 	}
 
 	@Override

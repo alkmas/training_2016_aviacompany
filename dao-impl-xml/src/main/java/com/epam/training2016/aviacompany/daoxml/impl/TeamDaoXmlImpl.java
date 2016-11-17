@@ -55,7 +55,6 @@ public class TeamDaoXmlImpl extends BaseDaoXmlImpl<Team> implements ITeamDao {
 				resultList.add(empWithTeam);
 			}
 		}
-		if (resultList.isEmpty()) return null;
 		return resultList;
 	}
 
@@ -70,7 +69,6 @@ public class TeamDaoXmlImpl extends BaseDaoXmlImpl<Team> implements ITeamDao {
 				}
 			}
 		}
-		if (resultList.isEmpty()) return null;
 		return resultList;
 	}
 }

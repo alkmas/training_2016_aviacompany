@@ -45,8 +45,8 @@ public class EmployeeServiceTest {
     	
     	Assert.assertEquals("Employees are equals!", employee.getId(), employeeFromBase.getId());
     	
+    	// Удалить и повторно получить из базы сотрудника по id
     	employeeService.deleteById(id);
-    	// Повторно получить из базы сотрудника по id
     	employeeFromBase = employeeService.getById(id);
     	Assert.assertNull(employeeFromBase);
     }
