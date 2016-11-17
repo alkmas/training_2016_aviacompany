@@ -90,23 +90,23 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 
 	
 	@Override
-	public List<EmployeeWithTeam> getAllEmployeeWithTeamFree() {
+	public List<EmployeeWithTeam> getAllFreeEmployeeWithTeam() {
 		List<EmployeeWithTeam> resultList = new ArrayList<EmployeeWithTeam>();
 		for(EmployeeWithTeam emp: getAllEmployeeWithTeam()) {
 			if (emp.getTeamId() == null) {
 				resultList.add(emp);
 			}
 		}
-		if (resultList.size() == 0) return null;
+		if (resultList.isEmpty()) return null;
 		return resultList;
 	}
 	
 	
 	@Override
-	public List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobId(Long jobId) {
+	public List<EmployeeWithTeam> getAllFreeEmployeeWithTeamByJobId(Long jobId) {
 		List<EmployeeWithTeam> resultList = new ArrayList<EmployeeWithTeam>();
-		for(EmployeeWithTeam emp: getAllEmployeeWithTeamFree()) {
-			if (emp.getEmployee().getJobTitleId() == jobId) {
+		for(EmployeeWithTeam emp: getAllFreeEmployeeWithTeam()) {
+			if (emp.getEmployee().getJobTitleId().equals(jobId)) {
 				resultList.add(emp);
 			}
 		}
@@ -116,12 +116,12 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 
 	
 	@Override
-	public List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobName(String name) {
-		return getAllEmployeeWithTeamFreeByJobId(jobtitleService.getByName(name).getId());
+	public List<EmployeeWithTeam> getAllFreeEmployeeWithTeamByJobName(String name) {
+		return getAllFreeEmployeeWithTeamByJobId(jobtitleService.getByName(name).getId());
 	}
 
 	@Override
-	public List<Team> getAllTeamFreeByDate(Date date) {
+	public List<Team> getAllFreeTeamByDate(Date date) {
 		List<Team> allTeam = getAll();
 		List<Flight2Team> f2tBusy =	flight2TeamService.getByDeparture(date);
 		if (f2tBusy.isEmpty()) return allTeam;
@@ -130,7 +130,7 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 		int index;
 		for(Team team: allTeam) {
 			for(index=0; index < sizeListBusy; index++) {
-				if (f2tBusy.get(index).getTeamId() == team.getId()) {
+				if (f2tBusy.get(index).getTeamId().equals(team.getId())) {
 					break;
 				}
 			}

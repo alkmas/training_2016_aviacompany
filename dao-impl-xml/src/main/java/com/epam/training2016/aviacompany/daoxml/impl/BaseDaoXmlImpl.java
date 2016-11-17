@@ -55,7 +55,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 
 	public void setBaseList(List<T> baseList) {
 		this.baseList = baseList;
-		this.writeCollection(baseList);
+		this.writeCollection();
 	}
 
 	// Установка generic класса и его имени
@@ -115,9 +115,9 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
     }
 
     
-    protected void writeCollection(List<T> newList) {
+    protected void writeCollection() {
         try {
-            xstream.toXML(newList, new FileOutputStream(file));
+            xstream.toXML(baseList, new FileOutputStream(file));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -145,7 +145,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 		Long idGet;
 		for(T entity: baseList) {
 			idGet = (Long) getValueField(entity, "id");
-			if (idGet == id) return entity;
+			if (idGet.equals(id)) return entity;
 		}
 		return null;
 	}
@@ -171,7 +171,7 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 				genericClass.getMethod("setId", Long.class).invoke(entity, id);
 			}
 			baseList.add(entity);
-	        writeCollection(baseList);
+	        writeCollection();
 	        return id;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -181,22 +181,19 @@ public class BaseDaoXmlImpl<T> implements IBaseDao<T> {
 	@Override
 	public void update(T entity) {
 		Long id = (Long) getValueField(entity, "id");
-		List<T> resultList = new ArrayList<T>();
 		boolean flagFound = false;
 		Long idGet;
-		for(T entityGet: baseList) {
-			idGet = (Long) getValueField(entity, "id");
-			if (idGet == id) {
+		for(int i=0; i<baseList.size(); i++) {
+			idGet = (Long) getValueField(baseList.get(0), "id");
+			if (idGet.equals(id)) {
 				// поменять объект если id совпадают
-				resultList.add(entity);
+				baseList.set(i, baseList.get(0));
 				flagFound = true;
-			} else {
-				// оставить старый
-				resultList.add(entityGet);
+				break;
 			}
 		}
 		if (flagFound) {
-			this.setBaseList(resultList);
+			writeCollection();
 		} else {
 			// если объект с id не найден то вставить его
 			insert(entity);

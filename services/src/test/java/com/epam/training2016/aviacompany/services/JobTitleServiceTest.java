@@ -54,6 +54,7 @@ public class JobTitleServiceTest {
     }
 	
 	@Test
+	@Ignore
 	public void insertJobsTest() throws InvalidDataException {
 		String[] jobNames = new String[] {"Пилот", "Штурман", "Радист", "Стюардесса"};
 		for(String name: jobNames) {

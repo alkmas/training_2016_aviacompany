@@ -59,7 +59,8 @@ public class Flight extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Flight [name=" + name + ", airportSrcId=" + airportSrcId + ", airportDstId=" + airportDstId
+		return "Flight (id=" + this.getId()	+ ") [name=" + name + 
+				", airportSrcId=" + airportSrcId + ", airportDstId=" + airportDstId
 				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + "]";
 	}
 

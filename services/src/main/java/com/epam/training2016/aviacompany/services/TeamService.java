@@ -16,9 +16,9 @@ public interface TeamService extends BaseService<Team> {
 	 * Все сотрудники не входящие в бригады 
 	 * @return
 	 */
-	List<EmployeeWithTeam> getAllEmployeeWithTeamFree();
-	List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobId(Long jobId);
-	List<EmployeeWithTeam> getAllEmployeeWithTeamFreeByJobName(String name);
+	List<EmployeeWithTeam> getAllFreeEmployeeWithTeam();
+	List<EmployeeWithTeam> getAllFreeEmployeeWithTeamByJobId(Long jobId);
+	List<EmployeeWithTeam> getAllFreeEmployeeWithTeamByJobName(String name);
 	
-	List<Team> getAllTeamFreeByDate(Date date);
+	List<Team> getAllFreeTeamByDate(Date date);
 }

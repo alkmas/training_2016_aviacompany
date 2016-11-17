@@ -53,7 +53,9 @@ public class Flight2TeamServiceTest {
     	List<Flight> allFlight = flightService.getAllByDateWithoutTeam(testDate); 
    		Flight flight = allFlight.get(0);
    	
-   		Team teamFree = teamService.getAllTeamFreeByDate(testDate).get(0);
+   		List<Team> freeTeams = teamService.getAllFreeTeamByDate(testDate);
+   		Assert.assertFalse("Will need to create a Team object", freeTeams.isEmpty());
+   		Team teamFree = freeTeams.get(0);
     	
     	
    		Flight2Team newF2T = new Flight2Team();

@@ -64,10 +64,10 @@ public class TeamServiceTest {
     	System.out.println("-------------createTeamTest--------------");
     	
     	
-    	EmployeeWithTeam pilot = teamService.getAllEmployeeWithTeamFreeByJobName("Пилот").get(0);
-    	EmployeeWithTeam navigator = teamService.getAllEmployeeWithTeamFreeByJobName("Штурман").get(0);
-    	EmployeeWithTeam radioman = teamService.getAllEmployeeWithTeamFreeByJobName("Радист").get(0);
-    	List<EmployeeWithTeam> stewardesses = teamService.getAllEmployeeWithTeamFreeByJobName("Стюардесса");
+    	EmployeeWithTeam pilot = teamService.getAllFreeEmployeeWithTeamByJobName("Пилот").get(0);
+    	EmployeeWithTeam navigator = teamService.getAllFreeEmployeeWithTeamByJobName("Штурман").get(0);
+    	EmployeeWithTeam radioman = teamService.getAllFreeEmployeeWithTeamByJobName("Радист").get(0);
+    	List<EmployeeWithTeam> stewardesses = teamService.getAllFreeEmployeeWithTeamByJobName("Стюардесса");
     	EmployeeWithTeam stewardess1 = stewardesses.get(0);
     	EmployeeWithTeam stewardess2 = stewardesses.get(1);
 

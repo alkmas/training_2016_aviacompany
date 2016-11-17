@@ -37,7 +37,7 @@ public class FlightDays extends AbstractModel{
 
 	@Override
 	public String toString() {
-		return "FlightDays [days=" + Arrays.toString(days) + "]";
+		return "FlightDays (id=" + this.getId() + ") [days=" + Arrays.toString(days) + "]";
 	}
 	
 }

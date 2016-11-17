@@ -1,18 +1,22 @@
 <list>
   <JobTitle>
-    <id>2</id>
+    <id>1</id>
     <name>Пилот</name>
   </JobTitle>
   <JobTitle>
-    <id>3</id>
+    <id>2</id>
     <name>Штурман</name>
   </JobTitle>
   <JobTitle>
-    <id>4</id>
+    <id>3</id>
     <name>Радист</name>
   </JobTitle>
   <JobTitle>
-    <id>5</id>
+    <id>4</id>
     <name>Стюардесса</name>
+  </JobTitle>
+  <JobTitle>
+    <id>5</id>
+    <name>Механик</name>
   </JobTitle>
 </list>

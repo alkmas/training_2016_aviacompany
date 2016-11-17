@@ -37,7 +37,7 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 	@Override
 	public boolean isFlightExistByDate(Long flightId, Date date) {
 		for (Flight flight : getAllByDate(date)) {
-			if (flight.getId() == flightId) {
+			if (flight.getId().equals(flightId)) {
 				return true;
 			}
 		}

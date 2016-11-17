@@ -1,106 +1,10 @@
 <list>
   <Team>
-    <id>2</id>
+    <id>1</id>
     <pilot>161</pilot>
     <navigator>190</navigator>
     <radioman>206</radioman>
     <stewardess1>1</stewardess1>
     <stewardess2>2</stewardess2>
-  </Team>
-  <Team>
-    <id>3</id>
-    <pilot>162</pilot>
-    <navigator>191</navigator>
-    <radioman>207</radioman>
-    <stewardess1>3</stewardess1>
-    <stewardess2>4</stewardess2>
-  </Team>
-  <Team>
-    <id>10</id>
-    <pilot>169</pilot>
-    <navigator>198</navigator>
-    <radioman>219</radioman>
-    <stewardess1>17</stewardess1>
-    <stewardess2>18</stewardess2>
-  </Team>
-  <Team>
-    <id>11</id>
-    <pilot>170</pilot>
-    <navigator>199</navigator>
-    <radioman>220</radioman>
-    <stewardess1>19</stewardess1>
-    <stewardess2>20</stewardess2>
-  </Team>
-  <Team>
-    <id>12</id>
-    <pilot>171</pilot>
-    <navigator>200</navigator>
-    <radioman>221</radioman>
-    <stewardess1>21</stewardess1>
-    <stewardess2>22</stewardess2>
-  </Team>
-  <Team>
-    <id>13</id>
-    <pilot>172</pilot>
-    <navigator>201</navigator>
-    <radioman>222</radioman>
-    <stewardess1>23</stewardess1>
-    <stewardess2>24</stewardess2>
-  </Team>
-  <Team>
-    <id>14</id>
-    <pilot>173</pilot>
-    <navigator>202</navigator>
-    <radioman>223</radioman>
-    <stewardess1>25</stewardess1>
-    <stewardess2>26</stewardess2>
-  </Team>
-  <Team>
-    <id>15</id>
-    <pilot>174</pilot>
-    <navigator>203</navigator>
-    <radioman>224</radioman>
-    <stewardess1>27</stewardess1>
-    <stewardess2>28</stewardess2>
-  </Team>
-  <Team>
-    <id>16</id>
-    <pilot>163</pilot>
-    <navigator>192</navigator>
-    <radioman>208</radioman>
-    <stewardess1>5</stewardess1>
-    <stewardess2>6</stewardess2>
-  </Team>
-  <Team>
-    <id>17</id>
-    <pilot>164</pilot>
-    <navigator>193</navigator>
-    <radioman>209</radioman>
-    <stewardess1>7</stewardess1>
-    <stewardess2>8</stewardess2>
-  </Team>
-  <Team>
-    <id>18</id>
-    <pilot>165</pilot>
-    <navigator>194</navigator>
-    <radioman>210</radioman>
-    <stewardess1>9</stewardess1>
-    <stewardess2>10</stewardess2>
-  </Team>
-  <Team>
-    <id>19</id>
-    <pilot>166</pilot>
-    <navigator>195</navigator>
-    <radioman>211</radioman>
-    <stewardess1>11</stewardess1>
-    <stewardess2>12</stewardess2>
-  </Team>
-  <Team>
-    <id>20</id>
-    <pilot>167</pilot>
-    <navigator>196</navigator>
-    <radioman>212</radioman>
-    <stewardess1>13</stewardess1>
-    <stewardess2>14</stewardess2>
   </Team>
 </list>
