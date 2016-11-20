@@ -6,6 +6,8 @@ package com.epam.training2016.aviacompany.datamodel;
  *
  */
 public class Airport extends AbstractModel {
+	static private String[] UNIQUE_KEYS = {"id", "name"};
+	
 	private String name;
 
 	public String getName() {
@@ -14,6 +16,10 @@ public class Airport extends AbstractModel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public static String[] getUniqueKeys() {
+		return UNIQUE_KEYS;
 	}
 
 	@Override

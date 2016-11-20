@@ -80,4 +80,9 @@ public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> impleme
 		return null;
 	}
 
+	@Override
+	public Class<Flight2Team> getGenericTypeClass() {
+		return Flight2Team.class;
+	}
+
 }

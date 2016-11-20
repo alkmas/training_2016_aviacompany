@@ -1,5 +1,8 @@
 package com.epam.training2016.aviacompany.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.After;
@@ -54,7 +57,6 @@ public class JobTitleServiceTest {
     }
 	
 	@Test
-	@Ignore
 	public void insertJobsTest() throws InvalidDataException {
 		String[] jobNames = new String[] {"Пилот", "Штурман", "Радист", "Стюардесса"};
 		for(String name: jobNames) {
@@ -72,4 +74,25 @@ public class JobTitleServiceTest {
 		}
 		
 	}
+	
+	
+	
+	@Test
+	public void insertNewJobsTest() throws InvalidDataException {
+		String[] jobNames = new String[] {"Диспетчер", "Юрист", "Бухгалтер"};
+		List<JobTitle> jobs = new ArrayList<JobTitle>();
+		
+		for(String name: jobNames) {
+			jobs.add(new JobTitle(name));
+		}
+		
+		jobtitleService.saveAll(jobs);
+		
+		for(String name: jobNames) {
+			JobTitle jobFromBase = jobtitleService.getByName(name);
+			Assert.assertNotNull(jobFromBase);
+		}
+		
+	}
+
 }

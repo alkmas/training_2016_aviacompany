@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
 import com.epam.training2016.aviacompany.daoapi.IFlightDaysDao;
+import com.epam.training2016.aviacompany.daoxml.utils.BaseXML;
 import com.epam.training2016.aviacompany.datamodel.Flight;
+import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
 public class FlightDaoXmlImpl extends BaseDaoXmlImpl<Flight> implements IFlightDao{
-	
 	@Inject
 	private IFlightDaysDao flightDaysDao;
 	
@@ -30,17 +31,22 @@ public class FlightDaoXmlImpl extends BaseDaoXmlImpl<Flight> implements IFlightD
 
 	@Override
 	public void deleteByFlightId(Long flightId) {
-		this.deleteByField("flightId", flightId);
+		baseXML.deleteByField("flightId", flightId);
 	}
 
 	@Override
 	public void deleteByAirportSrcId(Long airportId) {
-		this.deleteByField("airportSrcId", airportId);
+		baseXML.deleteByField("airportSrcId", airportId);
 	}
 
 	@Override
 	public void deleteByAirportDstId(Long airportId) {
-		this.deleteByField("airportDstId", airportId);
+		baseXML.deleteByField("airportDstId", airportId);
+	}
+
+	@Override
+	public Class<Flight> getGenericType() {
+		return Flight.class;
 	}
 
 }

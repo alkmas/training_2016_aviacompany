@@ -4,14 +4,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
+import com.epam.training2016.aviacompany.daoxml.utils.BaseXML;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
 public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implements IFlight2TeamDao{
-
 	
 	// Получить список объектов 
 	private List<Flight2Team> getByFieldLong(String fieldName, Long value) {
@@ -23,7 +25,7 @@ public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implement
 	private List<Flight2Team> getFromListByFieldLong(List<Flight2Team> inList, String fieldName, Long value) {
 		List<Flight2Team> listResult = new ArrayList<>();
 		for(Flight2Team f2t: inList) {
-			if ((Long)this.getValueField(f2t, fieldName) == value) {
+			if ((Long)baseXML.getValueField(f2t, fieldName) == value) {
 				listResult.add(f2t);
 			}
 		}
@@ -63,7 +65,13 @@ public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implement
 
 	@Override
 	public void deleteByTeamId(Long teamId) {
-		this.deleteByField("teamId", teamId);
+		baseXML.deleteByField("teamId", teamId);
+	}
+
+
+	@Override
+	public Class<Flight2Team> getGenericType() {
+		return Flight2Team.class;
 	}
 
 

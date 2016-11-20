@@ -7,40 +7,29 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
-public class BaseServiceImpl<T> implements BaseService<T> {
+public abstract class BaseServiceImpl<T> implements BaseService<T> {
     private Logger LOGGER;
 	private Class<T> genericClass;
 	private String genericNameClass;
 	
     @Inject
-//	private BaseDaoImpl<T> baseDao;
     private IBaseDao<T> baseDao;
     
+    public abstract Class<T> getGenericTypeClass();
+    
 	public BaseServiceImpl() {
-		setGenericTypeClass();
+		genericClass = getGenericTypeClass();
 		LOGGER = LoggerFactory.getLogger(genericClass);
 	}
 
 
-	// Установка generic класса
-	@SuppressWarnings("unchecked")
-    private void setGenericTypeClass() {
-        try {
-            this.genericNameClass = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
-            Class<?> clazz = Class.forName(this.genericNameClass);
-            this.genericClass = (Class<T>) clazz;
-        } catch (Exception e) {
-            throw new IllegalStateException("Class is not parametrized with generic type!!! Please use extends <> ");
-        }
-    } 
-    
-	
 	@Override
 	public void saveAll(List<T> entities) throws InvalidDataException {
         for (T entity : entities) {
@@ -58,6 +47,8 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 			} else {
 				baseDao.update(entity);
 			}
+		} catch (DuplicateKeyException e) {
+			LOGGER.error(e.toString());
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

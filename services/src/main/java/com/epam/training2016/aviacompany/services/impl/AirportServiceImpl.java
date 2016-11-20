@@ -7,4 +7,9 @@ import com.epam.training2016.aviacompany.datamodel.Airport;
 @Service
 public class AirportServiceImpl extends BaseServiceImpl<Airport> {
 
+	@Override
+	public Class<Airport> getGenericTypeClass() {
+		return Airport.class;
+	}
+
 }

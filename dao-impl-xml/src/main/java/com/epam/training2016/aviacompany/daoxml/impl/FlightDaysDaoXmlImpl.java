@@ -21,5 +21,10 @@ public class FlightDaysDaoXmlImpl extends BaseDaoXmlImpl<FlightDays> implements 
 		}
 		return resultList;
 	}
+
+	@Override
+	public Class<FlightDays> getGenericType() {
+		return FlightDays.class;
+	}
 	
 }

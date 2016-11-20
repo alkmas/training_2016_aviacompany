@@ -13,5 +13,10 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 		return getById(id).getJobTitleId().equals(jobtitleId);
 	}
 
+	@Override
+	public Class<Employee> getGenericTypeClass() {
+		return Employee.class;
+	}
+
 	
 }

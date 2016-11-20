@@ -142,4 +142,9 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 		return resultList;
 	}
 
+	@Override
+	public Class<Team> getGenericTypeClass() {
+		return Team.class;
+	}
+
 }

@@ -7,4 +7,9 @@ import com.epam.training2016.aviacompany.datamodel.JobTitle;
 @Service
 public class JobTitleServiceImpl extends BaseServiceImpl<JobTitle> {
 
+	@Override
+	public Class<JobTitle> getGenericTypeClass() {
+		return JobTitle.class;
+	}
+
 }

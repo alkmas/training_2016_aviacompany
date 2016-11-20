@@ -75,4 +75,9 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 		}
 		return resultList;
 	}
+
+	@Override
+	public Class<Flight> getGenericTypeClass() {
+		return Flight.class;
+	}
 }

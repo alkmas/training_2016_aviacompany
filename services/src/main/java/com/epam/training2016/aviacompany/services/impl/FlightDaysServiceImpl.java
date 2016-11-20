@@ -31,4 +31,9 @@ public class FlightDaysServiceImpl extends BaseServiceImpl<FlightDays> {
 		}
 	}
 
+	@Override
+	public Class<FlightDays> getGenericTypeClass() {
+		return FlightDays.class;
+	}
+
 }

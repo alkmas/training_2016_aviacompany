@@ -73,4 +73,9 @@ public class TeamDaoXmlImpl extends BaseDaoXmlImpl<Team> implements ITeamDao {
 		}
 		return resultList;
 	}
+
+	@Override
+	public Class<Team> getGenericType() {
+		return Team.class;
+	}
 }

@@ -42,8 +42,10 @@ public class AirportServiceTest {
     }
 
     @Test
-    public void getByNameTest() {
+    public void getByNameTest() throws InvalidDataException {
     	Airport airport = airportService.getById(1L);
+    	airport.setId(1L);
+    	airportService.save(airport);
     	System.out.println(airport);
         Assert.assertNotNull("airport for id=1L should not be null", airport);
         Assert.assertEquals(new Long(1L), airport.getId());
