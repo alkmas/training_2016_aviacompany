@@ -74,5 +74,10 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 				new Object[] { teamId });
 	}
 
+	@Override
+	public Class<Flight2Team> getGenericTypeClass() {
+		return Flight2Team.class;
+	}
+
 
 }

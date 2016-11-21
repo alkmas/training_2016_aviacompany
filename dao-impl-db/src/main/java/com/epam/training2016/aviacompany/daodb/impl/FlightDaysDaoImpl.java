@@ -64,4 +64,11 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 		namedParameterJdbcTemplate.update(SQL_INSERT, getSqlParameterSource(entity));
 		return entity.getId();
 	}
+
+
+	@Override
+	public Class<FlightDays> getGenericTypeClass() {
+		// TODO Auto-generated method stub
+		return FlightDays.class;
+	}
 }

@@ -50,4 +50,9 @@ public class TeamDaoImpl extends BaseDaoImpl<Team> implements ITeamDao{
 				new EmployeeWithTeamMapper());
 	}
 
+	@Override
+	public Class<Team> getGenericTypeClass() {
+		return Team.class;
+	}
+
 }

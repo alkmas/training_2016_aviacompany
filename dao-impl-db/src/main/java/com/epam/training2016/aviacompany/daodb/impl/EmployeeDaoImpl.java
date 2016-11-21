@@ -24,4 +24,10 @@ public class EmployeeDaoImpl extends BaseDaoImpl<Employee> {
 	}
 
 
+	@Override
+	public Class<Employee> getGenericTypeClass() {
+		return Employee.class;
+	}
+
+
 }

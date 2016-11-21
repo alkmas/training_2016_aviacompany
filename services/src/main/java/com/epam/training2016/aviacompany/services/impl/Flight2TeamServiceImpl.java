@@ -59,7 +59,7 @@ public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> impleme
 	@Override
 	public void deleteByTeamId(Long teamId) {
 		flight2TeamDao.deleteByTeamId(teamId);
-		LOGGER.info(String.format("Deleted (%s) from table Flight2Team", teamId));
+		LOGGER.info(String.format("Deleted (%s) from table (Flight2Team)", teamId));
 	}
 
 	@Override

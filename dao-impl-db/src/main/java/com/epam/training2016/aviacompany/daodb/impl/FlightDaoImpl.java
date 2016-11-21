@@ -84,4 +84,9 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {
 		jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_DST_ID, new Object[] {airportId});
 	}
 
+	@Override
+	public Class<Flight> getGenericTypeClass() {
+		return Flight.class;
+	}
+
 }

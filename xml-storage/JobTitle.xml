@@ -27,16 +27,4 @@
     <id>8</id>
     <name>Бухгалтер</name>
   </JobTitle>
-  <JobTitle>
-    <id>10</id>
-    <name>Диспетчер</name>
-  </JobTitle>
-  <JobTitle>
-    <id>11</id>
-    <name>Юрист</name>
-  </JobTitle>
-  <JobTitle>
-    <id>12</id>
-    <name>Бухгалтер</name>
-  </JobTitle>
 </list>

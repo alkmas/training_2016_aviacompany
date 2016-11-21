@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.daodb.util.StringUtils;
 
-public class BaseDaoImpl<T> implements IBaseDao<T> {
+public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	private Class<T> genericClass;
 	private String genericNameClass;
 	private String nameTable;
@@ -32,9 +32,14 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+	public abstract Class<T> getGenericTypeClass();
+	
 	BaseDaoImpl() {
-		setGenericNameAndTypeClass();
-		nameTable = StringUtils.toDbFormat(StringUtils.getSimpleName(genericNameClass));
+		genericClass = getGenericTypeClass();
+		genericNameClass = genericClass.getSimpleName();
+//		setGenericNameAndTypeClass();
+//		nameTable = StringUtils.toDbFormat(StringUtils.getSimpleName(genericNameClass));
+		nameTable = StringUtils.toDbFormat(genericNameClass);
 		SQL_UPDATE_BY_ID = String.format(SQL_UPDATE_BY_ID, nameTable);
 		SQL_SELECT_ALL = String.format(SQL_SELECT_ALL, nameTable);
 		SQL_SELECT_BY_ID = String.format(SQL_SELECT_BY_ID, nameTable);

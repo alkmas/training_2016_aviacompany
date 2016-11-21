@@ -6,5 +6,10 @@ import com.epam.training2016.aviacompany.datamodel.JobTitle;
 
 @Repository
 public class JobTitleDaoImpl extends BaseDaoImpl<JobTitle> {
+
+	@Override
+	public Class<JobTitle> getGenericTypeClass() {
+		return JobTitle.class;
+	}
 	
 }

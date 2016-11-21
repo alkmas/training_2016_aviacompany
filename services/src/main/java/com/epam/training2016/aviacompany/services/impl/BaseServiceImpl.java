@@ -1,15 +1,11 @@
 package com.epam.training2016.aviacompany.services.impl;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
@@ -26,6 +22,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     
 	public BaseServiceImpl() {
 		genericClass = getGenericTypeClass();
+		genericNameClass = genericClass.getSimpleName();
 		LOGGER = LoggerFactory.getLogger(genericClass);
 	}
 
@@ -44,8 +41,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 			if (id == null) {
 				id = baseDao.insert(entity);
 				genericClass.getMethod("setId", Long.class).invoke(entity, id);
+				LOGGER.info(String.format("Insert (%s) into (%s)", entity.toString(), genericNameClass));
 			} else {
 				baseDao.update(entity);
+				LOGGER.info(String.format("Update (%s) into (%s)", entity.toString(), genericNameClass));
 			}
 		} catch (DuplicateKeyException e) {
 			LOGGER.error(e.toString());
@@ -59,7 +58,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 		if (id != null) {
 			String delRecord = this.getById(id).toString();
 			baseDao.deleteById(id);
-			LOGGER.info(String.format("Deleted (%s) from table (%s)", delRecord, this.genericNameClass));
+			LOGGER.info(String.format("Deleted (%s) from table (%s)", delRecord, genericNameClass));
 		}
 		else {
 			LOGGER.info("Method: deleteById. Input parameter is null");
