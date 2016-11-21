@@ -1,12 +1,6 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
-import java.util.List;
-
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
-
-import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
-import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithTeamMapper;
 import com.epam.training2016.aviacompany.datamodel.Employee;
 
 @Repository

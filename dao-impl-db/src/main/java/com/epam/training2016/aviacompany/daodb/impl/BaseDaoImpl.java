@@ -1,6 +1,5 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,8 +36,6 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	BaseDaoImpl() {
 		genericClass = getGenericTypeClass();
 		genericNameClass = genericClass.getSimpleName();
-//		setGenericNameAndTypeClass();
-//		nameTable = StringUtils.toDbFormat(StringUtils.getSimpleName(genericNameClass));
 		nameTable = StringUtils.toDbFormat(genericNameClass);
 		SQL_UPDATE_BY_ID = String.format(SQL_UPDATE_BY_ID, nameTable);
 		SQL_SELECT_ALL = String.format(SQL_SELECT_ALL, nameTable);
@@ -47,18 +44,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 		SQL_DELETE_BY_ID = String.format(SQL_DELETE_BY_ID, nameTable);
 	}
 	
-	// Установка generic класса и его имени
-	@SuppressWarnings("unchecked")
-    private void setGenericNameAndTypeClass() {
-        try {
-            this.genericNameClass = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
-            Class<?> clazz = Class.forName(this.genericNameClass);
-            this.genericClass = (Class<T>) clazz;
-        } catch (Exception e) {
-            throw new IllegalStateException("Class is not parametrized with generic type!!! Please use extends <> ");
-        }
-    } 
-	
+
 	/**
 	 * Возвращает шаблон для UPDATE запроса 
 	 * @return

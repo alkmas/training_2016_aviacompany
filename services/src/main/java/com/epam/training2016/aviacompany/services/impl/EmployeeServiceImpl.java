@@ -18,5 +18,4 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 		return Employee.class;
 	}
 
-	
 }

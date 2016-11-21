@@ -18,7 +18,6 @@ import com.epam.training2016.aviacompany.datamodel.Team;
 import com.epam.training2016.aviacompany.services.BaseService;
 import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
-import com.epam.training2016.aviacompany.services.FlightService;
 import com.epam.training2016.aviacompany.services.TeamService;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
@@ -31,8 +30,6 @@ public class TeamServiceImpl extends BaseServiceImpl<Team> implements TeamServic
 	private EmployeeService employeeService;
 	@Inject
 	private BaseService<JobTitle> jobtitleService;
-	@Inject
-	private FlightService flightService;
 	@Inject
 	private Flight2TeamService flight2TeamService;
 	

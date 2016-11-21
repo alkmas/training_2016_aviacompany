@@ -11,5 +11,4 @@ public class AirportServiceImpl extends BaseServiceImpl<Airport> {
 	public Class<Airport> getGenericTypeClass() {
 		return Airport.class;
 	}
-
 }

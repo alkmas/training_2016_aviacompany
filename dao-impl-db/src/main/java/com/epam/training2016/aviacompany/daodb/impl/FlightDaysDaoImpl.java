@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -17,7 +15,7 @@ import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
 public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
-	private static final Logger LOGGER = LoggerFactory.getLogger(FlightDaysDaoImpl.class);
+
 	final private String SQL_UPDATE_BY_ID = 
 			"UPDATE flight_days SET day1=:day1, day2=:day2, day3=:day3, day4=:day4, day5=:day5," 
 			+ "day6=:day6, day7=:day7 WHERE id=:id";
@@ -68,7 +66,6 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 
 	@Override
 	public Class<FlightDays> getGenericTypeClass() {
-		// TODO Auto-generated method stub
 		return FlightDays.class;
 	}
 }
