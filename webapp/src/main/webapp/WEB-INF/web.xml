@@ -7,7 +7,7 @@
 
 	<servlet>
 	   <servlet-name>ServletExample</servlet-name>
-	   <servlet-class>com.epam.training.library.web.servlets.ServletExample</servlet-class>
+	   <servlet-class>com.epam.training2016.aviacompany.web.servlets.ServletExample</servlet-class>
 	</servlet>
 	
    <servlet>
@@ -24,7 +24,7 @@
    
 	<servlet-mapping>
 	   <servlet-name>ServletExample</servlet-name>
-	   <url-pattern>/myFirtsService</url-pattern>
+	   <url-pattern>/myFirstService</url-pattern>
 	</servlet-mapping>
 
 
@@ -35,7 +35,7 @@
    
    	<filter>
 	   <filter-name>LogFilter</filter-name>
-	   <filter-class>com.epam.training.library.web.servlets.LogFilter</filter-class>
+	   <filter-class>com.epam.training2016.aviacompany.web.servlets.LogFilter</filter-class>
 	</filter>
 
 	<filter-mapping>

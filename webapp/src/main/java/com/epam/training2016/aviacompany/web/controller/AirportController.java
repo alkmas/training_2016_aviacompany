@@ -1,4 +1,4 @@
-package com.epam.training2016.training.web.controller;
+package com.epam.training2016.aviacompany.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;

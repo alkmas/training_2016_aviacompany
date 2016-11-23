@@ -1,0 +1,3 @@
+23:44:09.180 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Минск]) into (Airport)
+23:47:05.497 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Гродно]) into (Airport)
+23:48:00.012 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Гродно]) from table (Airport)

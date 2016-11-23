@@ -66,6 +66,7 @@
 
 
 
+
 			<!-- Other libraries -->
 
 			<dependency>
@@ -122,8 +123,6 @@
 			</dependency>
 
 
-
-
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
@@ -154,12 +153,15 @@
 			</dependency>
 
 
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.12</version>
 				<scope>test</scope>
 			</dependency>
+
+
 
 
 			<dependency>
@@ -183,12 +185,6 @@
 				<version>2.1</version>
 			</dependency>
 
-
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>2.10.2.2.21</version>
-			</dependency>
 
 
 			<!-- JETTY DEPENDENCIES FOR TESTING -->
@@ -224,6 +220,7 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-core-asl</artifactId>
@@ -235,6 +232,7 @@
 				<artifactId>jackson-mapper-asl</artifactId>
 				<version>1.9.13</version>
 			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
