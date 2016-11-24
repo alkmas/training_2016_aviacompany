@@ -63,7 +63,6 @@ public class AirportController {
         try {
 			airportService.save(airport);
 		} catch (InvalidDataException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return new ResponseEntity<Void>(HttpStatus.OK);
