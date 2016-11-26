@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.Flight2TeamJoin;
 import com.epam.training2016.aviacompany.daoxml.utils.BaseXML;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
@@ -72,6 +73,12 @@ public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implement
 	@Override
 	public Class<Flight2Team> getGenericType() {
 		return Flight2Team.class;
+	}
+
+
+	@Override
+	public List<Flight2TeamJoin> getAllJoin() {
+		throw new UnsupportedOperationException();
 	}
 
 

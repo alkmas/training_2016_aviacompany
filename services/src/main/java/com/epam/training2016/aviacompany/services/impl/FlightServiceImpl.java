@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirportsAndDaysWeek;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 import com.epam.training2016.aviacompany.services.BaseService;
@@ -79,5 +80,10 @@ public class FlightServiceImpl extends BaseServiceImpl<Flight> implements Flight
 	@Override
 	public Class<Flight> getGenericTypeClass() {
 		return Flight.class;
+	}
+
+	@Override
+	public List<FlightWithAirportsAndDaysWeek> getAllWithFullInfo() {
+		return flightDao.getAllWithFullInfo();
 	}
 }

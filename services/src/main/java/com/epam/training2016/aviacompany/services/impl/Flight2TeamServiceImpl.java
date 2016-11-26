@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.Flight2TeamJoin;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
 
@@ -82,6 +83,11 @@ public class Flight2TeamServiceImpl extends BaseServiceImpl<Flight2Team> impleme
 	@Override
 	public Class<Flight2Team> getGenericTypeClass() {
 		return Flight2Team.class;
+	}
+
+	@Override
+	public List<Flight2TeamJoin> getAllJoin() {
+		return flight2TeamDao.getAllJoin();
 	}
 
 }

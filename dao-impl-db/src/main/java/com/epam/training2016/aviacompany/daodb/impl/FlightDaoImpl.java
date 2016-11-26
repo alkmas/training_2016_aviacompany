@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirportsAndDaysWeek;
+import com.epam.training2016.aviacompany.daodb.mapper.FlightWithFullInfoMapper;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 
 @Repository
@@ -23,6 +25,14 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {
 	private String SQL_DELETE_BY_FLIGHT_ID = "DELETE FROM flight WHERE id=?";
 	private String SQL_DELETE_BY_AIRPORT_SRC_ID = "DELETE FROM flight WHERE airport_src_id=?";
 	private String SQL_DELETE_BY_AIRPORT_DST_ID = "DELETE FROM flight WHERE airport_dst_id=?";
+	
+	private String SQL_SELECT_FLIGHT_WITH_FULL_INFO =
+			"SELECT f.id, f.name, a1.name AS src_name, a2.name AS dst_name,"
+			+ "airport_src_id, airport_dst_id, departure_time, arrival_time,"
+			+ "d.id AS days_id, day1, day2, day3, day4, day5, day6, day7"
+			+ " FROM flight f LEFT JOIN airport a1 ON a1.id = f.airport_src_id"
+			+ " LEFT JOIN airport a2 ON a2.id = f.airport_dst_id"
+			+ " LEFT JOIN flight_days d ON d.id = f.id";
 	
 	@Override
 	protected String getStringSQLUpdate() {
@@ -55,6 +65,11 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {
 				new BeanPropertyRowMapper<Flight>(Flight.class));
 	}
 
+	@Override
+	public List<FlightWithAirportsAndDaysWeek> getAllWithFullInfo() {
+		return jdbcTemplate.query(SQL_SELECT_FLIGHT_WITH_FULL_INFO, 
+				new FlightWithFullInfoMapper());
+	}
 	
 	@Override
 	public void deleteByFlightId(Long flightId) {

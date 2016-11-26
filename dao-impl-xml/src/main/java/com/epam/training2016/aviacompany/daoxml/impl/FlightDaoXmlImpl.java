@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlightDao;
 import com.epam.training2016.aviacompany.daoapi.IFlightDaysDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirportsAndDaysWeek;
 import com.epam.training2016.aviacompany.daoxml.utils.BaseXML;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
@@ -47,6 +48,11 @@ public class FlightDaoXmlImpl extends BaseDaoXmlImpl<Flight> implements IFlightD
 	@Override
 	public Class<Flight> getGenericType() {
 		return Flight.class;
+	}
+
+	@Override
+	public List<FlightWithAirportsAndDaysWeek> getAllWithFullInfo() {
+		throw new UnsupportedOperationException();
 	}
 
 }

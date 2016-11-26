@@ -5,13 +5,24 @@
 
 	<display-name>myproject</display-name>
 
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>classpath:service-context-test.xml</param-value>
+	</context-param>
+
+	<listener>
+   		<listener-class>
+        org.springframework.web.context.ContextLoaderListener
+   		</listener-class>
+	</listener> 
+
 	<servlet>
 	   <servlet-name>ServletExample</servlet-name>
 	   <servlet-class>com.epam.training2016.aviacompany.web.servlets.ServletExample</servlet-class>
 	</servlet>
 	
    <servlet>
-      <servlet-name>HelloWeb</servlet-name>
+      <servlet-name>AirportCompany</servlet-name>
       <servlet-class>
          org.springframework.web.servlet.DispatcherServlet
       </servlet-class>
@@ -29,7 +40,7 @@
 
 
    <servlet-mapping>
-      <servlet-name>HelloWeb</servlet-name>
+      <servlet-name>AirportCompany</servlet-name>
       <url-pattern>/</url-pattern>
    </servlet-mapping>
    
@@ -42,5 +53,21 @@
 	   <filter-name>LogFilter</filter-name>
 	   <url-pattern>/</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	<filter>
+	   <filter-name>BasicAuthFilter</filter-name>
+	   <filter-class>com.epam.training2016.aviacompany.web.servlets.BasicAuthFilter</filter-class>
+	</filter>
+
+
+	<filter-mapping>
+	   <filter-name>BasicAuthFilter</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
    
 </web-app>

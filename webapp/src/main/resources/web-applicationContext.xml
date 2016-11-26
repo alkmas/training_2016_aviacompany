@@ -17,5 +17,6 @@
 	<mvc:annotation-driven />
 	
 	<context:component-scan base-package="com.epam.training2016.aviacompany.web.controller" />
+	<context:component-scan base-package="com.epam.training2016.aviacompany.web.utils" />
 
 </beans>

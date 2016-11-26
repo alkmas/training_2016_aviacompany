@@ -1,0 +1,6 @@
+21:33:46.886 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
+21:33:46.903 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
+21:33:46.916 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
+21:33:46.924 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Ларнака]) into (Airport)
+21:33:46.933 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
+15:41:33.402 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Елена, lastName=Бобко, birthday=null, jobTitleId=null]) into (Employee)

@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
+import com.epam.training2016.aviacompany.daoapi.customentity.Flight2TeamJoin;
+import com.epam.training2016.aviacompany.daodb.mapper.Flight2TeamJoinMapper;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
@@ -28,6 +30,12 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 	private String SQL_DELETE_BY_TEAM_ID = 
 			"DELETE FROM flight_2_team WHERE team_id=?";	
 	
+	private String SQL_SELECT_JOIN = 
+			"SELECT f2t.id, f2t.flight_id, f2t.team_id, f2t.departure, f.name,"
+			+ " f.airport_src_id, f.airport_dst_id, f.departure_time, f.arrival_time,"
+			+ " t.pilot, t.navigator, t.radioman, t.stewardess1, t.stewardess2"
+			+ " FROM flight_2_team f2t LEFT JOIN flight f ON f.id=f2t.flight_id"
+			+ "	LEFT JOIN team t ON t.id=f2t.team_id";
 
 	@Override
 	protected String getStringSQLUpdate() {
@@ -77,6 +85,12 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 	@Override
 	public Class<Flight2Team> getGenericTypeClass() {
 		return Flight2Team.class;
+	}
+
+	@Override
+	public List<Flight2TeamJoin> getAllJoin() {
+		return jdbcTemplate.query(SQL_SELECT_JOIN,
+				new Flight2TeamJoinMapper());
 	}
 
 

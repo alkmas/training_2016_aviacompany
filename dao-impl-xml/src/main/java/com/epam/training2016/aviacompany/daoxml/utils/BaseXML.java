@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
@@ -30,12 +31,13 @@ public class BaseXML<T> implements GenericType<T> {
     private XStream xstream;
     private File file;
     private List<T> baseList;
+
     private String basePath;
     
     private void initialize() {
         xstream = new XStream();
         xstream.alias(shortNameClass, clazz);
-        
+
         try (InputStream inputStream = 
         		getClass().getClassLoader().getResourceAsStream("xml-db.properties")) {
         	Properties properties = new Properties();
@@ -44,6 +46,7 @@ public class BaseXML<T> implements GenericType<T> {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
         file = new File(basePath + "/" + shortNameClass + ".xml");
         try {
 			if (!file.exists()) {

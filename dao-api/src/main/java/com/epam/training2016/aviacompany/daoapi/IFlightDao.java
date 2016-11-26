@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.epam.training2016.aviacompany.daoapi.customentity.FlightWithAirportsAndDaysWeek;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 
 @Repository
@@ -15,4 +16,5 @@ public interface IFlightDao extends IBaseDao<Flight> {
 	void deleteByFlightId(Long flightId);
 	void deleteByAirportSrcId(Long airportId);
 	void deleteByAirportDstId(Long airportId);
+	List<FlightWithAirportsAndDaysWeek> getAllWithFullInfo();
 }

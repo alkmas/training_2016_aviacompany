@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Flight2TeamModel {
 	private Long flightId;
 	private Long teamId;
-	private Date departure;
+	private String departure;
 	
 	public Long getFlightId() {
 		return flightId;
@@ -19,10 +19,10 @@ public class Flight2TeamModel {
 	public void setTeamId(Long teamId) {
 		this.teamId = teamId;
 	}
-	public Date getDeparture() {
+	public String getDeparture() {
 		return departure;
 	}
-	public void setDeparture(Date departure) {
+	public void setDeparture(String departure) {
 		this.departure = departure;
 	}
 	

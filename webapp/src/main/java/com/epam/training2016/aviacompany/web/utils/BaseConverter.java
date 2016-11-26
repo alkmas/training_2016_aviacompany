@@ -1,40 +1,30 @@
 package com.epam.training2016.aviacompany.web.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BaseConverter<E, M> implements IConverter<E, M> {
+import org.springframework.stereotype.Service;
 
-	private Class<E> typeE;
-	private Class<M> typeM;
+
+public abstract class BaseConverter<E, M> implements IConverter<E, M>{
+
+	public abstract M entity2model(E entity);
+	public abstract E model2entity(M model);
 	
-	public BaseConverter(Class<E> typeE, Class<M> typeM) {
-		this.typeE = typeE;
-		this.typeM = typeM;
+	public List<M> entity2model(List<E> list) {
+		List<M> listResult = new ArrayList<M>();
+		for(E entity: list) {
+			listResult.add(entity2model(entity));
+		}
+		return listResult;
 	}
-
-	@Override
-	public E model2entity(M model) {
-		typeM.getDeclaredFields();
-		return null;
-	}
-
 	
-	@Override
-	public M entity2model(E entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> model2entity(List<M> list) {
+		List<E> listResult = new ArrayList<E>();
+		for(M model: list) {
+			listResult.add(model2entity(model));
+		}
+		return listResult;
 	}
-
-	@Override
-	public List<E> model2entity(List<M> models) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<M> entity2model(List<E> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 public class EmployeeModel {
 	private String firstName;
 	private String lastName;
-	private Date birthday;
+	private String birthday;
 	private Long jobTitleId;
 	
 	public String getFirstName() {
@@ -20,10 +20,10 @@ public class EmployeeModel {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public Long getJobTitleId() {

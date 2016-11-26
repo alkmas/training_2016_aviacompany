@@ -1,3 +1,2 @@
-23:44:09.180 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Минск]) into (Airport)
-23:47:05.497 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Гродно]) into (Airport)
-23:48:00.012 [qtp989938643-18] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Гродно]) from table (Airport)
+18:55:41.345 [qtp989938643-20] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Update (Employee [firstName=Виктория, lastName=Жарикова, birthday=1984-08-15, jobTitleId=4]) into (Employee)
+18:57:01.986 [qtp989938643-19] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Александра, lastName=Степанова, birthday=1984-04-02, jobTitleId=4]) into (Employee)
