@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
+import com.epam.training2016.aviacompany.daodb.util.CacheDao;
 import com.epam.training2016.aviacompany.daodb.util.StringUtils;
 
 public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
@@ -30,6 +31,8 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	protected JdbcTemplate jdbcTemplate;
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Inject
+	private CacheDao<T> cache;
 
 	public abstract Class<T> getGenericTypeClass();
 	
@@ -55,7 +58,14 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	
 	@Override
 	public T getById(Long id) {
-		return getById(id, new BeanPropertyRowMapper<T>(genericClass));
+		T entity = cache.get(id);
+		if (entity != null) {
+			return entity;
+		} else {
+			entity = getById(id, new BeanPropertyRowMapper<T>(genericClass));
+			cache.set(entity);
+			return entity;
+		}
 	}
 
 
@@ -71,7 +81,9 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	
 	@Override
 	public Long insert(T entity) {
-		return insert(entity, new BeanPropertySqlParameterSource(entity));
+		Long result = insert(entity, new BeanPropertySqlParameterSource(entity));
+		cache.set(entity);
+		return result;
 	}
 
 	protected Long insert(T entity, SqlParameterSource parameterSource) {
@@ -91,6 +103,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public void update(T entity) {
 		update(entity, new BeanPropertySqlParameterSource(entity));
+		cache.set(entity);
 	}
 
 
@@ -101,12 +114,14 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public void deleteById(Long id) {
 		jdbcTemplate.update(SQL_DELETE_BY_ID, new Object[] { id });
+		cache.delete(id);
 	}
 
 
 	@Override
 	public List<T> getAll() {
-		return getAll(new BeanPropertyRowMapper<T>(genericClass));
+		List<T> result = getAll(new BeanPropertyRowMapper<T>(genericClass));
+		return result;
 	}
 
 	protected List<T> getAll(RowMapper<T> rowMapper) {
