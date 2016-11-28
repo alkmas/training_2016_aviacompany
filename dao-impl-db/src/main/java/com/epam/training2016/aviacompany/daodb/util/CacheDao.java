@@ -12,65 +12,38 @@ import com.epam.training2016.aviacompany.datamodel.AbstractModel;
 
 @Repository
 public class CacheDao<T> {
-	private Map<Long, CacheElement<T>> cache;
+	private Map<String, CacheElement<T>> cache;
 
 	public CacheDao() {
 		this.cache = new HashMap<>();
 	}
 
-	public void set(T entity, Long timeLive) {
+	public void set(String name, T entity, Long timeLive) {
 		if (entity != null) {
-			cache.put(((AbstractModel) entity).getId(), new CacheElement<T>(entity, timeLive));
+			cache.put(name, new CacheElement<T>(entity, timeLive));
 		}
 	}
 
-	public void set(T entity) {
-		this.set(entity, 0L);
+	public void set(String name, T entity) {
+		this.set(name, entity, 0L);
 	}
 
-	public T get(Long id) {
-		deleteExpired(id);
-		CacheElement<T> element = cache.get(id);
+	public T get(String name) {
+		deleteExpired(name);
+		CacheElement<T> element = cache.get(name);
 		if (element == null)
 			return null;
 		return element.getEntity();
 	}
 
-	public void delete(Long id) {
-		cache.remove(id);
+	public void delete(String name) {
+		cache.remove(name);
 	}
 
-	public List<T> getAll() {
-		deleteAllExpired();
-		List<T> resultList = new ArrayList<>();
-
-		for (Long key : cache.keySet()) {
-			resultList.add(cache.get(key).getEntity());
-		}
-		return resultList;
-	}
-
-	public List<T> cacheList(List<T> list) {
-		if (list == null) return null;
-		if ((list != null) && (list.size() != cache.size())) {
-			for (T entity : list) {
-				this.set(entity);
-			}
-		}
-		return getAll();
-
-	}
-
-	private void deleteExpired(Long id) {
-		CacheElement<T> element = cache.get(id);
+	private void deleteExpired(String name) {
+		CacheElement<T> element = cache.get(name);
 		if ((element != null) && (element.checkFinished())) {
-			cache.remove(id);
-		}
-	}
-
-	private void deleteAllExpired() {
-		for (Long key : cache.keySet()) {
-			deleteExpired(key);
+			delete(name);
 		}
 	}
 
