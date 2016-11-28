@@ -50,8 +50,14 @@ public class CacheDao<T> {
 		return resultList;
 	}
 
-	public Set<Long> getKeys() {
-		return cache.keySet();
+	public List<T> cacheList(List<T> list) {
+		if (list == null) return null;
+		if ((list != null) && (list.size() != cache.size())) {
+			for (T entity : list) {
+				this.set(entity);
+			}
+		}
+		return getAll();
 
 	}
 
