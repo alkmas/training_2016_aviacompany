@@ -32,7 +32,7 @@ public class CacheElement<T> {
 	 * 
 	 * @return true - если время жизни истекло 
 	 */
-	public boolean checkFinished() {
+	public boolean isFinished() {
 		if (finishTime == null) return false;
 		return (new Date()).getTime() < finishTime.getTime();
 	}

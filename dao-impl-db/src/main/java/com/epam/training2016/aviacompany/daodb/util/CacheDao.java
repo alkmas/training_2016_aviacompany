@@ -4,47 +4,102 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
-import com.epam.training2016.aviacompany.datamodel.AbstractModel;
-
+/**
+ * Класс кеширования запросов
+ * 
+ * @param <T>
+ */
 @Repository
 public class CacheDao<T> {
-	private Map<String, CacheElement<T>> cache;
+	private Long DEFAULT_TIME_LIVE = 30L;
+	private Map<String, Object> cache;
 
 	public CacheDao() {
 		this.cache = new HashMap<>();
 	}
 
-	public void set(String name, T entity, Long timeLive) {
+	/**
+	 * Сохранить объект класса по id в HashMap
+	 * 
+	 * @param name
+	 * @param id
+	 * @param entity
+	 * @param timeLive
+	 */
+	public void put(String name, Long id, T entity, Long timeLive) {
 		if (entity != null) {
-			cache.put(name, new CacheElement<T>(entity, timeLive));
+			HashMap<Long, CacheElement<T>> hash;
+			if (!cache.containsKey(name)) {
+				hash = new HashMap<Long, CacheElement<T>>();
+			} else {
+				hash = (HashMap<Long, CacheElement<T>>) cache.get(name);
+			}
+			hash.put(id, new CacheElement<T>(entity, timeLive));
 		}
 	}
 
-	public void set(String name, T entity) {
-		this.set(name, entity, 0L);
+	public void put(String name, Long id, T entity) {
+		this.put(name, id, entity, DEFAULT_TIME_LIVE);
 	}
 
-	public T get(String name) {
-		deleteExpired(name);
-		CacheElement<T> element = cache.get(name);
-		if (element == null)
+	/**
+	 * Получить объект по id из HashMap
+	 * 
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	public T get(String name, Long id) {
+		// deleteExpired(name);
+		Map<Long, CacheElement<T>> hash = (HashMap<Long, CacheElement<T>>) cache.get(name);
+		if ((hash != null) && (hash.containsKey(id))) {
+			CacheElement<T> element = hash.get(id);
+			if (element.isFinished()) {
+				hash.remove(id);
+				return null;
+			} else {
+				return element.getEntity();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Сохранить список
+	 * @param name
+	 * @param entity
+	 * @param timeLive
+	 */
+	public void put(String name, List<T> entity, Long timeLive) {
+		if (entity != null) {
+			CacheElement<List<T>> element;
+			element = new CacheElement<List<T>>(entity, timeLive);
+			cache.put(name, element);
+		}
+	}
+
+	public void put(String name, List<T> entity) {
+		this.put(name, entity, DEFAULT_TIME_LIVE);
+	}
+
+	public List<T> get(String name) {
+		CacheElement<List<T>> element = (CacheElement<List<T>>) cache.get(name);
+		if ((element != null) && (!element.isFinished())) {
+			return element.getEntity();
+		} else {
+			cache.remove(name);
 			return null;
-		return element.getEntity();
-	}
-
-	public void delete(String name) {
-		cache.remove(name);
-	}
-
-	private void deleteExpired(String name) {
-		CacheElement<T> element = cache.get(name);
-		if ((element != null) && (element.checkFinished())) {
-			delete(name);
 		}
+	}
+
+	/**
+	 * Очисть кеш
+	 */
+	public void clearAll() {
+		cache.clear();
 	}
 
 }

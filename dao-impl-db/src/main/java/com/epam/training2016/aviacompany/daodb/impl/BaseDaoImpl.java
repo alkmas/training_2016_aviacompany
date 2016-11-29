@@ -58,12 +58,12 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	
 	@Override
 	public T getById(Long id) {
-		T entity = cache.get(id);
+		T entity = cache.get(nameTable, id);
 		if (entity != null) {
 			return entity;
 		} else {
 			entity = getById(id, new BeanPropertyRowMapper<T>(genericClass));
-			cache.set(entity);
+			cache.put(nameTable, id, entity);
 			return entity;
 		}
 	}
@@ -82,7 +82,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public Long insert(T entity) {
 		Long result = insert(entity, new BeanPropertySqlParameterSource(entity));
-		cache.set(entity);
+		cache.clearAll();
 		return result;
 	}
 
@@ -103,7 +103,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public void update(T entity) {
 		update(entity, new BeanPropertySqlParameterSource(entity));
-		cache.set(entity);
+		cache.clearAll();
 	}
 
 
@@ -114,13 +114,20 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public void deleteById(Long id) {
 		jdbcTemplate.update(SQL_DELETE_BY_ID, new Object[] { id });
-		cache.delete(id);
+		cache.clearAll();
 	}
 
 
 	@Override
 	public List<T> getAll() {
-		List<T> result = getAll(new BeanPropertyRowMapper<T>(genericClass));
+		List<T> result;
+		List<T> cacheList = cache.get(nameTable + 's');
+		if (cacheList != null) {
+			result = cacheList;
+		} else {
+			result = getAll(new BeanPropertyRowMapper<T>(genericClass));
+			cache.put(nameTable + 's', result);
+		}
 		return result;
 	}
 

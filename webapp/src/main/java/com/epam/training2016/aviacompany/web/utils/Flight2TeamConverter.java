@@ -1,5 +1,7 @@
 package com.epam.training2016.aviacompany.web.utils;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Service;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 import com.epam.training2016.aviacompany.web.model.Flight2TeamModel;
@@ -10,7 +12,7 @@ public class Flight2TeamConverter extends BaseConverter<Flight2Team, Flight2Team
 	@Override
 	public Flight2TeamModel entity2model(Flight2Team entity) {
 		Flight2TeamModel model = new Flight2TeamModel();
-		model.setDeparture(entity.getDeparture());
+		model.setDeparture(entity.getDeparture().toString());
 		model.setFlightId(entity.getFlightId());
 		model.setTeamId(entity.getTeamId());
 
@@ -20,7 +22,7 @@ public class Flight2TeamConverter extends BaseConverter<Flight2Team, Flight2Team
 	@Override
 	public Flight2Team model2entity(Flight2TeamModel model) {
 		Flight2Team entity = new Flight2Team();
-		entity.setDeparture(model.getDeparture());
+		entity.setDeparture(Date.valueOf(model.getDeparture()));
 		entity.setFlightId(model.getFlightId());
 		entity.setTeamId(model.getTeamId());
 		return entity;
