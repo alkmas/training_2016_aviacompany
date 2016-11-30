@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daodb.mapper.FlightDaysMapper;
+import com.epam.training2016.aviacompany.daodb.util.CacheDao;
+import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
@@ -28,7 +30,9 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 	protected JdbcTemplate jdbcTemplate;
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
+	@Inject
+	private CacheDao<FlightDays> cache;
+
 	
 	
 	protected String getStringSQLUpdate() {
@@ -47,20 +51,27 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 	
 	
 	public FlightDays getById(Long id) {
-		return this.getById(id, new FlightDaysMapper());
+		return cache.cacheEntity(
+				() -> this.getById(id, new FlightDaysMapper()),
+				"flightDays", id);
 	}
 
 	public List<FlightDays> getAll() {
-		return this.getAll(new FlightDaysMapper());
+		return cache.cacheList(
+				() -> this.getAll(new FlightDaysMapper()),
+				"flightDaysAll");
 	}
 
 	public void update(FlightDays entity) {
 		this.update(entity, getSqlParameterSource(entity));
+		cache.put("flightDays", entity.getId(), entity);
 	}
 
 	public Long insert(FlightDays entity) {
 		namedParameterJdbcTemplate.update(SQL_INSERT, getSqlParameterSource(entity));
-		return entity.getId();
+		Long id = entity.getId();
+		cache.put("flightDays", id, entity);
+		return id; 
 	}
 
 

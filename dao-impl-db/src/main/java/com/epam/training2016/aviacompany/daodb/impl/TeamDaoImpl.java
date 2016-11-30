@@ -2,11 +2,14 @@ package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.ITeamDao;
 import com.epam.training2016.aviacompany.daoapi.customentity.EmployeeWithTeam;
 import com.epam.training2016.aviacompany.daodb.mapper.EmployeeWithTeamMapper;
+import com.epam.training2016.aviacompany.daodb.util.CacheDao;
 import com.epam.training2016.aviacompany.datamodel.Team;
 
 @Repository
@@ -26,28 +29,35 @@ public class TeamDaoImpl extends BaseDaoImpl<Team> implements ITeamDao{
 	private String SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_JOB_ID =
 			SQL_SELECT_EMPLOYEE_WITH_TEAM_ID + " WHERE e.job_title_id=?";
 
+	@Inject
+	private CacheDao<EmployeeWithTeam> cache;
+
 	protected String getStringSQLUpdate() {
 		return SQL_UPDATE_BY_ID;
 	}
 
 	@Override
 	public EmployeeWithTeam getEmployeeWithTeamById(Long id) {
-		return jdbcTemplate.queryForObject(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_ID, 
-				new Object[] { id }, 
-				new EmployeeWithTeamMapper());
+		return cache.cacheEntity(
+				() -> jdbcTemplate.queryForObject(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_ID,
+						new Object[] { id }, new EmployeeWithTeamMapper()),
+				"employee", id);
 	}
 
 	@Override
 	public List<EmployeeWithTeam> getAllEmployeeWithTeam() {
-		return jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID, 
-				new EmployeeWithTeamMapper());
+		return cache.cacheList(
+				() -> jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID, 
+						new EmployeeWithTeamMapper()),
+				"getAllEmployeeWithTeam");
 	}
 
 	@Override
 	public List<EmployeeWithTeam> getAllEmployeeWithTeamByJobId(Long jobId) {
-		return jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_JOB_ID,
-				new Object[] {jobId},
-				new EmployeeWithTeamMapper());
+		return cache.cacheList(
+				() -> jdbcTemplate.query(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_JOB_ID,
+						new Object[] {jobId}, new EmployeeWithTeamMapper()),
+				"getAllEmployeeWithTeamByJobId");
 	}
 
 	@Override

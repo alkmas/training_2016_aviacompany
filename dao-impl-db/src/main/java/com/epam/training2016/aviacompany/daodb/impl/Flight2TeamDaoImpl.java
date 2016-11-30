@@ -3,12 +3,16 @@ package com.epam.training2016.aviacompany.daodb.impl;
 import java.sql.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.epam.training2016.aviacompany.daoapi.IFlight2TeamDao;
 import com.epam.training2016.aviacompany.daoapi.customentity.Flight2TeamJoin;
 import com.epam.training2016.aviacompany.daodb.mapper.Flight2TeamJoinMapper;
+import com.epam.training2016.aviacompany.daodb.util.CacheDao;
+import com.epam.training2016.aviacompany.daodb.util.IGetList;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
 
 @Repository
@@ -36,6 +40,9 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 			+ " t.pilot, t.navigator, t.radioman, t.stewardess1, t.stewardess2"
 			+ " FROM flight_2_team f2t LEFT JOIN flight f ON f.id=f2t.flight_id"
 			+ "	LEFT JOIN team t ON t.id=f2t.team_id";
+	
+	@Inject
+	private CacheDao<Flight2Team> cache;
 
 	@Override
 	protected String getStringSQLUpdate() {
@@ -44,9 +51,10 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 
 	@Override
 	public List<Flight2Team> getByFlightId(Long flightId) {
-		return jdbcTemplate.query(SQL_SELECT_BY_FLIGHT_ID,
-				new Object[] { flightId },
-				new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class));
+		return cache.cacheList(() -> jdbcTemplate.query(SQL_SELECT_BY_FLIGHT_ID,
+										new Object[] { flightId },
+										new BeanPropertyRowMapper<Flight2Team>(Flight2Team.class)),
+									"getByFlightId");
 	}
 
 	@Override
@@ -92,6 +100,5 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 		return jdbcTemplate.query(SQL_SELECT_JOIN,
 				new Flight2TeamJoinMapper());
 	}
-
 
 }

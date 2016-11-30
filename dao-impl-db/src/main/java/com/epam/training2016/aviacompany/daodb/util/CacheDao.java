@@ -1,6 +1,5 @@
 package com.epam.training2016.aviacompany.daodb.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +20,28 @@ public class CacheDao<T> {
 		this.cache = new HashMap<>();
 	}
 
+	
+	
+	public List<T> cacheList(IGetList<T> fromBase, String name) {
+		List<T> list = get(name);
+		if (list == null) {
+			list = fromBase.get();
+			put(name, list);
+		}
+		return list;
+	}
+	
+
+	public T cacheEntity(IGetEntity<T> fromBase, String name, Long id) {
+		T entity = get(name, id);
+		if (entity == null) {
+			entity = fromBase.get();
+			put(name, id, entity);
+		}
+		return entity;
+	}
+
+	
 	/**
 	 * Сохранить объект класса по id в HashMap
 	 * 
@@ -68,7 +89,7 @@ public class CacheDao<T> {
 	}
 
 	/**
-	 * Сохранить список
+	 * Сохранить список по имени
 	 * @param name
 	 * @param entity
 	 * @param timeLive
@@ -85,6 +106,11 @@ public class CacheDao<T> {
 		this.put(name, entity, DEFAULT_TIME_LIVE);
 	}
 
+	/**
+	 * Получить список по имени
+	 * @param name
+	 * @return
+	 */
 	public List<T> get(String name) {
 		CacheElement<List<T>> element = (CacheElement<List<T>>) cache.get(name);
 		if ((element != null) && (!element.isFinished())) {

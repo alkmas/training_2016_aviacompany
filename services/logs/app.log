@@ -1,33 +1,33 @@
-15:21:01.736 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
-15:21:02.067 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
-15:21:02.090 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
-15:21:02.111 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Ларнака]) into (Airport)
-15:21:02.114 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
-15:21:11.903 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03, jobTitleId=4]) into (Employee)
-15:21:12.029 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (Employee)
-15:21:21.401 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight2Team - Insert (Flight2Team [flightId=2, teamId=2, departure=2016-11-13]) into (Flight2Team)
-15:21:21.414 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight2Team - Deleted (Flight2Team [flightId=2, teamId=2, departure=2016-11-13]) from table (Flight2Team)
-15:21:27.084 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays (id=1) [days=[true, false, false, false, false, false, false]]) from table (FlightDays)
-15:21:32.494 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight - Insert (Flight (id=148) [name=D21212, airportSrcId=5, airportDstId=39, departureTime=12:00:00, arrivalTime=15:00:00]) into (Flight)
-15:21:32.643 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays (id=148) [days=[false, false, false, false, false, false, false]]) from table (FlightDays)
-15:21:37.907 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
-15:21:37.917 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Update (JobTitle [name=Mechanic]) into (JobTitle)
-15:21:37.928 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Mechanic]) from table (JobTitle)
-15:21:37.939 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
-15:21:37.947 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
-15:21:37.952 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
-15:21:37.954 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
-15:21:37.960 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
-15:21:38.377 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
+15:16:36.570 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
+15:16:36.929 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
+15:16:36.954 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Insert (Airport [Варшава]) into (Airport)
+15:16:37.000 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Ларнака]) into (Airport)
+15:16:37.003 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Deleted (Airport [Варшава]) from table (Airport)
+15:16:44.693 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03, jobTitleId=4]) into (Employee)
+15:16:44.912 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Дарья, lastName=Иванова, birthday=1980-04-03 00:00:00.0, jobTitleId=4]) from table (Employee)
+15:16:51.385 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight2Team - Insert (Flight2Team [flightId=2, teamId=2, departure=2016-11-13]) into (Flight2Team)
+15:16:51.391 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight2Team - Deleted (Flight2Team [flightId=2, teamId=2, departure=2016-11-13]) from table (Flight2Team)
+15:16:57.231 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays (id=1) [days=[true, false, false, false, false, false, false]]) from table (FlightDays)
+15:17:03.574 [main] INFO  com.epam.training2016.aviacompany.datamodel.Flight - Insert (Flight (id=149) [name=D21212, airportSrcId=5, airportDstId=39, departureTime=12:00:00, arrivalTime=15:00:00]) into (Flight)
+15:17:03.726 [main] INFO  com.epam.training2016.aviacompany.datamodel.FlightDays - Deleted (FlightDays (id=149) [days=[false, false, false, false, false, false, false]]) from table (FlightDays)
+15:17:09.653 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
+15:17:09.659 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Update (JobTitle [name=Mechanic]) into (JobTitle)
+15:17:09.692 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Mechanic]) from table (JobTitle)
+15:17:09.698 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
+15:17:09.705 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
+15:17:09.710 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
+15:17:09.712 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
+15:17:09.717 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Insert (JobTitle [name=Механик]) into (JobTitle)
+15:17:10.201 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Диспетчер)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Диспетчер)" уже существует.
-15:21:38.391 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
+15:17:10.207 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Юрист)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Юрист)" уже существует.
-15:21:38.396 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
+15:17:10.212 [main] ERROR com.epam.training2016.aviacompany.datamodel.JobTitle - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Бухгалтер)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "job_title_name_key"
   Подробности: Ключ "(name)=(Бухгалтер)" уже существует.
-15:21:38.399 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
-15:21:44.227 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Елена, lastName=Бобко, birthday=null, jobTitleId=null]) into (Employee)
-15:21:44.232 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Елена, lastName=Бобко, birthday=null, jobTitleId=null]) from table (Employee)
-15:21:44.366 [main] INFO  com.epam.training2016.aviacompany.datamodel.Team - Deleted (Team [pilot=168, navigator=197, radioman=218, stewardess1=15, stewardess2=16]) from table (Team)
+15:17:10.216 [main] INFO  com.epam.training2016.aviacompany.datamodel.JobTitle - Deleted (JobTitle [name=Механик]) from table (JobTitle)
+15:17:15.412 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Insert (Employee [firstName=Елена, lastName=Бобко, birthday=null, jobTitleId=null]) into (Employee)
+15:17:15.421 [main] INFO  com.epam.training2016.aviacompany.datamodel.Employee - Deleted (Employee [firstName=Елена, lastName=Бобко, birthday=null, jobTitleId=null]) from table (Employee)
+15:17:15.563 [main] INFO  com.epam.training2016.aviacompany.datamodel.Team - Deleted (Team [pilot=168, navigator=197, radioman=218, stewardess1=15, stewardess2=16]) from table (Team)
