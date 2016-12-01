@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.daoapi.customentity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,8 @@ import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.FlightDays;
 
 @Repository
-public class FlightWithDaysWeek {
+public class FlightWithDaysWeek implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Flight flight;
 	private List<FlightDays> dayWeeks;
 	

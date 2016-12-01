@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.epam.training2016.aviacompany.daodb.io.SerializationDao;
 
 /**
- * Класс кеширования запросов
+ * Класс кеширования данных
  * 
  * @param <T>
  */
@@ -23,19 +23,22 @@ public class CacheDao<T> {
 	private Long DEFAULT_TIME_LIVE = 30L;
 	private Map<String, Object> cache;
 	@Value("${cache.path}")
-	private String cachePath; 
+	private String cachePath;
+	@Value("${cache.enable}")
+	private boolean cacheEnable;
+	
 	@Inject
 	private SerializationDao serialize;
 
 	public CacheDao() {
 		this.cache = new HashMap<>();
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	private void init() {
-		cachePath = cachePath + "//objects.cache";
+//		cachePath = cachePath + "//objects.cache";
+		
 		Object savedMap = serialize.load(cachePath);
 		if (savedMap != null) {
 			cache = (Map<String, Object>) savedMap;
@@ -45,18 +48,9 @@ public class CacheDao<T> {
 	@PreDestroy
 	private void destroy() {
 		for(String key: cache.keySet()) {
-			System.out.println(key + " = " + cache.get(key));
+			serialize.save(cache.get(key), cachePath + "//" + key);
 		}
-		serialize.save(cache, cachePath);
-	}
-	
-	public List<T> cacheList(IGetList<T> fromBase, String name) {
-		List<T> list = get(name);
-		if (list == null) {
-			list = fromBase.get();
-			put(name, list);
-		}
-		return list;
+//		serialize.save(cache, cachePath);
 	}
 	
 	public void setCache(Map<String, Object> cache) {
@@ -66,8 +60,21 @@ public class CacheDao<T> {
 	public Map<String, Object> getCache() {
 		return cache;
 	}
+	
+	public List<T> cacheList(IGetList<T> fromBase, String name) {
+		if (!cacheEnable) return fromBase.get();
+		List<T> list = get(name);
+		if (list == null) {
+			list = fromBase.get();
+			put(name, list);
+		} else {
+			
+		}
+		return list;
+	}
 
 	public T cacheEntity(IGetEntity<T> fromBase, String name, Long id) {
+		if (!cacheEnable) return fromBase.get();
 		T entity = get(name, id);
 		if (entity == null) {
 			entity = fromBase.get();
@@ -75,7 +82,6 @@ public class CacheDao<T> {
 		}
 		return entity;
 	}
-
 	
 	/**
 	 * Сохранить объект класса по id в HashMap
@@ -85,6 +91,7 @@ public class CacheDao<T> {
 	 * @param entity
 	 * @param timeLive
 	 */
+	@SuppressWarnings("unchecked")
 	public void put(String name, Long id, T entity, Long timeLive) {
 		if (entity != null) {
 			HashMap<Long, CacheElement<T>> hash;
@@ -108,6 +115,7 @@ public class CacheDao<T> {
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public T get(String name, Long id) {
 		// deleteExpired(name);
 		Map<Long, CacheElement<T>> hash = (HashMap<Long, CacheElement<T>>) cache.get(name);
@@ -146,6 +154,7 @@ public class CacheDao<T> {
 	 * @param name
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<T> get(String name) {
 		CacheElement<List<T>> element = (CacheElement<List<T>>) cache.get(name);
 		if ((element != null) && (!element.isFinished())) {
@@ -162,5 +171,4 @@ public class CacheDao<T> {
 	public void clearAll() {
 		cache.clear();
 	}
-
 }

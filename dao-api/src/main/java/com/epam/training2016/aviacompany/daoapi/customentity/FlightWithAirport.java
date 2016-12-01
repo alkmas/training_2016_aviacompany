@@ -1,9 +1,12 @@
 package com.epam.training2016.aviacompany.daoapi.customentity;
 
+import java.io.Serializable;
+
 import com.epam.training2016.aviacompany.datamodel.Airport;
 import com.epam.training2016.aviacompany.datamodel.Flight;
 
-public class FlightWithAirport {
+public class FlightWithAirport implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Flight flight;
 	private Airport airportSrc;
 	private Airport airportDst;

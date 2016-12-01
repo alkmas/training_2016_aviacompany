@@ -1,11 +1,13 @@
 package com.epam.training2016.aviacompany.daoapi.customentity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Team;
 
-public class Flight2TeamJoin {
+public class Flight2TeamJoin implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private Flight flight;
 	private Team team;

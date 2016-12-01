@@ -1,8 +1,11 @@
 package com.epam.training2016.aviacompany.daodb.util;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CacheElement<T> {
+public class CacheElement<T> implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private T entity;
 	private Date finishTime; 
 

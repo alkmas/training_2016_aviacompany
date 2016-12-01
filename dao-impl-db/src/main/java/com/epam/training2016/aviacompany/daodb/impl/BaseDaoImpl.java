@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -38,30 +39,8 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	@Inject
-	private SerializationDao serialize;
-	@Inject
 	protected CacheDao<T> cache;
 
-	
-//	@Value("${cache.path}")
-//	private String cachePath; 
-//	
-//
-//	@SuppressWarnings("unchecked")
-//	@PostConstruct
-//	private void init() {
-//		cachePath = cachePath + "//" + genericNameClass;
-//		Object savedMap = serialize.load(cachePath + "//" + genericNameClass);
-//		if (savedMap != null) {
-//			cache.setCache((Map<String, Object>) savedMap);
-//		}
-//	}
-//	
-//	@PreDestroy
-//	private void destroy() {
-//		serialize.save(cache.getCache(), cachePath);
-//	}
-	
 	
 	BaseDaoImpl() {
 		genericClass = getGenericTypeClass();
