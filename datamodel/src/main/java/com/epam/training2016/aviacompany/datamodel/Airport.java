@@ -1,11 +1,15 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
+
 /**
  * Класс Аэропорт
  * @author alex
  *
  */
-public class Airport extends AbstractModel {
+public class Airport extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	static private String[] UNIQUE_KEYS = {"id", "name"};
 	
 	private String name;

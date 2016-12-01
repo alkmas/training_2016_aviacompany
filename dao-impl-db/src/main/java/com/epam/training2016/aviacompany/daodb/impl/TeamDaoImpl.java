@@ -41,7 +41,7 @@ public class TeamDaoImpl extends BaseDaoImpl<Team> implements ITeamDao{
 		return cache.cacheEntity(
 				() -> jdbcTemplate.queryForObject(SQL_SELECT_EMPLOYEE_WITH_TEAM_ID_BY_ID,
 						new Object[] { id }, new EmployeeWithTeamMapper()),
-				"employee", id);
+				"getEmployeeWithTeamById", id);
 	}
 
 	@Override

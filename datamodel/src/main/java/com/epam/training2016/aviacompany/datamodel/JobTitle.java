@@ -1,11 +1,14 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
+
 /**
  * Класс Должности сотрудников компании
  * @author alex
  *
  */
-public class JobTitle extends AbstractModel {
+public class JobTitle extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	
 	public JobTitle() {

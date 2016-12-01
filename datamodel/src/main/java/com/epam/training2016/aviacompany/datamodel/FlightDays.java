@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class FlightDays extends AbstractModel{
+public class FlightDays extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Boolean[] days;
 	
 	public FlightDays() {

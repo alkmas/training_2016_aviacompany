@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,8 @@ import java.util.Date;
  * @author alex
  *
  */
-public class Employee extends AbstractModel {
+public class Employee extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private Date birthday;

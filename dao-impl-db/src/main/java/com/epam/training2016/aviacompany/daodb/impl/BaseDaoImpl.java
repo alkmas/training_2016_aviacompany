@@ -1,9 +1,13 @@
 package com.epam.training2016.aviacompany.daodb.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,8 +18,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
+import com.epam.training2016.aviacompany.daodb.io.SerializationDao;
 import com.epam.training2016.aviacompany.daodb.util.CacheDao;
-import com.epam.training2016.aviacompany.daodb.util.IGetList;
 import com.epam.training2016.aviacompany.daodb.util.StringUtils;
 
 public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
@@ -28,15 +32,37 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	private String SQL_SELECT_BY_NAME = "SELECT * FROM %s WHERE name=?";
 	private String SQL_DELETE_BY_ID = "DELETE FROM %s WHERE id=?";
 
+	public abstract Class<T> getGenericTypeClass();
 	@Inject
 	protected JdbcTemplate jdbcTemplate;
 	@Inject
 	protected NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	@Inject
-	private CacheDao<T> cache;
+	private SerializationDao serialize;
+	@Inject
+	protected CacheDao<T> cache;
 
-	public abstract Class<T> getGenericTypeClass();
-
+	
+//	@Value("${cache.path}")
+//	private String cachePath; 
+//	
+//
+//	@SuppressWarnings("unchecked")
+//	@PostConstruct
+//	private void init() {
+//		cachePath = cachePath + "//" + genericNameClass;
+//		Object savedMap = serialize.load(cachePath + "//" + genericNameClass);
+//		if (savedMap != null) {
+//			cache.setCache((Map<String, Object>) savedMap);
+//		}
+//	}
+//	
+//	@PreDestroy
+//	private void destroy() {
+//		serialize.save(cache.getCache(), cachePath);
+//	}
+	
+	
 	BaseDaoImpl() {
 		genericClass = getGenericTypeClass();
 		genericNameClass = genericClass.getSimpleName();

@@ -37,7 +37,7 @@ public class Flight2TeamServiceTest {
     @Test
     public void getTeamsByDateTest() {
 		System.out.println("-----------getTeamsByDateTest-------------");
-    	Date flightDate = Date.valueOf("2016-12-18");
+    	Date flightDate = Date.valueOf("2016-11-13");
     	List<Flight2Team> f2tList =	flight2TeamService.getByDeparture(flightDate);
     	f2tList.sort(new SortedByDepartureAndFlight<Flight2Team>());
     	for(Flight2Team f2e: f2tList) {

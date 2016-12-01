@@ -1,5 +1,6 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 /**
@@ -9,7 +10,8 @@ import java.sql.Time;
  * @author alex
  *
  */
-public class Flight extends AbstractModel {
+public class Flight extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Long airportSrcId;
 	private Long airportDstId;

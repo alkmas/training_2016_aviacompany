@@ -4,7 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+
+import com.epam.training2016.aviacompany.daodb.io.SerializationDao;
 
 /**
  * Класс кеширования запросов
@@ -15,12 +22,33 @@ import org.springframework.stereotype.Repository;
 public class CacheDao<T> {
 	private Long DEFAULT_TIME_LIVE = 30L;
 	private Map<String, Object> cache;
+	@Value("${cache.path}")
+	private String cachePath; 
+	@Inject
+	private SerializationDao serialize;
 
 	public CacheDao() {
 		this.cache = new HashMap<>();
 	}
-
 	
+
+	@SuppressWarnings("unchecked")
+	@PostConstruct
+	private void init() {
+		cachePath = cachePath + "//objects.cache";
+		Object savedMap = serialize.load(cachePath);
+		if (savedMap != null) {
+			cache = (Map<String, Object>) savedMap;
+		}
+	}
+	
+	@PreDestroy
+	private void destroy() {
+		for(String key: cache.keySet()) {
+			System.out.println(key + " = " + cache.get(key));
+		}
+		serialize.save(cache, cachePath);
+	}
 	
 	public List<T> cacheList(IGetList<T> fromBase, String name) {
 		List<T> list = get(name);
@@ -31,6 +59,13 @@ public class CacheDao<T> {
 		return list;
 	}
 	
+	public void setCache(Map<String, Object> cache) {
+		this.cache = cache;
+	}
+	
+	public Map<String, Object> getCache() {
+		return cache;
+	}
 
 	public T cacheEntity(IGetEntity<T> fromBase, String name, Long id) {
 		T entity = get(name, id);

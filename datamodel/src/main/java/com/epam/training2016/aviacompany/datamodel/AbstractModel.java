@@ -1,8 +1,14 @@
 package com.epam.training2016.aviacompany.datamodel;
 
+import java.io.Serializable;
 
 public class AbstractModel {
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
 
     public Long getId() {
 		return id;

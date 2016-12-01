@@ -9,5 +9,6 @@
 
 	<context:component-scan base-package="com.epam.training2016.aviacompany.daodb.impl" />
 	<context:component-scan base-package="com.epam.training2016.aviacompany.daodb.util" />
+	<context:component-scan base-package="com.epam.training2016.aviacompany.daodb.io" />
 
 </beans>

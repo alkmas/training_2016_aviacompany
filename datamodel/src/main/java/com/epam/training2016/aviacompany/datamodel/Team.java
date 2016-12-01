@@ -1,6 +1,9 @@
 package com.epam.training2016.aviacompany.datamodel;
 
-public class Team extends AbstractModel {
+import java.io.Serializable;
+
+public class Team extends AbstractModel implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Long pilot;
 	private Long navigator;
 	private Long radioman;
