@@ -55,7 +55,6 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 
 	/**
 	 * Возвращает шаблон для UPDATE запроса
-	 * 
 	 * @return
 	 */
 	protected String getStringSQLUpdate() {

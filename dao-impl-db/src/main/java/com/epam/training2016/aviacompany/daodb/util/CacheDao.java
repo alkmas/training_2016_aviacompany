@@ -26,41 +26,29 @@ public class CacheDao<T> {
 	private String cachePath;
 	@Value("${cache.enable}")
 	private boolean cacheEnable;
-	
 	@Inject
 	private SerializationDao serialize;
 
+	
 	public CacheDao() {
 		this.cache = new HashMap<>();
 	}
 
-	@SuppressWarnings("unchecked")
 	@PostConstruct
-	private void init() {
-//		cachePath = cachePath + "//objects.cache";
-		
+	@SuppressWarnings("unchecked")
+	public void init() {
 		Object savedMap = serialize.load(cachePath);
 		if (savedMap != null) {
 			cache = (Map<String, Object>) savedMap;
 		}
 	}
-	
+
 	@PreDestroy
 	private void destroy() {
-		for(String key: cache.keySet()) {
-			serialize.save(cache.get(key), cachePath + "//" + key);
-		}
-//		serialize.save(cache, cachePath);
+		serialize.save(cache, cachePath);
 	}
-	
-	public void setCache(Map<String, Object> cache) {
-		this.cache = cache;
-	}
-	
-	public Map<String, Object> getCache() {
-		return cache;
-	}
-	
+
+
 	public List<T> cacheList(IGetList<T> fromBase, String name) {
 		if (!cacheEnable) return fromBase.get();
 		List<T> list = get(name);
