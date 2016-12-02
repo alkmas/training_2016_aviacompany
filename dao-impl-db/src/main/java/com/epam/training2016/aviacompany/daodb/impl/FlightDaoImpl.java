@@ -60,23 +60,26 @@ public class FlightDaoImpl extends BaseDaoImpl<Flight> implements IFlightDao {
 	}
 	
 	@Override
-	public void deleteByFlightId(Long flightId) {
-		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID, new Object[] {flightId});
+	public int deleteByFlightId(Long flightId) {
+		int result = jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID, new Object[] {flightId});
 		cache.clearAll();
+		return result;
 	}
 
 	
 	@Override
-	public void deleteByAirportSrcId(Long airportId) {
-		jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_SRC_ID, new Object[] {airportId});
+	public int deleteByAirportSrcId(Long airportId) {
+		int result = jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_SRC_ID, new Object[] {airportId});
 		cache.clearAll();
+		return result;
 	}
 
 	
 	@Override
-	public void deleteByAirportDstId(Long airportId) {
-		jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_DST_ID, new Object[] {airportId});
+	public int deleteByAirportDstId(Long airportId) {
+		int result = jdbcTemplate.update(SQL_DELETE_BY_AIRPORT_DST_ID, new Object[] {airportId});
 		cache.clearAll();
+		return result;
 	}
 
 	@Override

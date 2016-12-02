@@ -11,7 +11,7 @@ public interface IFlight2TeamDao extends IBaseDao<Flight2Team> {
 	List<Flight2Team> getByTeamId(Long teamId);
 	List<Flight2Team> getByDeparture(Date date);
 	Flight2Team getByTeamIdAndDate(Long teamId, Date date);
-	void deleteByFlightIdAndDate(Long flightId, Date date);
-	void deleteByTeamId(Long teamId);
+	int deleteByFlightIdAndDate(Long flightId, Date date);
+	int deleteByTeamId(Long teamId);
 	List<Flight2TeamJoin> getAllJoin();
 }

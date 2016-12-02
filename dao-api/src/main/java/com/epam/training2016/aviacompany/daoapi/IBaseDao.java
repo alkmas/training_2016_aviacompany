@@ -9,7 +9,7 @@ public interface IBaseDao<T> {
 	T getById(Long id);
 	T getByName(String name);
 	Long insert(T entity);
-	void update(T entity);
-	void deleteById(Long id);
+	int update(T entity);
+	int deleteById(Long id);
 	List<T> getAll();
 }

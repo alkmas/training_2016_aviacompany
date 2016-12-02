@@ -97,19 +97,21 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public void update(T entity) {
-		update(entity, new BeanPropertySqlParameterSource(entity));
+	public int update(T entity) {
+		int result = update(entity, new BeanPropertySqlParameterSource(entity));
 		cache.clearAll();
+		return result;
 	}
 
-	protected void update(T entity, SqlParameterSource parameterSource) {
-		namedParameterJdbcTemplate.update(getStringSQLUpdate(), parameterSource);
+	protected int update(T entity, SqlParameterSource parameterSource) {
+		return namedParameterJdbcTemplate.update(getStringSQLUpdate(), parameterSource);
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		jdbcTemplate.update(SQL_DELETE_BY_ID, new Object[] { id });
+	public int deleteById(Long id) {
+		int result = jdbcTemplate.update(SQL_DELETE_BY_ID, new Object[] { id });
 		cache.clearAll();
+		return result;
 	}
 
 	@Override

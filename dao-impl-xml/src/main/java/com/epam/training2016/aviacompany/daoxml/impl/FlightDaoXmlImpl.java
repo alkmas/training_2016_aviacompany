@@ -31,18 +31,18 @@ public class FlightDaoXmlImpl extends BaseDaoXmlImpl<Flight> implements IFlightD
 	}
 
 	@Override
-	public void deleteByFlightId(Long flightId) {
-		baseXML.deleteByField("flightId", flightId);
+	public int deleteByFlightId(Long flightId) {
+		return baseXML.deleteByField("flightId", flightId);
 	}
 
 	@Override
-	public void deleteByAirportSrcId(Long airportId) {
-		baseXML.deleteByField("airportSrcId", airportId);
+	public int deleteByAirportSrcId(Long airportId) {
+		return baseXML.deleteByField("airportSrcId", airportId);
 	}
 
 	@Override
-	public void deleteByAirportDstId(Long airportId) {
-		baseXML.deleteByField("airportDstId", airportId);
+	public int deleteByAirportDstId(Long airportId) {
+		return baseXML.deleteByField("airportDstId", airportId);
 	}
 
 	@Override

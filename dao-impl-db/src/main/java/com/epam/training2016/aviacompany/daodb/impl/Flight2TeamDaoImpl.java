@@ -79,14 +79,14 @@ public class Flight2TeamDaoImpl extends BaseDaoImpl<Flight2Team> implements IFli
 	}
 
 	@Override
-	public void deleteByFlightIdAndDate(Long flightId, Date date) {
-		jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID_AND_DATE, 
+	public int deleteByFlightIdAndDate(Long flightId, Date date) {
+		return jdbcTemplate.update(SQL_DELETE_BY_FLIGHT_ID_AND_DATE, 
 				new Object[] { flightId, date });
 	}
 
 	@Override
-	public void deleteByTeamId(Long teamId) {
-		jdbcTemplate.update(SQL_DELETE_BY_TEAM_ID, 
+	public int deleteByTeamId(Long teamId) {
+		return jdbcTemplate.update(SQL_DELETE_BY_TEAM_ID, 
 				new Object[] { teamId });
 	}
 

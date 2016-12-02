@@ -62,9 +62,10 @@ public class FlightDaysDaoImpl extends BaseDaoImpl<FlightDays> {
 				"flightDaysAll");
 	}
 
-	public void update(FlightDays entity) {
-		this.update(entity, getSqlParameterSource(entity));
+	public int update(FlightDays entity) {
+		int result = this.update(entity, getSqlParameterSource(entity));
 		cache.put("flightDays", entity.getId(), entity);
+		return result;
 	}
 
 	public Long insert(FlightDays entity) {

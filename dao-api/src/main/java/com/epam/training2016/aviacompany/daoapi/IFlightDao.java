@@ -13,8 +13,8 @@ public interface IFlightDao extends IBaseDao<Flight> {
 //	List<FlightWithAirport> getAllWithAirport();
 //	List<FlightWithAirport> getAllForDays(Long dayWeek);
 	List<Flight> getAllForDays(Integer dayWeek);
-	void deleteByFlightId(Long flightId);
-	void deleteByAirportSrcId(Long airportId);
-	void deleteByAirportDstId(Long airportId);
+	int deleteByFlightId(Long flightId);
+	int deleteByAirportSrcId(Long airportId);
+	int deleteByAirportDstId(Long airportId);
 	List<FlightWithAirportsAndDaysWeek> getAllWithFullInfo();
 }

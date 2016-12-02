@@ -63,7 +63,7 @@ public abstract class BaseDaoXmlImpl<T> implements IBaseDao<T>, GenericType<T> {
 	}
 
 	@Override
-	public void update(T entity) {
+	public int update(T entity) {
 		Long id = (Long) baseXML.getValueField(entity, "id");
 		
 		T foundEntity = getById(id);
@@ -74,11 +74,12 @@ public abstract class BaseDaoXmlImpl<T> implements IBaseDao<T>, GenericType<T> {
 			// вставить в список если такого Id нет
 			insert(entity);
 		}
+		return 1;
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		baseXML.deleteByField("id", id);
+	public int deleteById(Long id) {
+		return baseXML.deleteByField("id", id);
 	}
 
 	@Override

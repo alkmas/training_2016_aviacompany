@@ -58,15 +58,17 @@ public class Flight2TeamDaoXmlImpl extends BaseDaoXmlImpl<Flight2Team> implement
 	}
 
 	@Override
-	public void deleteByFlightIdAndDate(Long flightId, Date date) {
+	public int deleteByFlightIdAndDate(Long flightId, Date date) {
+		int countDeleted = 0;
 		for(Flight2Team f2t: getFromListByFieldLong(getByTeamId(flightId), "departure", date.getTime())) {
-			this.deleteById(f2t.getId());
+			countDeleted += this.deleteById(f2t.getId());
 		}
+		return countDeleted;
 	}
 
 	@Override
-	public void deleteByTeamId(Long teamId) {
-		baseXML.deleteByField("teamId", teamId);
+	public int deleteByTeamId(Long teamId) {
+		return baseXML.deleteByField("teamId", teamId);
 	}
 
 

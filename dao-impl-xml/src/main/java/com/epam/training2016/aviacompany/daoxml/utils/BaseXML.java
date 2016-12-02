@@ -111,16 +111,22 @@ public class BaseXML<T> implements GenericType<T> {
      * Удаление объекта по полю класса Long
      * @param fieldName
      * @param id
+     * @return кол-во удаленных
      */
-	public void deleteByField(String fieldName, Long id) {
+	public int deleteByField(String fieldName, Long id) {
 		List<T> resultList = new ArrayList<T>();
+		int countDeleted = 0;
 		Long idGet;
 		for(T entity: baseList) {
 			idGet = (Long) getValueField(entity, fieldName);
-			if (idGet.equals(id)) continue;
+			if (idGet.equals(id)) {
+				countDeleted++;
+				continue;
+			}
 			resultList.add(entity);
 		}
 		this.setBaseList(resultList);
+		return countDeleted;
 	}
 
 	public int indexOf(Object entity) {
