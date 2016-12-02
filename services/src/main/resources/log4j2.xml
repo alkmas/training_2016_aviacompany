@@ -15,6 +15,12 @@
 			</Policies>
 		</RollingFile>
 
+<!-- 		<SMTP name="Mail" subject="Error Log Aviacompany" to="akostechko@bapb.grodno.by" -->
+<!-- 			from="kwf@bapb.grodno.by" smtpHost="4-00-mail" smtpPort="25" -->
+<!-- 			bufferSize="50"> -->
+<!-- 		</SMTP> -->
+
+
 	</Appenders>
 
 	<Loggers>
@@ -26,6 +32,7 @@
 			additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="RollingFile" />
+<!-- 			<AppenderRef ref="Mail" /> -->
 		</Logger>
 
 	</Loggers>

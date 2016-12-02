@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 
@@ -37,15 +38,9 @@ public class BaseXML<T> implements GenericType<T> {
     private void initialize() {
         xstream = new XStream();
         xstream.alias(shortNameClass, clazz);
-
-        try (InputStream inputStream = 
-        		getClass().getClassLoader().getResourceAsStream("xml-db.properties")) {
-        	Properties properties = new Properties();
-        	properties.load(inputStream);
-        	basePath = properties.getProperty("basePath");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        
+        ResourceBundle res = ResourceBundle.getBundle("xml-db");
+		basePath = res.getString("basePath");
 
         file = new File(basePath + "/" + shortNameClass + ".xml");
         try {

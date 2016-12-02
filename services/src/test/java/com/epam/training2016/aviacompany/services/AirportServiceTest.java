@@ -31,7 +31,7 @@ public class AirportServiceTest {
 	
 	@After
 	public void close() {
-//		airportService.deleteById(airport.getId());
+		airportService.deleteById(airport.getId());
 	}
 
 	

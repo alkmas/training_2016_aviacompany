@@ -39,4 +39,16 @@
     <id>12</id>
     <name>Бухгалтер</name>
   </JobTitle>
+  <JobTitle>
+    <id>14</id>
+    <name>Диспетчер</name>
+  </JobTitle>
+  <JobTitle>
+    <id>15</id>
+    <name>Юрист</name>
+  </JobTitle>
+  <JobTitle>
+    <id>16</id>
+    <name>Бухгалтер</name>
+  </JobTitle>
 </list>

@@ -1,7 +1,0 @@
-21:33:41.498 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
-  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
-  Подробности: Ключ "(name)=(Варшава)" уже существует.
-21:33:41.631 [main] ERROR com.epam.training2016.aviacompany.datamodel.Airport - org.springframework.dao.DuplicateKeyException: PreparedStatementCallback; SQL []; ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
-  Подробности: Ключ "(name)=(Варшава)" уже существует.; nested exception is org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "airport_name_key"
-  Подробности: Ключ "(name)=(Варшава)" уже существует.
-21:33:42.036 [main] INFO  com.epam.training2016.aviacompany.datamodel.Airport - Update (Airport [Минск]) into (Airport)

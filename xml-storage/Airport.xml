@@ -159,4 +159,12 @@
     <id>40</id>
     <name>Гамбург</name>
   </Airport>
+  <Airport>
+    <id>41</id>
+    <name>Варшава</name>
+  </Airport>
+  <Airport>
+    <id>42</id>
+    <name>Варшава</name>
+  </Airport>
 </list>
