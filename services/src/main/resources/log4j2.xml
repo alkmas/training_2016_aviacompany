@@ -2,12 +2,13 @@
 <Configuration status="WARN">
 
 	<Appenders>
-		<Console name="Console" target="SYSTEM_OUT">
+		<Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 
 		<RollingFile name="RollingFile" fileName="logs/app.log"
-			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+			ignoreExceptions="false">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
@@ -15,10 +16,15 @@
 			</Policies>
 		</RollingFile>
 
-<!-- 		<SMTP name="Mail" subject="Error Log Aviacompany" to="akostechko@bapb.grodno.by" -->
-<!-- 			from="kwf@bapb.grodno.by" smtpHost="4-00-mail" smtpPort="25" -->
-<!-- 			bufferSize="50"> -->
-<!-- 		</SMTP> -->
+		<SMTP name="Mail" subject="Error Log Aviacompany" to="akostechko@bapb.grodno.by"
+			from="kwf@bapb.grodno.by" smtpHost="4-00-mail" smtpPort="25"
+			bufferSize="50" ignoreExceptions="false">
+		</SMTP>
+		<Failover name="Failover" primary="Mail">
+			<Failovers>
+				<AppenderRef ref="Console" />
+			</Failovers>
+		</Failover>
 
 
 	</Appenders>
@@ -30,9 +36,9 @@
 
 		<Logger level="info" name="com.epam.training2016.aviacompany"
 			additivity="false">
-			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="Console" /> -->
 			<AppenderRef ref="RollingFile" />
-<!-- 			<AppenderRef ref="Mail" /> -->
+			<AppenderRef ref="Failover" />
 		</Logger>
 
 	</Loggers>

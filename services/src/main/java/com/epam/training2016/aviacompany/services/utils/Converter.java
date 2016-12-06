@@ -9,22 +9,8 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.epam.training2016.aviacompany.datamodel.Airport;
-import com.epam.training2016.aviacompany.datamodel.Employee;
-import com.epam.training2016.aviacompany.datamodel.Flight;
 import com.epam.training2016.aviacompany.datamodel.Flight2Team;
-import com.epam.training2016.aviacompany.datamodel.FlightDays;
-import com.epam.training2016.aviacompany.datamodel.JobTitle;
-import com.epam.training2016.aviacompany.datamodel.Team;
-import com.epam.training2016.aviacompany.services.EmployeeService;
 import com.epam.training2016.aviacompany.services.Flight2TeamService;
-import com.epam.training2016.aviacompany.services.FlightService;
-import com.epam.training2016.aviacompany.services.TeamService;
-import com.epam.training2016.aviacompany.services.impl.AirportServiceImpl;
-import com.epam.training2016.aviacompany.services.impl.EmployeeServiceImpl;
-import com.epam.training2016.aviacompany.services.impl.FlightDaysServiceImpl;
-import com.epam.training2016.aviacompany.services.impl.FlightServiceImpl;
-import com.epam.training2016.aviacompany.services.impl.JobTitleServiceImpl;
 import com.thoughtworks.xstream.XStream;
 
 public class Converter<T> {
@@ -64,6 +50,7 @@ public class Converter<T> {
     
 	
 	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) throws IOException {
 		Converter<Flight2Team> conv = new Converter<>(Flight2Team.class);
 		ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("service-context-test.xml");

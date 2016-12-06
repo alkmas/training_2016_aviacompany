@@ -185,6 +185,11 @@
 				<artifactId>log4j-jcl</artifactId>
 				<version>${log4j2.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>javax.mail</artifactId>
+				<version>1.4.5</version>
+			</dependency>
 			
 			
 			<!-- JETTY DEPENDENCIES FOR TESTING -->
