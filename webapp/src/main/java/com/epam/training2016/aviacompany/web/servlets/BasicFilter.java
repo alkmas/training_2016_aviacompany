@@ -18,11 +18,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.epam.training2016.aviacompany.components.UserDataStorage;
 import com.epam.training2016.aviacompany.services.AuthenticationService;
+import com.epam.training2016.aviacompany.services.components.UserDataStorage;
 import com.epam.training2016.aviacompany.web.utils.Headers;
 
-public class BasicAuthFilter implements Filter {
+public class BasicFilter implements Filter {
 	private AuthenticationService authService;
 	private UserDataStorage userDataStorage;
     private ApplicationContext appContext;
@@ -67,6 +67,12 @@ public class BasicAuthFilter implements Filter {
 		}
 	}
 
+	
+	/**
+	 * Получение имени и пароля из header
+	 * @param headers
+	 * @return
+	 */
 	private String[] resolveCredentials(Map<String, String> headers) {
 		try {
 			String base64Credentials = headers.get("Authorization");

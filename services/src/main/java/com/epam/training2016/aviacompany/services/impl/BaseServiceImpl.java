@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
+
 import com.epam.training2016.aviacompany.daoapi.IBaseDao;
 import com.epam.training2016.aviacompany.datamodel.AbstractModel;
 import com.epam.training2016.aviacompany.services.BaseService;
+import com.epam.training2016.aviacompany.services.components.UserDataStorage;
 import com.epam.training2016.aviacompany.services.exceptions.InvalidDataException;
 
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
@@ -18,6 +20,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	
     @Inject
     private IBaseDao<T> baseDao;
+    @Inject
+    private UserDataStorage userDataStorage;
     
     protected abstract Class<T> getGenericTypeClass();
     

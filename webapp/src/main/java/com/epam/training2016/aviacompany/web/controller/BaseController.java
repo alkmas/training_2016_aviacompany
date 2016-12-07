@@ -27,9 +27,7 @@ public abstract class BaseController<E, M> {
     private IConverter<E, M> converter;
     
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<M>> getAll(
-    		@RequestHeader ("Authorization") String auth) {
-    	System.out.println("header: " + auth);
+    public ResponseEntity<List<M>> getAll() {
         List<M> converted = converter.entity2model(service.getAll());
         return new ResponseEntity<List<M>>(converted,
                 HttpStatus.OK);

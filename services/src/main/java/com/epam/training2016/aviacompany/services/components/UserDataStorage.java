@@ -1,4 +1,4 @@
-package com.epam.training2016.aviacompany.components;
+package com.epam.training2016.aviacompany.services.components;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "request")
 public class UserDataStorage {
 
+	private String DEFAULT_LOCALE = "ru_RU";
     private boolean isLoggedIn;
     private String locale;
     
@@ -15,6 +16,9 @@ public class UserDataStorage {
 	}
 
 	public void setLocale(String locale) {
+		if (locale == null) {
+			this.locale = DEFAULT_LOCALE;
+		}
 		this.locale = locale;
 	}
 
