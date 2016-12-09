@@ -50,6 +50,7 @@
 		<constructor-arg ref="dataSource" />
 	</bean>
 
+
 	<tx:annotation-driven />
 	
 	<bean id="transactionManager"

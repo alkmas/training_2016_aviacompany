@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.epam.training2016.aviacompany.services.AuthenticationService;
-import com.epam.training2016.aviacompany.services.components.UserDataStorage;
+import com.epam.training2016.aviacompany.web.components.UserDataStorage;
 import com.epam.training2016.aviacompany.web.utils.Headers;
 
 public class BasicFilter implements Filter {

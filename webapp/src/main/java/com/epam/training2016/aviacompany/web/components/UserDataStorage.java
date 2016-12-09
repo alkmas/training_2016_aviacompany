@@ -1,10 +1,9 @@
-package com.epam.training2016.aviacompany.services.components;
+package com.epam.training2016.aviacompany.web.components;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(value = "request")
+//@Scope(value = "request")
 public class UserDataStorage {
 
 	private String DEFAULT_LOCALE = "ru_RU";

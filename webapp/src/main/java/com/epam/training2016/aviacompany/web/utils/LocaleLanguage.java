@@ -3,7 +3,8 @@ package com.epam.training2016.aviacompany.web.utils;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.inject.Inject;
-import com.epam.training2016.aviacompany.services.components.UserDataStorage;
+
+import com.epam.training2016.aviacompany.web.components.UserDataStorage;
 
 public class LocaleLanguage {
 	private String resourceName;
